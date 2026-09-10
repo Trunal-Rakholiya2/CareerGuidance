@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Career Guidance</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            --input-bg: rgba(255, 255, 255, 0.6);
+            --input-focus-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #2d3748;
+            --primary-color: #764ba2;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--primary-gradient);
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            overflow: hidden;
+            /* Prevent scrolling on desktop */
+            position: relative;
+        }
+
+        /* Abstract Background Shapes */
+        body::before,
+        body::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+
+        body::before {
+            background: #4facfe;
+            top: -100px;
+            left: -100px;
+        }
+
+        body::after {
+            background: #f093fb;
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(30px, 50px) scale(1.1);
+            }
+        }
+
+        .main-container {
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            overflow: hidden;
+            width: 100%;
+            max-width: 420px;
+            /* Reduced width for compactness */
+            position: relative;
+        }
+
+        /* Decorative top bar */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+        }
+
+        .card-body {
+            padding: 1.5rem 2rem;
+            /* Reduced padding */
+        }
+
+        h3 {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.8rem;
+            /* Reduced font size */
+            letter-spacing: -0.5px;
+            margin-bottom: 0.1rem;
+        }
+
+        .subtitle {
+            color: #6c757d;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Compact form styling */
+        .form-floating>.form-control,
+        .form-floating>.form-select {
+            background-color: var(--input-bg);
+            border: 1px solid transparent;
+            border-radius: 10px;
+            height: calc(2.8rem + 2px);
+            /* Reduced height */
+            line-height: normal;
+            padding: 0.75rem 0.75rem 0.25rem;
+            /* Adjusted padding */
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-floating>.form-control:focus,
+        .form-floating>.form-select:focus {
+            background-color: var(--input-focus-bg);
+            border-color: #a4b0be;
+            box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.15);
+        }
+
+        /* Adjust floating label position for smaller height */
+        .form-floating>label {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.95rem;
+            height: auto;
+            transform-origin: 0 0;
+        }
+
+        .form-floating>.form-control:focus~label,
+        .form-floating>.form-control:not(:placeholder-shown)~label,
+        .form-floating>.form-select~label {
+            transform: scale(0.85) translateY(-0.4rem) translateX(0.1rem);
+            color: var(--primary-color);
+            font-weight: 600;
+            opacity: 0.8;
+        }
+
+        .form-floating>.form-select {
+            padding-top: 1.6rem !important;
+            /* Push text down to avoid overlap */
+            padding-bottom: 0.1rem !important;
+            padding-left: 0.75rem;
+            line-height: 1.2;
+        }
+
+        .input-icon {
+            color: var(--primary-color);
+            margin-right: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(118, 75, 162, 0.35);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(118, 75, 162, 0.45);
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .login-link {
+            color: var(--primary-color);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+
+        .alert-danger {
+            padding: 0.4rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            border-radius: 8px;
+        }
+
+        .mb-compact {
+            margin-bottom: 0.75rem !important;
+            /* Custom compact margin */
+        }
+
+        /* Animation for form elements entrance */
+        .animate-up {
+            animation: fadeInUp 0.5s ease-out backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments for mobile */
+        @media (max-width: 992px) {
+            body {
+                height: auto;
+                min-height: 100vh;
+                overflow-y: auto;
+                /* Enable scrolling on smaller screens */
+                padding: 20px 0;
+                align-items: flex-start;
+                /* Prevent top cut-off */
+            }
+
+            .main-container {
+                align-items: center;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            .glass-card {
+                margin: 10px auto;
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-container">
+        <div class="glass-card">
+            <div class="card-body">
+
+                <h3 class="text-center animate-up">Create Account</h3>
+                <p class="text-center subtitle animate-up" style="animation-delay: 0.1s;">Join us to explore your career
+                    Guidance</p>
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class="alert alert-danger text-center animate-up">{{ messages[0] }}</div>
+                {% endif %}
+                {% endwith %}
+
+                <form class="needs-validation" method="POST" action="/signup" novalidate>
+
+                    <!-- Name -->
+                    <div class="form-floating mb-compact animate-up" style="animation-delay: 0.15s;">
+                        <input type="text" name="user_name" class="form-control" id="floatingName" placeholder="Name"
+                            required>
+                        <label for="floatingName"><i class="bi bi-person input-icon"></i>Full Name</label>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-floating mb-compact animate-up" style="animation-delay: 0.2s;">
+                        <input type="email" name="user_email" class="form-control" id="floatingEmail"
+                            placeholder="name@example.com" required>
+                        <label for="floatingEmail"><i class="bi bi-envelope input-icon"></i>Email Address</label>
+                    </div>
+
+                    <!-- Mobile Number -->
+                    <div class="form-floating mb-compact animate-up" style="animation-delay: 0.25s;">
+                        <input type="tel" name="user_mobile" class="form-control" id="floatingMobile"
+                            placeholder="Mobile" required>
+                        <label for="floatingMobile"><i class="bi bi-phone input-icon"></i>Mobile Number</label>
+                    </div>
+
+                    <!-- Education Level -->
+                    <div class="form-floating mb-compact animate-up" style="animation-delay: 0.3s;">
+                        <select class="form-select" required name="education" id="floatingSelect">
+                            <option value="" selected disabled>Select</option>
+                            <option value="10th">10th</option>
+                            <option value="11th">11th</option>
+                            <option value="12th">12th</option>
+                            <option value="Graduate">Graduate</option>
+                        </select>
+                        <label for="floatingSelect"><i class="bi bi-mortarboard input-icon"></i>Education</label>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-floating mb-compact animate-up" style="animation-delay: 0.35s;">
+                        <input type="password" name="user_password" class="form-control" id="floatingPassword"
+                            placeholder="Password" required>
+                        <label for="floatingPassword"><i class="bi bi-lock input-icon"></i>Password</label>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="form-floating mb-3 animate-up" style="animation-delay: 0.4s;">
+                        <input type="password" name="confirm_password" class="form-control" id="floatingConfirm"
+                            placeholder="Confirm Password" required>
+                        <label for="floatingConfirm"><i class="bi bi-check-lg input-icon"></i>Confirm Password</label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-grid mt-2 animate-up" style="animation-delay: 0.45s;">
+                        <button class="btn btn-primary" type="submit">Sign Up</button>
+                    </div>
+
+                    <!-- Login link -->
+                    <p class="text-center mt-3 mb-0 animate-up"
+                        style="animation-delay: 0.5s; font-size: 0.95rem; color: #6c757d;">
+                        Already have an account?
+                        <a href="/login" class="login-link">Log In</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        (() => {
+            'use strict'
+
+            const form = document.getElementById('signupForm')
+
+            form.addEventListener('submit', function (event) {
+
+                // Bootstrap default validation
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                // Mobile validation
+                const mobile = document.getElementById("user_mobile").value
+                const mobilePattern = /^[6-9]\d{9}$/
+
+                if (!mobilePattern.test(mobile)) {
+                    event.preventDefault()
+                    alert("❌ Please enter a valid 10-digit mobile number")
+                }
+
+                // Password match validation
+                const password = document.getElementById("password").value
+                const confirmPassword = document.getElementById("confirm_password").value
+
+                if (password !== confirmPassword) {
+                    event.preventDefault()
+                    document.getElementById("confirm_password")
+                        .setCustomValidity("Passwords do not match")
+                } else {
+                    document.getElementById("confirm_password")
+                        .setCustomValidity("")
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })();
+    </script>
+</body>
+</html>

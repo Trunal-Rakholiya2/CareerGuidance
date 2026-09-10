@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Skill-Based Careers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #e0e7ff;
+            --secondary-color: #64748b;
+            --accent-color: #818cf8;
+            --success-color: #10b981;
+            --bg-body: #f1f5f9;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --backdrop-blur: blur(20px);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --gradient-hero: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+
+        /* Premium Modal Animations */
+        @keyframes modalPop {
+            0% {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes iconPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(99, 102, 241, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+            }
+        }
+
+        .modal-premium .modal-content {
+            border: 1px solid rgba(255, 255, 255, 0.7) !important;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25) !important;
+            border-radius: 32px !important;
+            animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .icon-pulse-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .icon-pulse-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary-color);
+            opacity: 0.15;
+            z-index: -1;
+            animation: iconPulse 2s infinite;
+        }
+
+        html {
+            scroll-padding-top: 180px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding-top: 140px;
+            background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.05), transparent 40%),
+                radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.05), transparent 40%);
+            background-attachment: fixed;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .navbar-brand {
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.01em;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        /* Navbar */
+        .navbar.fixed-top {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: var(--backdrop-blur);
+            -webkit-backdrop-filter: var(--backdrop-blur);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            padding: 1.2rem 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.scrolled .navbar.fixed-top {
+            padding: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img,
+        .navbar-brand span {
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.scrolled .navbar-brand img {
+            width: 55px;
+            height: 55px;
+        }
+
+        body.scrolled .navbar-brand span {
+            font-size: 1.5rem !important;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--text-muted) !important;
+            padding: 0.7rem 1rem !important;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            margin-left: 25px;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color) !important;
+            background: transparent;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        .navbar .btn-primary {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.8rem 2.4rem;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .navbar .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .profile-icon {
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .profile-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .career-card {
+            background: #ffffff;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+        }
+
+        .career-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow) !important;
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .career-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 50px;
+            padding: 8px 24px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--gradient-primary);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        /* Scrollspy Nav Active State */
+        #careerScroll {
+            top: 120px;
+            z-index: 1010;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            padding: 18px 0;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 3rem;
+            transition: top 0.3s ease-in-out;
+        }
+
+        body.scrolled #careerScroll {
+            top: 72px;
+        }
+
+        #careerScroll .nav-link {
+            color: var(--text-muted);
+            padding: 10px 22px !important;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        #careerScroll .nav-link:hover {
+            background: rgba(99, 102, 241, 0.05);
+            color: var(--primary-color) !important;
+        }
+
+        #careerScroll .nav-link.active {
+            background: var(--gradient-primary);
+            color: white !important;
+            box-shadow: 0 8px 20px -4px rgba(99, 102, 241, 0.4);
+        }
+
+        #careerScroll .nav-link::after {
+            content: none;
+        }
+
+        #scrollContainer {
+            position: relative;
+        }
+
+        .hero-banner {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            margin: 30px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-banner:hover {
+            transform: scale(1.02);
+        }
+
+        /* Modals */
+        .modal-content {
+            border: none;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: var(--gradient-primary);
+            color: white;
+            border-bottom: 0;
+            padding: 1.5rem 2rem;
+        }
+
+        .modal-title {
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+        }
+
+        .modal-header .btn-close {
+            filter: invert(1) grayscale(100%) brightness(200%);
+        }
+
+        .modal-body {
+            padding: 2.5rem;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .modal-body p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .modal-body b {
+            color: var(--text-main);
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .modal-body h6 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-body h6:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 50px 0 20px;
+            margin-top: 80px;
+            width: 100%;
+        }
+
+        footer h5 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        .btn-favorite {
+            background: transparent;
+            color: white;
+            border-radius: 50%;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            vertical-align: middle;
+            width: 36px;
+            height: 36px;
+            font-size: 1rem;
+        }
+
+        .btn-favorite:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.1);
+            color: white;
+        }
+
+        .btn-favorite.active {
+            background: #ffc107;
+            color: white;
+            border-color: #ffc107 !important;
+        }
+
+        .btn-favorite.active i.bi-star::before {
+            content: "\f586";
+            /* bi-star-fill */
+        }
+
+        /* Favourite Button */
+        .n {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: white;
+            color: var(--secondary-color);
+            background-color: #fff;
+            color: var(--text-muted);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .n:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            background-color: #fff;
+            color: #ffc107;
+            transform: scale(1.1);
+        }
+
+        /* Modal Standardization */
+        @media (min-width: 992px) {
+
+            .modal-lg,
+            .modal-xl {
+                max-width: 70%;
+            }
+        }
+
+        /* --------------------------
+           SIMPLE SEARCH OVERLAY (Restored)
+           -------------------------- */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .search-box {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .search-box input,
+        .search-box #searchInput {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: #f1f5f9;
+            box-shadow: none;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+            text-align: left;
+            text-shadow: none;
+            color: var(--text-main);
+        }
+
+        .search-box input:focus,
+        .search-box #searchInput:focus {
+            background: white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+            border-bottom-color: transparent;
+        }
+
+        .search-box input::placeholder {
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        .search-overlay .btn-close-search {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.5;
+            transition: all 0.3s;
+            width: auto;
+            height: auto;
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        .search-overlay .btn-close-search:hover {
+            opacity: 1;
+            transform: translateY(-50%) rotate(90deg);
+            background: transparent;
+            color: var(--text-main);
+            box-shadow: none;
+        }
+
+        #suggestionBox {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-top: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 220px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        #suggestionBox li a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #212529;
+            transition: background 0.2s;
+        }
+
+        #suggestionBox li a:hover {
+            background-color: #f3f3f3;
+        }
+
+        /* Remove animations */
+        .search-icon-anim {
+            display: none;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991px) {
+            body {
+                padding-top: 100px;
+            }
+
+            .hero-banner {
+                height: 200px;
+            }
+
+            .section-heading {
+                font-size: 2rem;
+            }
+
+            #careerScroll {
+                top: 72px;
+                padding: 10px 0;
+                overflow-x: auto;
+                white-space: nowrap;
+                border-radius: 0;
+            }
+
+            #careerScroll .container {
+                justify-content: flex-start !important;
+                padding-left: 15px;
+            }
+
+            #careerScroll .nav-pills {
+                flex-wrap: nowrap;
+            }
+
+            .navbar-brand span {
+                font-size: 1.4rem !important;
+            }
+
+            .navbar-brand img {
+                width: 45px;
+                height: 45px;
+            }
+
+            /* Search Overlay Mobile */
+            .search-box {
+                width: 95%;
+            }
+
+            .search-box #searchInput {
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+
+            .search-overlay .btn-close-search {
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#careerScroll" data-bs-root-margin="0px 0px -40%" tabindex="0">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid px-4">
+
+            <!-- Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="/home">
+                <img src="../static/Logo.png" alt="Logo" width="80" height="80" class="me-2">
+                <span class="fw-bold text-primary fs-2">CareerGuidance</span>
+            </a>
+
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/comparison">Comparison</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/path">Path</a>
+                    </li>
+
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="#" id="search-icon-btn"><i class="bi bi-search"></i></a>
+                    </li>
+                </ul>
+
+                <a href="/profile" class="me-3 profile-icon">
+                    <i class="bi bi-person-circle"></i>
+                </a>
+                <!-- Login Button -->
+                {% if session.get('is_logged_in') == 1 %}
+                <a href="/logout" class="btn btn-danger">Logout</a>
+                {% else %}
+                <a href="/login" class="btn btn-primary">Login</a>
+                {% endif %}
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- CATEGORY SCROLLSPY NAV -->
+    <nav id="careerScroll" class="navbar sticky-top" style="z-index: 1020;">
+        <div class="container justify-content-center">
+            <ul class="nav nav-pills gap-2">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#skill">Skill-Based</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#passion">Passion-Based</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#practical">Practical & Local</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#online">Online & Modern</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#sports">Sports</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="container px-4">
+        <img src="../static/Back2.png" alt="Career Inspiration" class="hero-banner">
+    </div>
+    <div id="scrollContainer" class="position-relative">
+
+        <!-- SKILL BASED CAREERS -->
+        <section id="skill" class="py-5">
+            <div class="container px-4">
+
+                <h2 class="fw-bold text-center mb-5 section-heading">
+                    Skill-Based Careers (No Degree Required)
+                </h2>
+
+                <div class="row g-4">
+
+                    <!-- ROW 1 -->
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Graphic Designer"></i></button>
+                                <i class="bi bi-palette career-icon"></i>
+                                <h5 class="fw-bold">Graphic Designer</h5>
+                                <p class="text-muted small mb-3">Posters, logos, social media</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#graphicModal">More Info</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Video Editor"></i></button>
+                                <i class="bi bi-film career-icon"></i>
+                                <h5 class="fw-bold">Video Editor</h5>
+                                <p class="text-muted small mb-3">Reels, ads, YouTube videos</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#videoModal">More Info</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Digital Marketer"></i></button>
+                                <i class="bi bi-megaphone career-icon"></i>
+                                <h5 class="fw-bold">Digital Marketer</h5>
+                                <p class="text-muted small mb-3">Online promotion & ads</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#digitalModal">More Info</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ROW 2 -->
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Web Designer"></i></button>
+                                <i class="bi bi-laptop career-icon"></i>
+                                <h5 class="fw-bold">Web Designer</h5>
+                                <p class="text-muted small mb-3">Website UI & layout</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#webModal">More Info</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Social Media Manager"></i></button>
+                                <i class="bi bi-people career-icon"></i>
+                                <h5 class="fw-bold">Social Media Manager</h5>
+                                <p class="text-muted small mb-3">Handle brand pages</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#socialModal">More Info</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Mobile Repair Technician"></i></button>
+                                <i class="bi bi-phone career-icon"></i>
+                                <h5 class="fw-bold">Mobile Repair Technician</h5>
+                                <p class="text-muted small mb-3">Phone & gadget repair</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#mobileModal">More Info</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PASSION BASED CAREERS -->
+        <section id="passion" class="py-5">
+            <div class="container px-4">
+
+                <h2 class="fw-bold text-center mb-5">
+                    Passion-Based Careers (Talent > Education)
+                </h2>
+
+                <div class="row g-4">
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Vlogger / YouTuber"></i></button>
+                                <i class="bi bi-camera-video career-icon"></i>
+                                <h5 class="fw-bold">Vlogging / YouTuber</h5>
+                                <p class="text-muted small mb-3">Create videos & audience</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#vlogModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Gaming / Streamer"></i></button>
+                                <i class="bi bi-controller career-icon"></i>
+                                <h5 class="fw-bold">Gaming / Streamer</h5>
+                                <p class="text-muted small mb-3">Live gaming & esports</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#gameModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Photography"></i></button>
+                                <i class="bi bi-camera career-icon"></i>
+                                <h5 class="fw-bold">Photography</h5>
+                                <p class="text-muted small mb-3">Capture moments professionally</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#photoModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Music Creator"></i></button>
+                                <i class="bi bi-music-note-beamed career-icon"></i>
+                                <h5 class="fw-bold">Music Creator</h5>
+                                <p class="text-muted small mb-3">Songs, covers & background music</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#musicModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Dance / Choreography"></i></button>
+                                <i class="bi bi-music-note-list career-icon"></i>
+                                <h5 class="fw-bold">Dance / Choreography</h5>
+                                <p class="text-muted small mb-3">Perform & teach dance</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#danceModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Acting / Content Acting"></i></button>
+                                <i class="bi bi-camera-reels career-icon"></i>
+                                <h5 class="fw-bold">Acting / Content Acting</h5>
+                                <p class="text-muted small mb-3">Short films & reels</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#actingModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PRACTICAL & LOCAL CAREERS -->
+        <section id="practical" class="py-5">
+            <div class="container px-4">
+
+                <h2 class="fw-bold text-center mb-5">
+                    Practical & Local Careers (Underrated but Powerful)
+                </h2>
+
+                <div class="row g-4">
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Electrician"></i></button>
+                                <i class="bi bi-lightning-charge career-icon"></i>
+                                <h5 class="fw-bold">Electrician</h5>
+                                <p class="text-muted small mb-3">Home & industrial wiring</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#electricianModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Plumber"></i></button>
+                                <i class="bi bi-tools career-icon"></i>
+                                <h5 class="fw-bold">Plumber</h5>
+                                <p class="text-muted small mb-3">Water & pipe fitting</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#plumberModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="AC Technician"></i></button>
+                                <i class="bi bi-fan career-icon"></i>
+                                <h5 class="fw-bold">AC Technician</h5>
+                                <p class="text-muted small mb-3">AC installation & repair</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#acModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="CCTV Technician"></i></button>
+                                <i class="bi bi-webcam career-icon"></i>
+                                <h5 class="fw-bold">CCTV Technician</h5>
+                                <p class="text-muted small mb-3">Security camera setup</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#cctvModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Solar Panel Technician"></i></button>
+                                <i class="bi bi-sun career-icon"></i>
+                                <h5 class="fw-bold">Solar Panel Technician</h5>
+                                <p class="text-muted small mb-3">Renewable energy systems</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#solarModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Automobile Mechanic"></i></button>
+                                <i class="bi bi-wrench-adjustable career-icon"></i>
+                                <h5 class="fw-bold">Automobile Mechanic</h5>
+                                <p class="text-muted small mb-3">Vehicle repair & service</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#autoModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ONLINE & MODERN CAREERS -->
+        <section id="online" class="py-5">
+            <div class="container px-4">
+
+                <h2 class="fw-bold text-center mb-5">
+                    Online & Modern Careers (Trending)
+                </h2>
+
+                <div class="row g-4">
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Freelancer"></i></button>
+                                <i class="bi bi-laptop career-icon"></i>
+                                <h5 class="fw-bold">Freelancer</h5>
+                                <p class="text-muted small mb-3">Work online for clients</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#freelanceModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Social Media Influencer"></i></button>
+                                <i class="bi bi-star career-icon"></i>
+                                <h5 class="fw-bold">Social Media Influencer</h5>
+                                <p class="text-muted small mb-3">Brand promotion online</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#influencerModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Dropshipping Business"></i></button>
+                                <i class="bi bi-box-seam career-icon"></i>
+                                <h5 class="fw-bold">Dropshipping Business</h5>
+                                <p class="text-muted small mb-3">Online product selling</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#dropModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Virtual Assistant"></i></button>
+                                <i class="bi bi-headset career-icon"></i>
+                                <h5 class="fw-bold">Virtual Assistant</h5>
+                                <p class="text-muted small mb-3">Remote support work</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#vaModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Online Tutor"></i></button>
+                                <i class="bi bi-book career-icon"></i>
+                                <h5 class="fw-bold">Online Tutor</h5>
+                                <p class="text-muted small mb-3">Teach through internet</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#tutorModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Affiliate Marketer"></i></button>
+                                <i class="bi bi-cash-coin career-icon"></i>
+                                <h5 class="fw-bold">Affiliate Marketer</h5>
+                                <p class="text-muted small mb-3">Earn by product promotion</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#affiliateModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SPORTS CAREERS -->
+        <section id="sports" class="py-5">
+            <div class="container px-4">
+
+                <h2 class="fw-bold text-center mb-5">
+                    Sports Careers (Skill & Fitness &gt; Education)
+                </h2>
+
+                <div class="row g-4">
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Professional Athlete"></i></button>
+                                <i class="bi bi-trophy career-icon"></i>
+                                <h5 class="fw-bold">Professional Athlete</h5>
+                                <p class="text-muted small mb-3">Play sports professionally</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#athleteModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Cricket / Football Player"></i></button>
+                                <i class="bi bi-activity career-icon"></i>
+                                <h5 class="fw-bold">Cricket / Football Player</h5>
+                                <p class="text-muted small mb-3">Team & tournament sports</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#playerModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Fitness Trainer"></i></button>
+                                <i class="bi bi-heart-pulse career-icon"></i>
+                                <h5 class="fw-bold">Fitness Trainer</h5>
+                                <p class="text-muted small mb-3">Gym & personal training</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#trainerModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Sports Coach"></i></button>
+                                <i class="bi bi-clipboard-data career-icon"></i>
+                                <h5 class="fw-bold">Sports Coach</h5>
+                                <p class="text-muted small mb-3">Train athletes & teams</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#coachModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Sports Referee"></i></button>
+                                <i class="bi bi-flag-fill career-icon"></i>
+                                <h5 class="fw-bold">Sports Referee</h5>
+                                <p class="text-muted small mb-3">Match officiating</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#refereeModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card career-card h-100 text-center">
+                            <div class="card-body p-4">
+                                <button class="btn btn-favorite n"><i class="bi bi-star"
+                                        data-name="Sports Content Creator"></i></button>
+                                <i class="bi bi-mic career-icon"></i>
+                                <h5 class="fw-bold">Sports Content Creator</h5>
+                                <p class="text-muted small mb-3">Sports videos & analysis</p>
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#sportsContentModal">
+                                    More Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        {% include 'streams/unique.html' %}
+
+        <footer class="text-center">
+            <p class="mb-1">© 2026 CareerGuide | All Rights Reserved</p>
+            <small>
+                Helping students choose the right career after 10th, 12th & Graduation
+            </small>
+        </footer>
+
+        <!-- Search Overlay -->
+        <div class="search-overlay" id="search-overlay">
+            <button class="btn-close-search" id="close-search-btn"><i class="bi bi-x-lg"></i></button>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search courses, degrees, careers..."
+                    autocomplete="off" />
+                <ul id="suggestionBox" class="dropdown-menu w-100" style="position: absolute; top: 100%; left: 0;"></ul>
+            </div>
+        </div>
+
+        <!-- Back to Top Button -->
+        <button type="button" class="btn btn-primary btn-lg" id="btn-back-to-top"
+            style="position: fixed; bottom: 20px; right: 20px; display: none; border-radius: 50%; width: 50px; height: 50px; z-index: 1000;">
+            <i class="bi bi-arrow-up"></i>
+        </button>
+
+        <script>
+            // Back to top button logic
+            let mybutton = document.getElementById("btn-back-to-top");
+            window.onscroll = function () {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    mybutton.style.display = "block";
+                } else {
+                    mybutton.style.display = "none";
+                }
+            };
+            mybutton.addEventListener("click", function () {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            });
+
+            // Search Overlay Logic
+            const searchIconBtn = document.getElementById('search-icon-btn');
+            const searchOverlay = document.getElementById('search-overlay');
+            const closeSearchBtn = document.getElementById('close-search-btn');
+            const searchInput = document.getElementById('searchInput');
+            const suggestionBox = document.getElementById('suggestionBox');
+
+            if (searchIconBtn) {
+                searchIconBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    searchOverlay.classList.add('active');
+                    searchInput.focus();
+                });
+            }
+
+            if (closeSearchBtn) {
+                closeSearchBtn.addEventListener('click', function () {
+                    searchOverlay.classList.remove('active');
+                });
+            }
+
+            // Handle "Enter" key
+            if (searchInput) {
+                searchInput.addEventListener("keydown", function (e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        let firstItem = suggestionBox.querySelector("li a");
+                        if (firstItem) {
+                            firstItem.click();
+                        } else if (searchInput.value.trim()) {
+                            window.location.href = `/search-redirect?q=${encodeURIComponent(searchInput.value.trim())}`;
+                        }
+                    }
+                });
+
+                // Fetch suggestions
+                searchInput.addEventListener("keyup", function () {
+                    let value = searchInput.value;
+
+                    if (value.length === 0) {
+                        suggestionBox.innerHTML = "";
+                        suggestionBox.style.display = "none";
+                        return;
+                    }
+
+                    fetch(`/search-suggest?q=${encodeURIComponent(value)}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (searchInput.value !== value) return;
+                            suggestionBox.innerHTML = "";
+                            if (data.length === 0) {
+                                suggestionBox.style.display = "none";
+                                return;
+                            }
+                            suggestionBox.style.display = "block";
+
+                            data.forEach(item => {
+                                let li = document.createElement("li");
+                                let page = item.page_name.replace(".html", "").toLowerCase();
+                                li.innerHTML = `<a class="dropdown-item" href="/${page}?target=${item.div_id}&type=${item.target_type}"><b>${item.keyword}</b> <small>(${item.source})</small></a>`;
+                                suggestionBox.appendChild(li);
+                            });
+                        });
+                });
+            }
+        </script>
+
+        <!-- Permission/Feedback Modal -->
+        <div class="modal fade modal-premium" id="uniqueHelperModal" tabindex="-1" aria-labelledby="uniqueHelperLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0">
+                    <div class="modal-header border-0 justify-content-center pb-0 position-relative"
+                        style="background: transparent;">
+                        <!-- Decorative Icon Layout -->
+                        <div class="icon-pulse-wrapper bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center"
+                            style="width: 90px; height: 90px; margin-top: 30px;">
+                            <i class="bi bi-question-lg text-primary" style="font-size: 3rem;"></i>
+                        </div>
+                    </div>
+                    <div class="modal-body text-center pt-4 pb-4 px-4 bg-transparent">
+                        <h3 class="fw-bold text-dark mb-2" id="uniqueHelperTitle"
+                            style="font-family: 'Outfit', sans-serif;">Permission</h3>
+                        <p id="uniqueHelperBody" class="text-muted fs-5 mb-0"
+                            style="font-family: 'DM Sans', sans-serif; line-height: 1.6;">Message goes here...</p>
+                    </div>
+                    <div class="modal-footer border-0 justify-content-center bg-transparent pb-5 pt-0">
+                        <button type="button" class="btn btn-light rounded-pill px-4 py-2 me-3 fw-bold tracking-wide"
+                            data-bs-dismiss="modal" id="uniqueHelperCancel"
+                            style="min-width: 140px; background-color: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; transition: all 0.3s;">Cancel</button>
+                        <button type="button"
+                            class="btn btn-primary rounded-pill px-4 py-2 fw-bold tracking-wide shadow-lg"
+                            id="uniqueHelperConfirm" onclick="handleModalConfirm()"
+                            style="min-width: 140px; background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); border: none; transition: transform 0.2s;">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary rounded-pill px-4 py-2 fw-semibold shadow-md"
+            id="uniqueHelperConfirm" onclick="handleModalConfirm()"
+            style="min-width: 120px; background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); border: none;">Confirm</button>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <script>
+        // Navbar Scroll Animation Logic
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                document.body.classList.add('scrolled');
+            } else {
+                document.body.classList.remove('scrolled');
+            }
+        });
+
+        // Favorite button toggle
+        document.querySelectorAll('.btn-favorite').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.stopPropagation();
+                // Don't toggle class here; let addToFavourite handle it on success.
+
+                const icon = this.querySelector('i');
+                if (!icon) return;
+
+                const careerName = icon.getAttribute('data-name');
+
+                // Find the sibling "More Info" button to get the modal ID
+                // Both are in the card-body
+                const cardBody = this.closest('.card-body');
+                let targetId = null;
+
+                if (cardBody) {
+                    const moreInfoBtn = cardBody.querySelector('button[data-bs-toggle="modal"]');
+                    if (moreInfoBtn) {
+                        const target = moreInfoBtn.getAttribute('data-bs-target');
+                        if (target && target.startsWith('#')) {
+                            targetId = target.substring(1);
+                        }
+                    }
+                }
+
+                addToFavourite(targetId, careerName);
+            });
+        });
+
+        // Auto-open modal if hash is present
+        window.addEventListener('load', function () {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement && targetElement.classList.contains('modal')) {
+                    const modal = new bootstrap.Modal(targetElement);
+                    modal.show();
+                }
+            }
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const p = new URLSearchParams(window.location.search);
+            const target = p.get("target");
+            const type = p.get("type");
+
+            if (!target || !type) return;
+
+            const el = document.getElementById(target);
+            if (!el) return;
+
+            if (type === "modal" || type === "modal-box") {
+                new bootstrap.Modal(el).show();
+            } else {
+                el.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+
+        // Fetch favorites and update UI on load
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/get_favourites")
+                .then(res => res.json())
+                .then(data => {
+                    data.forEach(item => {
+                        try {
+                            const fav = JSON.parse(item.favourite_career);
+                            const icon = document.querySelector(`i[data-name="${fav.career}"]`);
+                            if (icon) {
+                                const btn = icon.closest('.btn-favorite');
+                                if (btn) btn.classList.add('active');
+                            }
+                        } catch (e) { }
+                    });
+                });
+        });
+
+        function addToFavourite(targetId, careerName) {
+            const icon = document.querySelector(`i[data-name="${careerName}"]`);
+            const btn = icon.closest('.btn-favorite');
+
+            if (btn.classList.contains('active')) {
+                // Remove logic
+                showConfirmModal(
+                    "Remove from Favourites",
+                    "Are you sure you want to remove '" + careerName + "' from your favourites?",
+                    function () {
+                        fetch("/remove_favourite", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ career: careerName })
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                btn.classList.remove('active');
+                            });
+                    },
+                    "Confirm", "Cancel"
+                );
+            } else {
+                // Add logic
+                showConfirmModal(
+                    "Add to Favourites",
+                    "Are you sure you want to add '" + careerName + "' to your favourites?",
+                    function () {
+                        const element = document.getElementById(targetId);
+                        let favouriteData = {};
+
+                        // Common Icon Finding Logic
+                        let iconClass = "";
+                        const card = btn.closest('.card');
+                        if (card) {
+                            const cardIcon = card.querySelector('.career-icon');
+                            if (cardIcon) {
+                                iconClass = cardIcon.className;
+                            }
+                        }
+
+                        // Robust Scraping Logic
+                        try {
+                            if (element && element.classList.contains('modal')) {
+                                const titleEl = element.querySelector('.modal-title') || element.querySelector('.modal-header h5');
+                                const bodyEl = element.querySelector('.modal-body');
+                                const headerEl = element.querySelector('.modal-header');
+
+                                favouriteData = {
+                                    career: careerName,
+                                    title: titleEl ? titleEl.innerText : careerName,
+                                    description: bodyEl ? bodyEl.innerHTML : "No description available",
+                                    header_class: headerEl ? headerEl.className : "bg-primary text-white",
+                                    source_page: "Unique_Career.html",
+                                    icon_class: iconClass
+                                };
+                            } else {
+                                // Fallback: Scrape from card if modal not found
+                                const cardBody = btn.closest('.card-body');
+                                if (cardBody) {
+                                    const titleEl = cardBody.querySelector('h5');
+                                    const textEl = cardBody.querySelector('p');
+
+                                    favouriteData = {
+                                        career: careerName,
+                                        title: titleEl ? titleEl.innerText : careerName,
+                                        description: textEl ? textEl.innerHTML : "No description available",
+                                        header_class: "bg-primary text-white",
+                                        source_page: "Unique_Career.html",
+                                        icon_class: iconClass
+                                    };
+                                }
+                            }
+                        } catch (err) {
+                            console.error("Scraping error:", err);
+                            showAlertModal("Error", "An error occurred while saving details.");
+                            return;
+                        }
+
+                        if (!favouriteData.career) {
+                            showAlertModal("Error", "Could not capture career details.");
+                            return;
+                        }
+
+                        // Define Comparison Data (Matches Backend Source of Truth)
+                        const CAREER_COMPARISON_DATA = {
+                            // Skill-Based
+                            "Graphic Designer": { "Eligibility": "No Degree / 10th Pass", "Learning Duration": "3–6 Months", "Job Opportunities": "Very High", "Starting Salary": "₹15,000–30,000", "Growth Potential": "High", "Job Stability": "Medium" },
+                            "Video Editor": { "Eligibility": "No Degree / 10th Pass", "Learning Duration": "3–6 Months", "Job Opportunities": "Very High", "Starting Salary": "₹18,000–35,000", "Growth Potential": "High", "Job Stability": "Medium" },
+                            "Digital Marketer": { "Eligibility": "No Degree / 10th Pass", "Learning Duration": "3–5 Months", "Job Opportunities": "Very High", "Starting Salary": "₹18,000–40,000", "Growth Potential": "Very High", "Job Stability": "Medium" },
+                            "Web Designer": { "Eligibility": "No Degree / 10th Pass", "Learning Duration": "4–8 Months", "Job Opportunities": "High", "Starting Salary": "₹20,000–45,000", "Growth Potential": "High", "Job Stability": "High" },
+                            "Social Media Manager": { "Eligibility": "No Degree / 10th Pass", "Learning Duration": "2–4 Months", "Job Opportunities": "Very High", "Starting Salary": "₹15,000–35,000", "Growth Potential": "High", "Job Stability": "Medium" },
+                            "Mobile Repair Technician": { "Eligibility": "8th Pass / 10th Pass", "Learning Duration": "2–4 Months", "Job Opportunities": "High", "Starting Salary": "₹12,000–25,000", "Growth Potential": "Medium", "Job Stability": "High" },
+
+                            // Passion-Based
+                            "Vlogger / YouTuber": { "Eligibility": "No degree required", "Learning Duration": "Self-paced", "Job Opportunities": "High", "Starting Salary": "₹0–50,000+ (Variable)", "Growth Potential": "Very High", "Job Stability": "Low" },
+                            "Gaming / Streamer": { "Eligibility": "No degree required", "Learning Duration": "Self-paced", "Job Opportunities": "Medium", "Starting Salary": "₹0–40,000+ (Variable)", "Growth Potential": "High", "Job Stability": "Low" },
+                            "Photography": { "Eligibility": "No degree required", "Learning Duration": "3–6 Months", "Job Opportunities": "Medium", "Starting Salary": "₹15,000–40,000", "Growth Potential": "High", "Job Stability": "Medium" },
+                            "Music Creator": { "Eligibility": "No degree required", "Learning Duration": "6–12 Months", "Job Opportunities": "Medium", "Starting Salary": "₹10,000–30,000", "Growth Potential": "High", "Job Stability": "Low" },
+                            "Dance / Choreography": { "Eligibility": "No degree required", "Learning Duration": "6–12 Months", "Job Opportunities": "Medium", "Starting Salary": "₹15,000–35,000", "Growth Potential": "Medium", "Job Stability": "Medium" },
+                            "Acting / Content Acting": { "Eligibility": "No degree required", "Learning Duration": "6–12 Months", "Job Opportunities": "Medium", "Starting Salary": "Variable", "Growth Potential": "High", "Job Stability": "Low" },
+
+                            // Practical & Local
+                            "Electrician": { "Eligibility": "8th Pass / ITI", "Learning Duration": "6–12 Months", "Job Opportunities": "Very High", "Starting Salary": "₹12,000–25,000", "Growth Potential": "Medium", "Job Stability": "High" },
+                            "Plumber": { "Eligibility": "8th Pass / ITI", "Learning Duration": "3–6 Months", "Job Opportunities": "High", "Starting Salary": "₹12,000–22,000", "Growth Potential": "Medium", "Job Stability": "High" },
+                            "AC Technician": { "Eligibility": "8th Pass / ITI", "Learning Duration": "3–6 Months", "Job Opportunities": "Very High", "Starting Salary": "₹15,000–25,000", "Growth Potential": "Medium", "Job Stability": "High" },
+                            "CCTV Technician": { "Eligibility": "8th Pass / 10th Pass", "Learning Duration": "1–2 Months", "Job Opportunities": "High", "Starting Salary": "₹12,000–20,000", "Growth Potential": "Medium", "Job Stability": "Medium" },
+                            "Solar Panel Technician": { "Eligibility": "10th Pass / ITI", "Learning Duration": "2–4 Months", "Job Opportunities": "Very High", "Starting Salary": "₹15,000–25,000", "Growth Potential": "High", "Job Stability": "Medium" },
+                            "Automobile Mechanic": { "Eligibility": "8th Pass / ITI", "Learning Duration": "6–12 Months", "Job Opportunities": "High", "Starting Salary": "₹12,000–25,000", "Growth Potential": "Medium", "Job Stability": "High" },
+
+                            // Online & Modern
+                            "Freelancer": { "Eligibility": "Skill-based", "Learning Duration": "1–3 Months", "Job Opportunities": "Very High", "Starting Salary": "Variable", "Growth Potential": "High", "Job Stability": "Low" },
+                            "Social Media Influencer": { "Eligibility": "No degree required", "Learning Duration": "Self-paced", "Job Opportunities": "High", "Starting Salary": "Variable", "Growth Potential": "Very High", "Job Stability": "Low" },
+                            "Dropshipping Business": { "Eligibility": "No degree required", "Learning Duration": "1–3 Months", "Job Opportunities": "High", "Starting Salary": "Variable", "Growth Potential": "High", "Job Stability": "Low" },
+                            "Virtual Assistant": { "Eligibility": "12th Pass / Graduate", "Learning Duration": "1–2 Months", "Job Opportunities": "High", "Starting Salary": "₹15,000–30,000", "Growth Potential": "Medium", "Job Stability": "Medium" },
+                            "Online Tutor": { "Eligibility": "Subject Expert / Degree", "Learning Duration": "None", "Job Opportunities": "High", "Starting Salary": "₹10,000–30,000", "Growth Potential": "Medium", "Job Stability": "Medium" },
+                            "Affiliate Marketer": { "Eligibility": "No degree required", "Learning Duration": "1–2 Months", "Job Opportunities": "High", "Starting Salary": "Commission Based", "Growth Potential": "High", "Job Stability": "Low" },
+
+                            // Sports
+                            "Professional Athlete": { "Eligibility": "Talent & Training", "Learning Duration": "5+ Years", "Job Opportunities": "Medium", "Starting Salary": "Variable", "Growth Potential": "Very High", "Job Stability": "Low" },
+                            "Cricket / Football Player": { "Eligibility": "Talent & Training", "Learning Duration": "5+ Years", "Job Opportunities": "High", "Starting Salary": "Variable", "Growth Potential": "Very High", "Job Stability": "Low" },
+                            "Fitness Trainer": { "Eligibility": "12th Pass + Certification", "Learning Duration": "3–6 Months", "Job Opportunities": "Very High", "Starting Salary": "₹15,000–40,000", "Growth Potential": "High", "Job Stability": "Medium" },
+                            "Sports Coach": { "Eligibility": "Experience / Certification", "Learning Duration": "1–2 Years", "Job Opportunities": "High", "Starting Salary": "₹20,000–50,000", "Growth Potential": "Medium", "Job Stability": "High" },
+                            "Sports Referee": { "Eligibility": "Certification", "Learning Duration": "6–12 Months", "Job Opportunities": "Medium", "Starting Salary": "Per Match Basis", "Growth Potential": "Medium", "Job Stability": "Low" },
+                            "Sports Content Creator": { "Eligibility": "No degree required", "Learning Duration": "Self-paced", "Job Opportunities": "High", "Starting Salary": "Variable", "Growth Potential": "High", "Job Stability": "Low" }
+                        };
+
+                        fetch("/add_favourite", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                ...favouriteData,
+                                ...CAREER_COMPARISON_DATA[careerName]
+                            })
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.status === 'added') {
+                                    btn.classList.add('active');
+                                } else {
+                                    showAlertModal("Notice", data.message);
+                                }
+                            });
+                    },
+                    "Yes", "No"
+                );
+            }
+        }
+
+        // Custom Modal Helpers
+        let confirmCallbackFn = null;
+
+        function showConfirmModal(title, message, callback, confirmText = "Confirm", cancelText = "Cancel") {
+            document.getElementById('uniqueHelperTitle').innerText = title;
+            document.getElementById('uniqueHelperBody').innerText = message;
+            document.getElementById('uniqueHelperCancel').style.display = 'inline-block';
+            document.getElementById('uniqueHelperConfirm').innerText = confirmText;
+            document.getElementById('uniqueHelperCancel').innerText = cancelText;
+            confirmCallbackFn = callback;
+            new bootstrap.Modal(document.getElementById('uniqueHelperModal')).show();
+        }
+
+        function showAlertModal(title, message) {
+            document.getElementById('uniqueHelperTitle').innerText = title;
+            document.getElementById('uniqueHelperBody').innerText = message;
+            document.getElementById('uniqueHelperCancel').style.display = 'none';
+            document.getElementById('uniqueHelperConfirm').innerText = 'OK';
+            confirmCallbackFn = null;
+            new bootstrap.Modal(document.getElementById('uniqueHelperModal')).show();
+        }
+
+        // Direct handler for reliability
+        function handleModalConfirm() {
+            if (confirmCallbackFn) {
+                confirmCallbackFn();
+            }
+            const modalEl = document.getElementById('uniqueHelperModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalEl);
+            if (modalInstance) {
+                modalInstance.hide();
+            } else {
+                const m = new bootstrap.Modal(modalEl);
+                m.hide();
+            }
+        }
+    </script>
+
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

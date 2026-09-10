@@ -1,0 +1,2216 @@
+<!-- PCB OPTIONS (4 BOXES) -->
+<div class="row g-4 text-center">
+
+  <!-- Medical -->
+  <div class="col-md-6">
+    <div class="option-box" onclick="showMedical()">
+      <span class="option-emoji">🩺</span>
+      <h5 class="mt-2 fw-bold">Medical & Healthcare</h5>
+      <p class="text-muted">Doctors, nursing & patient care</p>
+    </div>
+  </div>
+
+  <!-- Paramedical -->
+  <div class="col-md-6">
+    <div class="option-box" onclick="showParamedical()">
+      <span class="option-emoji">👩‍⚕️</span>
+      <h5 class="mt-2 fw-bold">Paramedical & Allied Health</h5>
+      <p class="text-muted">Hospital & diagnostic roles</p>
+    </div>
+  </div>
+
+  <!-- Pharmacy -->
+  <div class="col-md-6">
+    <div class="option-box" onclick="showPharmacy()">
+      <span class="option-emoji">💊</span>
+      <h5 class="mt-2 fw-bold">Pharmacy & Life Sciences</h5>
+      <p class="text-muted">Medicines, labs & biotech</p>
+    </div>
+  </div>
+
+  <!-- Research -->
+  <div class="col-md-6">
+    <div class="option-box" onclick="showResearch()">
+      <span class="option-emoji">🔬</span>
+      <h5 class="mt-2 fw-bold">Research, Psychology & Agriculture</h5>
+      <p class="text-muted">Research, mind & nature-based careers</p>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ================= MEDICAL SECTION (Like PCM) ================= -->
+<div id="medicalSection" class="container hidden mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="fw-bold">🩺 Medical & Healthcare</h3>
+    <button class="btn btn-outline-secondary btn-sm" onclick="hideMedical()">Close</button>
+  </div>
+
+  <p class="text-muted">
+    Medical & Healthcare is the primary career path for PCB students, focusing on
+    diagnosing, treating, and caring for patients.
+  </p>
+
+  <div class="row g-4 mt-2">
+    <!-- Doctor Card -->
+    <div class="col-md-6">
+      <div class="degree-card">
+        <button class="btn btn-favorite n" onclick="addToFavourite('doctorModal','Doctor (MBBS / BDS / BAMS)')"><i
+            class="bi bi-star" data-name="Doctor (MBBS / BDS / BAMS)"></i></button>
+        <h6 class="fw-bold">Doctor (MBBS / BDS / BAMS)</h6>
+        <p class="text-muted">Diagnose, treat, and cure patients.</p>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#doctorModal">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- Nurse Card -->
+    <div class="col-md-6">
+      <div class="degree-card">
+        <button class="btn btn-favorite n" onclick="addToFavourite('nurseModal','Nursing (B.Sc Nursing)')"><i
+            class="bi bi-star" data-name="Nursing (B.Sc Nursing)"></i></button>
+        <h6 class="fw-bold">Nursing (B.Sc Nursing)</h6>
+        <p class="text-muted">Patient care, assistance, and recovery.</p>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#nurseModal">
+          View Details
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PARAMEDICAL SECTION ================= -->
+<div id="paramedicalSection" class="container hidden mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="fw-bold">👩‍⚕️ Paramedical & Allied Health</h3>
+    <button class="btn btn-outline-secondary btn-sm" onclick="hideParamedical()">Close</button>
+  </div>
+
+  <p class="text-muted">
+    Paramedical courses focus on diagnostic, therapeutic, and curative support services
+    that help doctors in medical treatment.
+  </p>
+
+  <div class="row g-4 mt-2">
+    <!-- BPT Card -->
+    <div class="col-md-6">
+      <div class="degree-card">
+        <button class="btn btn-favorite n" onclick="addToFavourite('bptModal','BPT (Physiotherapy)')"><i
+            class="bi bi-star" data-name="BPT (Physiotherapy)"></i></button>
+        <h6 class="fw-bold">BPT (Physiotherapy)</h6>
+        <p class="text-muted">Physical therapy & rehabilitation.</p>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#bptModal">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- MLT Card -->
+    <div class="col-md-6">
+      <div class="degree-card">
+        <button class="btn btn-favorite n" onclick="addToFavourite('mltModal','B.Sc MLT (Lab Tech)')"><i
+            class="bi bi-star" data-name="B.Sc MLT (Lab Tech)"></i></button>
+        <h6 class="fw-bold">B.Sc MLT (Lab Tech)</h6>
+        <p class="text-muted">Blood tests, diagnostics & lab work.</p>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#mltModal">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- Radiology Card -->
+    <div class="col-md-6">
+      <div class="degree-card">
+        <button class="btn btn-favorite n" onclick="addToFavourite('radiologyModal','B.Sc Radiology')"><i
+            class="bi bi-star" data-name="B.Sc Radiology"></i></button>
+        <h6 class="fw-bold">B.Sc Radiology</h6>
+        <p class="text-muted">X-Ray, CT Scan, MRI & Imaging.</p>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#radiologyModal">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- OTT Card -->
+    <div class="col-md-6">
+      <div class="degree-card">
+        <button class="btn btn-favorite n" onclick="addToFavourite('ottModal','B.Sc OTT (Operation Theatre)')"><i
+            class="bi bi-star" data-name="B.Sc OTT (Operation Theatre)"></i></button>
+        <h6 class="fw-bold">B.Sc OTT (Operation Theatre)</h6>
+        <p class="text-muted">Managing operation theatre & equipment.</p>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#ottModal">
+          View Details
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= PHARMACY SECTION ================= -->
+<div id="pharmacySection" class="container hidden mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="fw-bold">💊 Pharmacy & Life Sciences</h3>
+    <button class="btn btn-outline-secondary btn-sm" onclick="hidePharmacy()">Close</button>
+  </div>
+
+  <p class="text-muted">
+    Pharmacy and Life Sciences focus on medicines, drugs, biotechnology, and
+    microorganisms to improve health and cure diseases.
+  </p>
+
+  <div class="row g-4 mt-2">
+    <!-- B.Pharm Card -->
+    <div class="col-md-6">
+      <div class="degree-card">
+        <button class="btn btn-favorite n" onclick="addToFavourite('bpharmModal','B.Pharm (Bachelor of Pharmacy)')"><i
+            class="bi bi-star" data-name="B.Pharm (Bachelor of Pharmacy)"></i></button>
+        <h6 class="fw-bold">B.Pharm (Bachelor of Pharmacy)</h6>
+        <p class="text-muted">Medicine manufacturing & research.</p>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#bpharmModal">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- D.Pharm Card -->
+    <div class="col-md-6">
+      <div class="degree-card">
+        <button class="btn btn-favorite n" onclick="addToFavourite('dpharmModal','D.Pharm (Diploma)')"><i
+            class="bi bi-star" data-name="D.Pharm (Diploma)"></i></button>
+        <h6 class="fw-bold">D.Pharm (Diploma)</h6>
+        <p class="text-muted">Pharmacy shop & dispensing drugs.</p>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#dpharmModal">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- Biotech Card -->
+    <div class="col-md-6">
+      <div class="degree-card">
+        <button class="btn btn-favorite n" onclick="addToFavourite('biotechModal','B.Sc Biotechnology')"><i
+            class="bi bi-star" data-name="B.Sc Biotechnology"></i></button>
+        <h6 class="fw-bold">B.Sc Biotechnology</h6>
+        <p class="text-muted">Genetics, DNA & biological tech.</p>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#biotechModal">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- Microbiology Card -->
+    <div class="col-md-6">
+      <div class="degree-card">
+        <button class="btn btn-favorite n" onclick="addToFavourite('microModal','B.Sc Microbiology')"><i
+            class="bi bi-star" data-name="B.Sc Microbiology"></i></button>
+        <h6 class="fw-bold">B.Sc Microbiology</h6>
+        <p class="text-muted">Study of viruses, bacteria & fungi.</p>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#microModal">
+          View Details
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= RESEARCH SECTION ================= -->
+<div id="researchSection" class="container hidden mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="fw-bold">🔬 Research, Psychology & Agriculture</h3>
+    <button class="btn btn-outline-secondary btn-sm" onclick="hideResearch()">Close</button>
+  </div>
+
+  <p class="text-muted">
+    Explore careers in understanding the human mind, agricultural sciences, and biological research.
+  </p>
+
+  <div class="row g-4 mt-2">
+    <!-- Psychology Card -->
+    <div class="col-md-6">
+      <div class="degree-card">
+        <button class="btn btn-favorite n" onclick="addToFavourite('psychologyModal','B.Sc Psychology')"><i
+            class="bi bi-star" data-name="B.Sc Psychology"></i></button>
+        <h6 class="fw-bold">B.Sc Psychology</h6>
+        <p class="text-muted">Study of human behavior & mind.</p>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#psychologyModal">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- Agriculture Card -->
+    <div class="col-md-6">
+      <div class="degree-card">
+        <button class="btn btn-favorite n" onclick="addToFavourite('agricultureModal','B.Sc Agriculture')"><i
+            class="bi bi-star" data-name="B.Sc Agriculture"></i></button>
+        <h6 class="fw-bold">B.Sc Agriculture</h6>
+        <p class="text-muted">Farming science & crop management.</p>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#agricultureModal">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- Horticulture Card -->
+    <div class="col-md-6">
+      <div class="degree-card">
+        <button class="btn btn-favorite n" onclick="addToFavourite('horticultureModal','B.Sc Horticulture')"><i
+            class="bi bi-star" data-name="B.Sc Horticulture"></i></button>
+        <h6 class="fw-bold">B.Sc Horticulture</h6>
+        <p class="text-muted">Plant cultivation & gardening science.</p>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#horticultureModal">
+          View Details
+        </button>
+      </div>
+    </div>
+
+    <!-- Life Sciences Card -->
+    <div class="col-md-6">
+      <div class="degree-card">
+        <button class="btn btn-favorite n" onclick="addToFavourite('lifescienceModal','B.Sc Life Sciences')"><i
+            class="bi bi-star" data-name="B.Sc Life Sciences"></i></button>
+        <h6 class="fw-bold">B.Sc Life Sciences</h6>
+        <p class="text-muted">General study of living organisms.</p>
+        <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#lifescienceModal">
+          View Details
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= DOCTOR MODAL ================= -->
+<!-- ================= DOCTOR MODAL ================= -->
+<div class="modal fade" id="doctorModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">Doctor (Medical Profession)</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+
+        <h5>📌 What is a Doctor?</h5>
+        <p>
+          A doctor is a medical professional who diagnoses, treats,
+          and prevents diseases and injuries. Doctors play a critical role
+          in maintaining public health and saving lives by providing
+          medical care, treatment, and guidance to patients.
+        </p>
+
+        <h5 class="mt-4">🩺 Which types of Doctors are available in India?</h5>
+        <p><strong>Doctor Degrees (India):</strong></p>
+        <ul>
+          <li><strong>MBBS:</strong> Modern medicine (Allopathy)</li>
+          <li><strong>BDS:</strong> Dental medicine (Teeth & oral health)</li>
+          <li><strong>BAMS:</strong> Ayurveda-based treatment</li>
+          <li><strong>BHMS:</strong> Homeopathy-based treatment</li>
+          <li><strong>BUMS:</strong> Unani medicine system</li>
+        </ul>
+
+        <h5 class="mt-4">📚 Subjects studied to become a Doctor</h5>
+        <ul>
+          <li>Anatomy</li>
+          <li>Physiology</li>
+          <li>Biochemistry</li>
+          <li>Pathology</li>
+          <li>Pharmacology</li>
+          <li>Microbiology</li>
+          <li>Community Medicine</li>
+          <li>Clinical subjects (Medicine, Surgery, Pediatrics, etc.)</li>
+        </ul>
+
+        <h5 class="mt-4">🎓 Eligibility & Entrance Exam</h5>
+        <ul>
+          <li>12th with <strong>PCB (Physics, Chemistry, Biology)</strong></li>
+          <li>Minimum age: 17 years</li>
+          <li><strong>NEET-UG</strong> is mandatory for MBBS, BDS, and AYUSH courses</li>
+        </ul>
+
+        <h5 class="mt-4">⏱️ Course Duration</h5>
+        <ul>
+          <li>MBBS / BDS / AYUSH: <strong>5 – 5.5 years</strong> (including internship)</li>
+        </ul>
+
+        <h5 class="mt-4">💼 Career Options after becoming a Doctor</h5>
+        <ul>
+          <li>Hospital Doctor</li>
+          <li>Medical Officer</li>
+          <li>Private Clinic / Practice</li>
+          <li>Specialist Doctor (after MD/MS)</li>
+          <li>Medical Researcher</li>
+          <li>Teaching in medical colleges</li>
+        </ul>
+
+        <h5 class="mt-4">🏢 Scope in the Private Sector</h5>
+        <p>
+          Doctors are highly demanded in private hospitals,
+          nursing homes, specialty clinics, diagnostic centers,
+          healthcare startups, and telemedicine platforms.
+        </p>
+
+        <h5 class="mt-4">🏛️ Government Job Scope</h5>
+        <ul>
+          <li>Government Hospitals</li>
+          <li>Primary Health Centres (PHC)</li>
+          <li>Community Health Centres (CHC)</li>
+          <li>Railways & Defense Medical Services</li>
+          <li>Public Health Departments</li>
+        </ul>
+
+        <h5 class="mt-4">💰 Salary of Doctors (Approx.)</h5>
+        <p>
+          <strong>Freshers:</strong> ₹6 – 10 LPA<br>
+          <strong>Experienced:</strong> ₹12 – 25+ LPA<br>
+          <strong>Specialists:</strong> ₹30+ LPA (varies by specialization)
+        </p>
+
+        <h5 class="mt-4">📈 Career Growth Path</h5>
+        <p>
+          MBBS / BDS / AYUSH →
+          Medical Officer →
+          Specialist (MD/MS/MDS) →
+          Senior Consultant / Hospital Head
+        </p>
+
+        <h5 class="mt-4">⚠️ Challenges of Being a Doctor</h5>
+        <ul>
+          <li>Long duration of study</li>
+          <li>High academic and emotional pressure</li>
+          <li>Irregular working hours</li>
+          <li>High responsibility toward patients</li>
+        </ul>
+
+        <h5 class="mt-4">🎯 Who should choose the Doctor profession?</h5>
+        <p>
+          This profession is ideal for students who are patient,
+          emotionally strong, dedicated, and passionate about
+          helping people and saving lives.
+        </p>
+
+        <p class="fw-semibold fst-italic mt-4">
+          “Being a doctor is not just a profession — it is a service to humanity.”
+        </p>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= NURSE MODAL ================= -->
+<!-- ================= NURSING MODAL ================= -->
+<div class="modal fade" id="nurseModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">Nursing (B.Sc Nursing)</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+
+        <h5>📌 What is Nursing?</h5>
+        <p>
+          Nursing is a vital healthcare profession focused on patient care,
+          recovery, and support. Nurses work closely with doctors to provide
+          medical care, monitor patient health, administer medicines,
+          and ensure patient comfort and safety in hospitals and healthcare settings.
+        </p>
+
+        <h5 class="mt-4">👩‍⚕️ Types of Nursing Courses</h5>
+        <ul>
+          <li><strong>B.Sc Nursing:</strong> Degree-level professional nursing course</li>
+          <li><strong>GNM Nursing:</strong> Diploma-level nursing course</li>
+        </ul>
+
+        <h5 class="mt-4">📚 Subjects Studied in B.Sc Nursing</h5>
+        <ul>
+          <li>Anatomy & Physiology</li>
+          <li>Nutrition & Dietetics</li>
+          <li>Fundamentals of Nursing</li>
+          <li>Medical-Surgical Nursing</li>
+          <li>Community Health Nursing</li>
+          <li>Child Health & Pediatric Nursing</li>
+          <li>Mental Health Nursing</li>
+          <li>Midwifery & Obstetrical Nursing</li>
+        </ul>
+
+        <h5 class="mt-4">🎓 Eligibility & Entrance Exam</h5>
+        <ul>
+          <li>12th with <strong>PCB (Physics, Chemistry, Biology)</strong></li>
+          <li>Minimum age: 17 years</li>
+          <li>Entrance exam or merit-based admission (varies by state/college)</li>
+        </ul>
+
+        <h5 class="mt-4">⏱️ Course Duration</h5>
+        <ul>
+          <li><strong>B.Sc Nursing:</strong> 4 years</li>
+          <li><strong>GNM Nursing:</strong> 3 years</li>
+        </ul>
+
+        <h5 class="mt-4">💼 Career Options after B.Sc Nursing</h5>
+        <ul>
+          <li>Staff Nurse</li>
+          <li>Nursing Officer</li>
+          <li>ICU / Emergency Nurse</li>
+          <li>Community Health Nurse</li>
+          <li>School / Industrial Nurse</li>
+          <li>Nursing Tutor / Educator</li>
+        </ul>
+
+        <h5 class="mt-4">🏢 Scope in the Private Sector</h5>
+        <p>
+          Nurses are in high demand in private hospitals,
+          nursing homes, specialty clinics,
+          rehabilitation centers, old-age homes,
+          and private healthcare organizations.
+        </p>
+
+        <h5 class="mt-4">🏛️ Government Job Scope</h5>
+        <ul>
+          <li>Government Hospitals</li>
+          <li>AIIMS & Medical Colleges</li>
+          <li>Railways & Defense Hospitals</li>
+          <li>Public Health Centres (PHC)</li>
+          <li>State & Central Health Services</li>
+        </ul>
+
+        <h5 class="mt-4">💰 Salary of Nurses (Approx.)</h5>
+        <p>
+          <strong>Freshers:</strong> ₹3 – 4.5 LPA<br>
+          <strong>Experienced:</strong> ₹5 – 8+ LPA<br>
+          <strong>Abroad:</strong> Significantly higher (UK, USA, Gulf countries)
+        </p>
+
+        <h5 class="mt-4">📈 Career Growth Path</h5>
+        <p>
+          Staff Nurse →
+          Senior Nurse →
+          Nursing Officer →
+          Nursing Superintendent →
+          Nurse Educator / Administrator
+        </p>
+
+        <h5 class="mt-4">⚠️ Challenges of Nursing</h5>
+        <ul>
+          <li>Long working hours and shift duties</li>
+          <li>Physically and emotionally demanding work</li>
+          <li>High responsibility toward patient care</li>
+          <li>Exposure to stressful environments</li>
+        </ul>
+
+        <h5 class="mt-4">🎯 Who should choose Nursing?</h5>
+        <p>
+          Nursing is ideal for students who are compassionate,
+          patient, emotionally strong, and committed to
+          helping people and supporting healthcare systems.
+        </p>
+
+        <p class="fw-semibold fst-italic mt-4">
+          “Nurses are the heart and soul of healthcare.”
+        </p>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- Peramedical part -->
+<!-- ================= BPT MODAL ================= -->
+<div class="modal fade" id="bptModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">B.Sc Physiotherapy (BPT)</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+
+        <h5>📌 What is B.Sc Physiotherapy (BPT)?</h5>
+        <p>
+          Bachelor of Physiotherapy (BPT) is a healthcare degree that focuses on
+          physical rehabilitation, movement therapy, and pain management.
+          Physiotherapists help patients recover from injuries, surgeries,
+          neurological conditions, and physical disabilities without using medicines or surgery.
+        </p>
+
+        <h5 class="mt-4">🦴 What does a Physiotherapist do?</h5>
+        <ul>
+          <li>Treat muscle, joint, and bone problems</li>
+          <li>Help patients recover after surgery or accidents</li>
+          <li>Rehabilitate sports injuries</li>
+          <li>Assist neurological patients (paralysis, stroke)</li>
+          <li>Improve mobility, strength, and posture</li>
+          <li>Reduce pain through exercises and physical therapy</li>
+        </ul>
+
+        <h5 class="mt-4">🎓 Eligibility & Admission</h5>
+        <ul>
+          <li>12th passed with <strong>PCB (Physics, Chemistry, Biology)</strong></li>
+          <li>Minimum age: 17 years</li>
+          <li>Admission through entrance exam or merit (varies by state/college)</li>
+          <li>Some colleges require basic physical fitness test</li>
+        </ul>
+
+        <h5 class="mt-4">⏱️ Course Duration</h5>
+        <ul>
+          <li><strong>4 years</strong> academic course</li>
+          <li><strong>6 months – 1 year</strong> compulsory clinical internship</li>
+        </ul>
+
+        <h5 class="mt-4">📚 Subjects Studied in BPT</h5>
+        <ul>
+          <li>Anatomy</li>
+          <li>Physiology</li>
+          <li>Biomechanics</li>
+          <li>Exercise Therapy</li>
+          <li>Electrotherapy</li>
+          <li>Orthopaedics & Sports Physiotherapy</li>
+          <li>Neurology & Neuro Physiotherapy</li>
+          <li>Cardio-Respiratory Physiotherapy</li>
+          <li>Community Rehabilitation</li>
+        </ul>
+
+        <h5 class="mt-4">🧩 Specializations after BPT</h5>
+        <ul>
+          <li>Orthopaedic Physiotherapy</li>
+          <li>Sports Physiotherapy</li>
+          <li>Neurological Physiotherapy</li>
+          <li>Cardio-Pulmonary Physiotherapy</li>
+          <li>Pediatric Physiotherapy</li>
+          <li>Geriatric Physiotherapy</li>
+        </ul>
+
+        <h5 class="mt-4">💼 Career Options after BPT</h5>
+        <ul>
+          <li>Physiotherapist in hospitals</li>
+          <li>Sports Physiotherapist</li>
+          <li>Rehabilitation Therapist</li>
+          <li>ICU / Neuro Rehab Physiotherapist</li>
+          <li>Fitness & Wellness Consultant</li>
+          <li>Private Physiotherapy Clinic</li>
+        </ul>
+
+        <h5 class="mt-4">🏢 Scope in the Private Sector</h5>
+        <p>
+          Physiotherapists are highly demanded in private hospitals,
+          rehabilitation centers, sports academies, gyms,
+          wellness centers, and corporate healthcare setups.
+        </p>
+
+        <h5 class="mt-4">🏛️ Government Job Scope</h5>
+        <ul>
+          <li>Government Hospitals</li>
+          <li>Medical Colleges</li>
+          <li>District Hospitals</li>
+          <li>Defense & Railway Hospitals</li>
+          <li>Public Health & Rehabilitation Centers</li>
+        </ul>
+
+        <h5 class="mt-4">💰 Salary after BPT (Approx.)</h5>
+        <p>
+          <strong>Freshers:</strong> ₹2.5 – 4 LPA<br>
+          <strong>Experienced:</strong> ₹5 – 8+ LPA<br>
+          <strong>Private Clinic / Sports:</strong> ₹10+ LPA (skill-based)
+        </p>
+
+        <h5 class="mt-4">📈 Career Growth Path</h5>
+        <p>
+          Physiotherapy Intern →
+          Junior Physiotherapist →
+          Senior Physiotherapist →
+          Specialist / Consultant →
+          Clinic Owner / Rehabilitation Expert
+        </p>
+
+        <h5 class="mt-4">📘 Higher Study Options</h5>
+        <ul>
+          <li>MPT (Master of Physiotherapy)</li>
+          <li>Specialized certification courses</li>
+          <li>Research & PhD (academic path)</li>
+        </ul>
+
+        <li class="nav-item"><a class="nav-link" href="/comparison">Comparison</a></li>
+        <h5 class="mt-4">⚠️ Challenges in Physiotherapy</h5>
+        <ul>
+          <li>Physically demanding profession</li>
+          <li>Slow patient recovery in some cases</li>
+          <li>Requires patience and consistency</li>
+          <li>Income grows with experience, not instantly</li>
+        </ul>
+
+        <h5 class="mt-4">🎯 Who should choose BPT?</h5>
+        <p>
+          BPT is ideal for students who are interested in
+          human anatomy, movement, fitness, rehabilitation,
+          and want a healthcare career without medicines or surgery.
+        </p>
+
+        <p class="fw-semibold fst-italic mt-4">
+          “Physiotherapy restores movement, confidence, and quality of life.”
+        </p>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= MLT MODAL ================= -->
+<div class="modal fade" id="mltModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">B.Sc Medical Laboratory Technology (MLT)</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+
+        <h5>📌 What is B.Sc Medical Laboratory Technology (MLT)?</h5>
+        <p>
+          B.Sc Medical Laboratory Technology (MLT) is a healthcare degree focused on
+          laboratory diagnosis of diseases. Medical Laboratory Technologists perform
+          clinical tests on blood, urine, tissues, and other body samples to help
+          doctors accurately diagnose, treat, and monitor diseases.
+        </p>
+
+        <h5 class="mt-4">🧪 What does a Medical Laboratory Technologist do?</h5>
+        <ul>
+          <li>Conduct blood, urine, stool, and tissue tests</li>
+          <li>Operate laboratory instruments and analyzers</li>
+          <li>Identify infections, diseases, and abnormalities</li>
+          <li>Maintain accuracy, hygiene, and lab safety</li>
+          <li>Prepare reports for doctors and hospitals</li>
+          <li>Assist in disease screening and health checkups</li>
+        </ul>
+
+        <h5 class="mt-4">🎓 Eligibility & Admission</h5>
+        <ul>
+          <li>12th passed with <strong>PCB (Physics, Chemistry, Biology)</strong></li>
+          <li>Minimum age: 17 years</li>
+          <li>Admission through entrance exam or merit (varies by state/college)</li>
+          <li>Basic understanding of biology and chemistry is required</li>
+        </ul>
+
+        <h5 class="mt-4">⏱️ Course Duration</h5>
+        <ul>
+          <li><strong>3 years</strong> academic course</li>
+          <li><strong>6 months – 1 year</strong> compulsory clinical internship</li>
+        </ul>
+
+        <h5 class="mt-4">📚 Subjects Studied in MLT</h5>
+        <ul>
+          <li>Clinical Biochemistry</li>
+          <li>Microbiology</li>
+          <li>Pathology</li>
+          <li>Hematology</li>
+          <li>Immunology & Serology</li>
+          <li>Blood Banking & Transfusion Technology</li>
+          <li>Clinical Laboratory Techniques</li>
+          <li>Laboratory Safety & Quality Control</li>
+        </ul>
+
+        <h5 class="mt-4">🧩 Specializations / Lab Areas</h5>
+        <ul>
+          <li>Biochemistry Laboratory</li>
+          <li>Hematology Laboratory</li>
+          <li>Microbiology Laboratory</li>
+          <li>Pathology / Histopathology</li>
+          <li>Blood Bank & Transfusion Services</li>
+          <li>Molecular Diagnostics (Advanced)</li>
+        </ul>
+
+        <h5 class="mt-4">💼 Career Options after MLT</h5>
+        <ul>
+          <li>Medical Laboratory Technologist</li>
+          <li>Lab Technician / Lab Supervisor</li>
+          <li>Pathology Lab Assistant</li>
+          <li>Blood Bank Technologist</li>
+          <li>Diagnostic Center Technician</li>
+          <li>Research Lab Assistant</li>
+        </ul>
+
+        <h5 class="mt-4">🏢 Scope in the Private Sector</h5>
+        <p>
+          MLT professionals are in high demand in private hospitals,
+          pathology laboratories, diagnostic centers,
+          medical colleges, research labs,
+          and health check-up organizations.
+        </p>
+
+        <h5 class="mt-4">🏛️ Government Job Scope</h5>
+        <ul>
+          <li>Government Hospitals</li>
+          <li>Medical Colleges</li>
+          <li>District & Civil Hospitals</li>
+          <li>Public Health Laboratories</li>
+          <li>Defense & Railway Hospitals</li>
+        </ul>
+
+        <h5 class="mt-4">💰 Salary after MLT (Approx.)</h5>
+        <p>
+          <strong>Freshers:</strong> ₹2 – 3.5 LPA<br>
+          <strong>Experienced:</strong> ₹4 – 7+ LPA<br>
+          <strong>Senior / Specialized labs:</strong> ₹8+ LPA
+        </p>
+
+        <h5 class="mt-4">📈 Career Growth Path</h5>
+        <p>
+          Lab Intern →
+          Lab Technician →
+          Senior Technologist →
+          Lab Supervisor →
+          Lab Manager / Consultant
+        </p>
+
+        <h5 class="mt-4">📘 Higher Study Options</h5>
+        <ul>
+          <li>M.Sc Medical Laboratory Technology</li>
+          <li>Specialized certification courses</li>
+          <li>Research & PhD (academic & research path)</li>
+        </ul>
+
+        <h5 class="mt-4">⚠️ Challenges in MLT</h5>
+        <ul>
+          <li>High responsibility for test accuracy</li>
+          <li>Repetitive laboratory work</li>
+          <li>Strict hygiene and safety standards</li>
+          <li>Limited patient interaction</li>
+        </ul>
+
+        <h5 class="mt-4">🎯 Who should choose MLT?</h5>
+        <p>
+          MLT is ideal for students who are interested in
+          laboratory work, diagnostics, biology, chemistry,
+          and want a healthcare career without direct patient treatment.
+        </p>
+
+        <p class="fw-semibold fst-italic mt-4">
+          “Accurate diagnosis begins in the laboratory.”
+        </p>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= RADIOLOGY MODAL ================= -->
+<div class="modal fade" id="radiologyModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title">B.Sc Radiology / Medical Imaging Technology</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+
+        <h5>📌 What is B.Sc Radiology / Medical Imaging Technology?</h5>
+        <p>
+          B.Sc Radiology / Medical Imaging Technology is a paramedical degree
+          focused on medical imaging techniques used to diagnose diseases
+          and injuries. Radiology professionals operate imaging equipment
+          to create images of internal body structures for accurate diagnosis.
+        </p>
+
+        <h5 class="mt-4">🩻 What does a Radiology Technologist do?</h5>
+        <ul>
+          <li>Operate imaging machines such as X-ray, CT scan, MRI, and Ultrasound</li>
+          <li>Position patients correctly for imaging procedures</li>
+          <li>Ensure radiation safety for patients and staff</li>
+          <li>Produce clear and accurate diagnostic images</li>
+          <li>Maintain imaging equipment and records</li>
+          <li>Assist radiologists in diagnosis</li>
+        </ul>
+
+        <h5 class="mt-4">🎓 Eligibility & Admission</h5>
+        <ul>
+          <li>12th passed with <strong>PCB (Physics, Chemistry, Biology)</strong></li>
+          <li>Minimum age: 17 years</li>
+          <li>Admission through entrance exam or merit (varies by college/state)</li>
+          <li>Basic understanding of physics is helpful</li>
+        </ul>
+
+        <h5 class="mt-4">⏱️ Course Duration</h5>
+        <ul>
+          <li><strong>3 – 4 years</strong> academic course (varies by university)</li>
+          <li><strong>6 months – 1 year</strong> compulsory clinical internship</li>
+        </ul>
+
+        <h5 class="mt-4">📚 Subjects Studied in Radiology</h5>
+        <ul>
+          <li>Human Anatomy & Physiology</li>
+          <li>Radiographic Physics</li>
+          <li>Radiographic Techniques</li>
+          <li>Imaging Equipment & Instrumentation</li>
+          <li>CT & MRI Technology</li>
+          <li>Ultrasound & Imaging Procedures</li>
+          <li>Radiation Protection & Safety</li>
+          <li>Patient Care & Ethics</li>
+        </ul>
+
+        <h5 class="mt-4">🧩 Imaging Specializations</h5>
+        <ul>
+          <li>X-Ray Technology</li>
+          <li>Computed Tomography (CT)</li>
+          <li>Magnetic Resonance Imaging (MRI)</li>
+          <li>Ultrasound Imaging</li>
+          <li>Mammography</li>
+          <li>Interventional Radiology (advanced)</li>
+        </ul>
+
+        <h5 class="mt-4">💼 Career Options after Radiology</h5>
+        <ul>
+          <li>Radiology / Imaging Technologist</li>
+          <li>CT Scan Technician</li>
+          <li>MRI Technician</li>
+          <li>Ultrasound Technician</li>
+          <li>Diagnostic Center Technologist</li>
+          <li>Radiology Equipment Specialist</li>
+        </ul>
+
+        <h5 class="mt-4">🏢 Scope in the Private Sector</h5>
+        <p>
+          Radiology professionals are in high demand in private hospitals,
+          diagnostic imaging centers, specialty clinics,
+          trauma centers, and private medical laboratories.
+        </p>
+
+        <h5 class="mt-4">🏛️ Government Job Scope</h5>
+        <ul>
+          <li>Government Hospitals</li>
+          <li>Medical Colleges</li>
+          <li>District & Civil Hospitals</li>
+          <li>Defense & Railway Hospitals</li>
+          <li>Public Diagnostic Centers</li>
+        </ul>
+
+        <h5 class="mt-4">💰 Salary after Radiology (Approx.)</h5>
+        <p>
+          <strong>Freshers:</strong> ₹2.5 – 4 LPA<br>
+          <strong>Experienced:</strong> ₹5 – 9+ LPA<br>
+          <strong>CT / MRI specialists:</strong> ₹10+ LPA
+        </p>
+
+        <h5 class="mt-4">📈 Career Growth Path</h5>
+        <p>
+          Imaging Intern →
+          Radiology Technologist →
+          Senior Imaging Specialist →
+          Imaging Supervisor →
+          Department Head / Consultant
+        </p>
+
+        <h5 class="mt-4">📘 Higher Study Options</h5>
+        <ul>
+          <li>M.Sc Radiology / Medical Imaging</li>
+          <li>Advanced CT / MRI certifications</li>
+          <li>Research & teaching roles</li>
+        </ul>
+
+        <h5 class="mt-4">⚠️ Challenges in Radiology</h5>
+        <ul>
+          <li>Exposure to radiation (with safety precautions)</li>
+          <li>High responsibility for image accuracy</li>
+          <li>Shift-based work in hospitals</li>
+          <li>Requires strong attention to detail</li>
+        </ul>
+
+        <h5 class="mt-4">🎯 Who should choose Radiology?</h5>
+        <p>
+          This field is ideal for students who are interested in
+          medical imaging, technology, diagnostics,
+          and want a hospital-based career with minimal patient treatment.
+        </p>
+
+        <p class="fw-semibold fst-italic mt-4">
+          “Medical imaging helps doctors see what the human eye cannot.”
+        </p>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= OTT MODAL ================= -->
+<div class="modal fade" id="ottModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">B.Sc Operation Theatre Technology (OTT)</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+
+        <h5>📌 What is B.Sc Operation Theatre Technology (OTT)?</h5>
+        <p>
+          B.Sc Operation Theatre Technology (OTT) is a paramedical degree that focuses on
+          assisting surgeons and anesthetists during surgical procedures.
+          OT Technologists are responsible for preparing the operation theatre,
+          handling surgical instruments, maintaining sterilization,
+          and ensuring smooth conduct of surgeries.
+        </p>
+
+        <h5 class="mt-4">🏥 What does an OT Technologist do?</h5>
+        <ul>
+          <li>Prepare operation theatre before surgery</li>
+          <li>Sterilize surgical instruments and equipment</li>
+          <li>Assist surgeons during operations</li>
+          <li>Maintain infection control and OT hygiene</li>
+          <li>Handle anesthesia equipment and monitoring devices</li>
+          <li>Manage post-operative instruments and waste disposal</li>
+        </ul>
+
+        <h5 class="mt-4">🎓 Eligibility & Admission</h5>
+        <ul>
+          <li>12th passed with <strong>PCB (Physics, Chemistry, Biology)</strong></li>
+          <li>Minimum age: 17 years</li>
+          <li>Admission through entrance exam or merit (depends on institute)</li>
+          <li>Basic understanding of biology and human anatomy is helpful</li>
+        </ul>
+
+        <h5 class="mt-4">⏱️ Course Duration</h5>
+        <ul>
+          <li><strong>3 – 4 years</strong> academic course</li>
+          <li><strong>6 months – 1 year</strong> compulsory clinical internship</li>
+        </ul>
+
+        <h5 class="mt-4">📚 Subjects Studied in OTT</h5>
+        <ul>
+          <li>Anatomy & Physiology</li>
+          <li>Basics of Surgery</li>
+          <li>Operation Theatre Techniques</li>
+          <li>Surgical Instruments & Equipment</li>
+          <li>Anesthesia Technology</li>
+          <li>Infection Control & Sterilization</li>
+          <li>Emergency & Trauma Care</li>
+          <li>Medical Ethics & OT Safety</li>
+        </ul>
+
+        <h5 class="mt-4">🧩 Areas of Specialization / Work</h5>
+        <ul>
+          <li>General Surgery OT</li>
+          <li>Orthopedic OT</li>
+          <li>Cardiac & Neuro OT</li>
+          <li>Emergency & Trauma OT</li>
+          <li>ICU & Critical Care Support</li>
+        </ul>
+
+        <h5 class="mt-4">💼 Career Options after OTT</h5>
+        <ul>
+          <li>Operation Theatre Technologist</li>
+          <li>Surgical Assistant</li>
+          <li>OT Supervisor</li>
+          <li>Trauma Care Technician</li>
+          <li>Hospital OT Manager (with experience)</li>
+          <li>Medical Equipment Handling Specialist</li>
+        </ul>
+
+        <h5 class="mt-4">🏢 Scope in the Private Sector</h5>
+        <p>
+          OTT professionals are highly demanded in private hospitals,
+          multi-specialty surgical centers,
+          trauma centers, emergency care units,
+          and corporate healthcare hospitals.
+        </p>
+
+        <h5 class="mt-4">🏛️ Government Job Scope</h5>
+        <ul>
+          <li>Government Hospitals</li>
+          <li>Medical Colleges</li>
+          <li>District & Civil Hospitals</li>
+          <li>Defense & Railway Hospitals</li>
+          <li>Public Trauma & Emergency Centers</li>
+        </ul>
+
+        <h5 class="mt-4">💰 Salary after OTT (Approx.)</h5>
+        <p>
+          <strong>Freshers:</strong> ₹2.5 – 4 LPA<br>
+          <strong>Experienced:</strong> ₹5 – 8+ LPA<br>
+          <strong>Senior OT / Specialized surgery:</strong> ₹9+ LPA
+        </p>
+
+        <h5 class="mt-4">📈 Career Growth Path</h5>
+        <p>
+          OT Intern →
+          OT Technologist →
+          Senior OT Technologist →
+          OT Supervisor →
+          OT Manager / Hospital Administrator
+        </p>
+
+        <h5 class="mt-4">📘 Higher Study Options</h5>
+        <ul>
+          <li>M.Sc Operation Theatre Technology</li>
+          <li>Advanced surgical & anesthesia certifications</li>
+          <li>Hospital administration courses (MBA / MHA)</li>
+        </ul>
+
+        <h5 class="mt-4">⚠️ Challenges in OTT</h5>
+        <ul>
+          <li>Long working hours and emergency duties</li>
+          <li>High-pressure surgical environment</li>
+          <li>Strict discipline and hygiene standards</li>
+          <li>Physically demanding work</li>
+        </ul>
+
+        <h5 class="mt-4">🎯 Who should choose OTT?</h5>
+        <p>
+          OTT is ideal for students who are interested in
+          surgery, hospital environments, teamwork,
+          and want a critical role in life-saving procedures
+          without becoming a doctor.
+        </p>
+
+        <p class="fw-semibold fst-italic mt-4">
+          “Behind every successful surgery is a skilled OT technologist.”
+        </p>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+<!-- ================= B.PHARM MODAL ================= -->
+<div class="modal fade" id="bpharmModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title">B.Pharm (Bachelor of Pharmacy)</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+
+        <h5>📌 What is B.Pharm?</h5>
+        <p>
+          Bachelor of Pharmacy (B.Pharm) is a professional healthcare degree that focuses on
+          medicines, drugs, pharmaceutical manufacturing, formulation, quality control,
+          and safe use of medicines. Pharmacists play a crucial role in healthcare by
+          ensuring the correct preparation, distribution, and guidance of medicines.
+        </p>
+
+        <h5 class="mt-4">💊 What does a Pharmacist do?</h5>
+        <ul>
+          <li>Prepare, dispense, and manage medicines</li>
+          <li>Ensure correct dosage and drug safety</li>
+          <li>Work in pharmaceutical manufacturing and production</li>
+          <li>Perform quality control and drug testing</li>
+          <li>Guide patients on proper medicine usage</li>
+          <li>Assist doctors with drug-related information</li>
+        </ul>
+
+        <h5 class="mt-4">🎓 Eligibility & Admission</h5>
+        <ul>
+          <li>12th passed with <strong>PCB or PCM</strong></li>
+          <li>Minimum age: 17 years</li>
+          <li>Admission through entrance exams or merit (varies by state/college)</li>
+          <li>Some institutes accept lateral entry after D.Pharm</li>
+        </ul>
+
+        <h5 class="mt-4">⏱️ Course Duration</h5>
+        <ul>
+          <li><strong>4 years</strong> academic course (8 semesters)</li>
+          <li>Includes practical labs and industrial training</li>
+        </ul>
+
+        <h5 class="mt-4">📚 Subjects Studied in B.Pharm</h5>
+        <ul>
+          <li>Pharmaceutical Chemistry</li>
+          <li>Pharmacology</li>
+          <li>Pharmaceutics</li>
+          <li>Pharmaceutical Analysis</li>
+          <li>Human Anatomy & Physiology</li>
+          <li>Biochemistry & Microbiology</li>
+          <li>Medicinal Chemistry</li>
+          <li>Pharmaceutical Jurisprudence</li>
+        </ul>
+
+        <h5 class="mt-4">🧩 Specializations / Work Areas</h5>
+        <ul>
+          <li>Pharmaceutical Manufacturing</li>
+          <li>Quality Control (QC)</li>
+          <li>Quality Assurance (QA)</li>
+          <li>Clinical Pharmacy</li>
+          <li>Pharmacovigilance</li>
+          <li>Research & Development (R&D)</li>
+          <li>Regulatory Affairs</li>
+        </ul>
+
+        <h5 class="mt-4">💼 Career Options after B.Pharm</h5>
+        <ul>
+          <li>Pharmacist</li>
+          <li>Production / Manufacturing Executive</li>
+          <li>Quality Control Analyst</li>
+          <li>Clinical Research Associate</li>
+          <li>Medical Representative</li>
+          <li>Drug Safety Associate</li>
+          <li>Pharmaceutical Sales & Marketing</li>
+        </ul>
+
+        <h5 class="mt-4">🏢 Scope in the Private Sector</h5>
+        <p>
+          B.Pharm graduates are highly demanded in pharmaceutical companies,
+          drug manufacturing units, clinical research organizations,
+          hospitals, medical stores, and healthcare startups.
+        </p>
+
+        <h5 class="mt-4">🏛️ Government Job Scope</h5>
+        <ul>
+          <li>Drug Inspector</li>
+          <li>Government Pharmacist</li>
+          <li>Pharmaceutical Officer</li>
+          <li>Public Sector Undertakings (PSUs)</li>
+          <li>Government Hospitals & Medical Colleges</li>
+        </ul>
+
+        <h5 class="mt-4">💰 Salary after B.Pharm (Approx.)</h5>
+        <p>
+          <strong>Freshers:</strong> ₹3 – 5 LPA<br>
+          <strong>Experienced:</strong> ₹6 – 10+ LPA<br>
+          <strong>R&D / Regulatory roles:</strong> ₹12+ LPA
+        </p>
+
+        <h5 class="mt-4">📈 Career Growth Path</h5>
+        <p>
+          Pharmacy Graduate →
+          Pharmacist / Executive →
+          Senior Pharmacist →
+          Manager / Specialist →
+          Consultant / Entrepreneur
+        </p>
+
+        <h5 class="mt-4">📘 Higher Study Options</h5>
+        <ul>
+          <li>M.Pharm (Master of Pharmacy)</li>
+          <li>Pharm.D (Doctor of Pharmacy)</li>
+          <li>MBA (Pharmaceutical Management)</li>
+          <li>Research & PhD</li>
+        </ul>
+
+        <h5 class="mt-4">⚠️ Challenges in Pharmacy</h5>
+        <ul>
+          <li>Strict regulatory and safety standards</li>
+          <li>Continuous learning due to new drugs</li>
+          <li>High responsibility for drug accuracy</li>
+          <li>Competition in pharma industry roles</li>
+        </ul>
+
+        <h5 class="mt-4">🎯 Who should choose B.Pharm?</h5>
+        <p>
+          B.Pharm is ideal for students who are interested in
+          medicines, chemistry, healthcare systems,
+          pharmaceutical industries, and want a stable,
+          respected healthcare career without direct patient treatment.
+        </p>
+
+        <p class="fw-semibold fst-italic mt-4">
+          “Pharmacists turn science into safe and effective medicine.”
+        </p>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= D.PHARM MODAL ================= -->
+<div class="modal fade" id="dpharmModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">D.Pharm (Diploma in Pharmacy)</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+
+        <h5>📌 What is D.Pharm?</h5>
+        <p>
+          Diploma in Pharmacy (D.Pharm) is a short-term professional pharmacy course
+          that focuses on the preparation, dispensing, and safe handling of medicines.
+          It is the minimum qualification required to become a registered pharmacist
+          in India and work in medical stores and hospital pharmacies.
+        </p>
+
+        <h5 class="mt-4">💊 What does a D.Pharm Pharmacist do?</h5>
+        <ul>
+          <li>Dispense prescribed medicines to patients</li>
+          <li>Explain dosage, timing, and precautions</li>
+          <li>Manage stock of medicines and drugs</li>
+          <li>Ensure proper storage of medicines</li>
+          <li>Assist doctors and nurses with medication needs</li>
+          <li>Maintain pharmacy records and bills</li>
+        </ul>
+
+        <h5 class="mt-4">🎓 Eligibility & Admission</h5>
+        <ul>
+          <li>12th passed with <strong>PCB or PCM</strong></li>
+          <li>Minimum age: 17 years</li>
+          <li>Admission generally based on merit or state entrance exam</li>
+          <li>No NEET required</li>
+        </ul>
+
+        <h5 class="mt-4">⏱️ Course Duration</h5>
+        <ul>
+          <li><strong>2 years</strong> academic study</li>
+          <li><strong>500 hours</strong> compulsory practical training / internship</li>
+        </ul>
+
+        <h5 class="mt-4">📚 Subjects Studied in D.Pharm</h5>
+        <ul>
+          <li>Pharmaceutics</li>
+          <li>Pharmaceutical Chemistry</li>
+          <li>Pharmacognosy</li>
+          <li>Human Anatomy & Physiology</li>
+          <li>Hospital & Clinical Pharmacy</li>
+          <li>Drug Store & Business Management</li>
+        </ul>
+
+        <h5 class="mt-4">💼 Career Options after D.Pharm</h5>
+        <ul>
+          <li>Registered Pharmacist</li>
+          <li>Medical Store / Pharmacy Owner</li>
+          <li>Hospital Pharmacist</li>
+          <li>Drug Distributor / Wholesaler</li>
+          <li>Pharmacy Assistant in pharma companies</li>
+        </ul>
+
+        <h5 class="mt-4">🏢 Scope in the Private Sector</h5>
+        <p>
+          D.Pharm graduates have strong demand in private medical stores,
+          hospital pharmacies, clinics, pharmaceutical retail chains,
+          and wholesale medicine distribution businesses.
+        </p>
+
+        <h5 class="mt-4">🏛️ Government Job Scope</h5>
+        <ul>
+          <li>Government Hospital Pharmacist</li>
+          <li>Primary Health Centres (PHC)</li>
+          <li>Railway & Defense Medical Units</li>
+          <li>Public Health Departments</li>
+        </ul>
+
+        <h5 class="mt-4">💰 Salary after D.Pharm (Approx.)</h5>
+        <p>
+          <strong>Freshers:</strong> ₹2 – 3 LPA<br>
+          <strong>Experienced:</strong> ₹3.5 – 5+ LPA<br>
+          <strong>Own Medical Store:</strong> Income depends on location & sales
+        </p>
+
+        <h5 class="mt-4">📈 Career Growth Path</h5>
+        <p>
+          D.Pharm Graduate →
+          Registered Pharmacist →
+          Senior Pharmacist →
+          Pharmacy Owner / Supervisor →
+          (Optional) B.Pharm via lateral entry
+        </p>
+
+        <h5 class="mt-4">📘 Higher Study Options</h5>
+        <ul>
+          <li>B.Pharm (Lateral entry after D.Pharm)</li>
+          <li>Short-term pharmaceutical certifications</li>
+          <li>Business & healthcare management courses</li>
+        </ul>
+
+        <h5 class="mt-4">⚠️ Challenges in D.Pharm</h5>
+        <ul>
+          <li>Limited growth without higher studies</li>
+          <li>Strict rules for drug dispensing</li>
+          <li>Long working hours in retail pharmacies</li>
+          <li>Lower starting salary compared to B.Pharm</li>
+        </ul>
+
+        <h5 class="mt-4">🎯 Who should choose D.Pharm?</h5>
+        <p>
+          D.Pharm is ideal for students who want a quick entry into the pharmacy field,
+          are interested in medicines and healthcare,
+          and plan to work in medical stores, hospitals,
+          or start their own pharmacy business.
+        </p>
+
+        <p class="fw-semibold fst-italic mt-4">
+          “A pharmacist ensures that medicine heals, not harms.”
+        </p>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= BIOTECH MODAL ================= -->
+<div class="modal fade" id="biotechModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title">B.Sc Biotechnology</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+
+        <h5>📌 What is B.Sc Biotechnology?</h5>
+        <p>
+          B.Sc Biotechnology is a life science degree that combines biology,
+          chemistry, genetics, microbiology, and technology to develop
+          products and processes useful in medicine, healthcare,
+          agriculture, pharmaceuticals, and research.
+          Biotechnology focuses on using living organisms and biological systems
+          for scientific and industrial applications.
+        </p>
+
+        <h5 class="mt-4">🧬 What does a Biotechnology professional do?</h5>
+        <ul>
+          <li>Work in research and laboratory experiments</li>
+          <li>Develop medicines, vaccines, and diagnostic tools</li>
+          <li>Assist in genetic research and molecular biology</li>
+          <li>Work on bio-products for agriculture and environment</li>
+          <li>Support pharmaceutical and biotech industries</li>
+          <li>Analyze biological data and samples</li>
+        </ul>
+
+        <h5 class="mt-4">🎓 Eligibility & Admission</h5>
+        <ul>
+          <li>12th passed with <strong>PCB (Physics, Chemistry, Biology)</strong></li>
+          <li>Some colleges allow PCM + Biology bridge</li>
+          <li>Minimum age: 17 years</li>
+          <li>Admission through entrance exam or merit-based selection</li>
+        </ul>
+
+        <h5 class="mt-4">⏱️ Course Duration</h5>
+        <ul>
+          <li><strong>3 years</strong> undergraduate degree</li>
+          <li>Includes laboratory practicals and research projects</li>
+        </ul>
+
+        <h5 class="mt-4">📚 Subjects Studied in Biotechnology</h5>
+        <ul>
+          <li>Cell Biology</li>
+          <li>Genetics</li>
+          <li>Molecular Biology</li>
+          <li>Biochemistry</li>
+          <li>Microbiology</li>
+          <li>Recombinant DNA Technology</li>
+          <li>Bioinformatics (Basics)</li>
+          <li>Immunology</li>
+        </ul>
+
+        <h5 class="mt-4">🧩 Major Biotechnology Fields</h5>
+        <ul>
+          <li>Medical & Pharmaceutical Biotechnology</li>
+          <li>Agricultural Biotechnology</li>
+          <li>Industrial Biotechnology</li>
+          <li>Environmental Biotechnology</li>
+          <li>Genetic Engineering</li>
+        </ul>
+
+        <h5 class="mt-4">💼 Career Options after B.Sc Biotechnology</h5>
+        <ul>
+          <li>Biotechnology Laboratory Technician</li>
+          <li>Research Assistant</li>
+          <li>Clinical Research Associate</li>
+          <li>Quality Control / Quality Assurance Executive</li>
+          <li>Biotech Production Assistant</li>
+          <li>Scientific Sales / Medical Representative</li>
+        </ul>
+
+        <h5 class="mt-4">🏢 Scope in the Private Sector</h5>
+        <p>
+          Biotechnology graduates are employed in biotech companies,
+          pharmaceutical industries, research labs,
+          diagnostic companies, food & agriculture industries,
+          and healthcare startups.
+        </p>
+
+        <h5 class="mt-4">🏛️ Government Job Scope</h5>
+        <ul>
+          <li>Government Research Laboratories</li>
+          <li>DBT & CSIR research projects</li>
+          <li>Public Health & Agriculture Departments</li>
+          <li>Government Biotechnology Institutes</li>
+        </ul>
+
+        <h5 class="mt-4">💰 Salary after B.Sc Biotechnology (Approx.)</h5>
+        <p>
+          <strong>Freshers:</strong> ₹2.5 – 4 LPA<br>
+          <strong>Experienced:</strong> ₹5 – 8+ LPA<br>
+          <strong>Research & MNC roles:</strong> ₹10+ LPA
+        </p>
+
+        <h5 class="mt-4">📈 Career Growth Path</h5>
+        <p>
+          Biotech Graduate →
+          Research / Lab Assistant →
+          Senior Research Associate →
+          Scientist / Manager →
+          Consultant / Entrepreneur
+        </p>
+
+        <h5 class="mt-4">📘 Higher Study Options</h5>
+        <ul>
+          <li>M.Sc Biotechnology</li>
+          <li>M.Sc Molecular Biology / Genetics</li>
+          <li>MBA (Biotech / Healthcare Management)</li>
+          <li>PhD & Research Careers</li>
+          <li>MS (Abroad)</li>
+        </ul>
+
+        <h5 class="mt-4">⚠️ Challenges in Biotechnology</h5>
+        <ul>
+          <li>Limited growth without higher studies</li>
+          <li>Research-oriented field (patience required)</li>
+          <li>Highly competitive research roles</li>
+          <li>Lab-intensive and detail-focused work</li>
+        </ul>
+
+        <h5 class="mt-4">🎯 Who should choose B.Sc Biotechnology?</h5>
+        <p>
+          This course is ideal for students who are interested in
+          biology, genetics, laboratory research,
+          scientific innovation, and want to build a career
+          in research, pharmaceuticals, or biotechnology industries.
+        </p>
+
+        <p class="fw-semibold fst-italic mt-4">
+          “Biotechnology uses science to improve life and the future.”
+        </p>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+<!-- ================= MICROBIOLOGY MODAL ================= -->
+<div class="modal fade" id="microModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">B.Sc Microbiology</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+
+        <h5>📌 What is B.Sc Microbiology?</h5>
+        <p>
+          B.Sc Microbiology is a life science degree that focuses on the study of
+          microorganisms such as bacteria, viruses, fungi, algae, and parasites.
+          Microbiology plays a key role in healthcare, diagnostics, pharmaceuticals,
+          food safety, environment, and research by understanding how microorganisms
+          affect human life and the environment.
+        </p>
+
+        <h5 class="mt-4">🦠 What does a Microbiology professional do?</h5>
+        <ul>
+          <li>Study microorganisms and their behavior</li>
+          <li>Identify disease-causing microbes</li>
+          <li>Assist in laboratory diagnostics and testing</li>
+          <li>Work on infection control and prevention</li>
+          <li>Support pharmaceutical and vaccine research</li>
+          <li>Ensure food, water, and environmental safety</li>
+        </ul>
+
+        <h5 class="mt-4">🎓 Eligibility & Admission</h5>
+        <ul>
+          <li>12th passed with <strong>PCB (Physics, Chemistry, Biology)</strong></li>
+          <li>Minimum age: 17 years</li>
+          <li>Admission through entrance exam or merit-based selection</li>
+          <li>Strong interest in biology and laboratory work is recommended</li>
+        </ul>
+
+        <h5 class="mt-4">⏱️ Course Duration</h5>
+        <ul>
+          <li><strong>3 years</strong> undergraduate degree</li>
+          <li>Includes laboratory practicals, projects, and industrial exposure</li>
+        </ul>
+
+        <h5 class="mt-4">📚 Subjects Studied in Microbiology</h5>
+        <ul>
+          <li>General Microbiology</li>
+          <li>Bacteriology</li>
+          <li>Virology</li>
+          <li>Mycology</li>
+          <li>Parasitology</li>
+          <li>Immunology</li>
+          <li>Medical Microbiology</li>
+          <li>Industrial Microbiology</li>
+          <li>Food & Environmental Microbiology</li>
+        </ul>
+
+        <h5 class="mt-4">🧩 Major Areas / Specializations</h5>
+        <ul>
+          <li>Medical Microbiology</li>
+          <li>Clinical & Diagnostic Microbiology</li>
+          <li>Industrial Microbiology</li>
+          <li>Food & Dairy Microbiology</li>
+          <li>Environmental Microbiology</li>
+          <li>Pharmaceutical Microbiology</li>
+        </ul>
+
+        <h5 class="mt-4">💼 Career Options after B.Sc Microbiology</h5>
+        <ul>
+          <li>Microbiologist (Junior Level)</li>
+          <li>Laboratory Technician / Analyst</li>
+          <li>Clinical Research Assistant</li>
+          <li>Quality Control / Quality Assurance Executive</li>
+          <li>Food Safety & Hygiene Officer (Private)</li>
+          <li>Research Assistant</li>
+        </ul>
+
+        <h5 class="mt-4">🏢 Scope in the Private Sector</h5>
+        <p>
+          Microbiology graduates are employed in diagnostic laboratories,
+          pharmaceutical companies, food & beverage industries,
+          biotechnology firms, hospitals, research labs,
+          and environmental testing agencies.
+        </p>
+
+        <h5 class="mt-4">🏛️ Government Job Scope</h5>
+        <ul>
+          <li>Government Diagnostic Laboratories</li>
+          <li>Public Health Departments</li>
+          <li>Food Safety & Standards Authority roles (after exams)</li>
+          <li>Research Institutes & Universities</li>
+        </ul>
+
+        <h5 class="mt-4">💰 Salary after B.Sc Microbiology (Approx.)</h5>
+        <p>
+          <strong>Freshers:</strong> ₹2.5 – 4 LPA<br>
+          <strong>Experienced:</strong> ₹5 – 7+ LPA<br>
+          <strong>Research / Pharma roles:</strong> ₹8 – 10+ LPA
+        </p>
+
+        <h5 class="mt-4">📈 Career Growth Path</h5>
+        <p>
+          Microbiology Graduate →
+          Lab / Research Assistant →
+          Senior Analyst →
+          Microbiologist →
+          Scientist / Manager / Consultant
+        </p>
+
+        <h5 class="mt-4">📘 Higher Study Options</h5>
+        <ul>
+          <li>M.Sc Microbiology</li>
+          <li>M.Sc Medical / Industrial Microbiology</li>
+          <li>M.Sc Biotechnology (related path)</li>
+          <li>PhD & Research Careers</li>
+          <li>MS (Abroad)</li>
+        </ul>
+
+        <h5 class="mt-4">⚠️ Challenges in Microbiology</h5>
+        <ul>
+          <li>Growth is limited without higher studies</li>
+          <li>Lab-intensive and detail-oriented work</li>
+          <li>Strict safety and hygiene protocols</li>
+          <li>Competitive research environment</li>
+        </ul>
+
+        <h5 class="mt-4">🎯 Who should choose B.Sc Microbiology?</h5>
+        <p>
+          This course is ideal for students who are curious about microorganisms,
+          enjoy laboratory work, are interested in healthcare, diagnostics,
+          research, and want a science-based career in labs, pharma,
+          or public health sectors.
+        </p>
+
+        <p class="fw-semibold fst-italic mt-4">
+          “Microbiology reveals the unseen world that shapes our health and environment.”
+        </p>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= PSYCHOLOGY MODAL ================= -->
+<div class="modal fade" id="psychologyModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title">B.Sc Psychology</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+
+        <h5>📌 What is B.Sc Psychology?</h5>
+        <p>
+          B.Sc Psychology is an undergraduate course that focuses on the study of the human mind,
+          behavior, and mental processes. It involves understanding how people think, feel, act,
+          and interact with others. It covers various aspects of psychology including clinical,
+          child, social, and industrial psychology.
+        </p>
+
+        <h5 class="mt-4">🧠 What does a Psychology student study?</h5>
+        <ul>
+          <li>General Psychology</li>
+          <li>Developmental Psychology</li>
+          <li>Social Psychology</li>
+          <li>Abnormal Psychology</li>
+          <li>Organizational Behavior</li>
+          <li>Research Methodology & Statistics</li>
+          <li>Counseling Psychology</li>
+        </ul>
+
+        <h5 class="mt-4">🎓 Eligibility & Admission</h5>
+        <ul>
+          <li>12th passed (Science stream preferred for B.Sc, Arts for B.A)</li>
+          <li>Minimum 50% marks in 12th</li>
+          <li>Admission usually based on merit or university entrance exams</li>
+        </ul>
+
+        <h5 class="mt-4">⏱️ Course Duration</h5>
+        <ul>
+          <li><strong>3 years</strong> undergraduate degree</li>
+        </ul>
+
+        <h5 class="mt-4">💼 Career Options after B.Sc Psychology</h5>
+        <ul>
+          <li>Counselor (School / Career / Family)</li>
+          <li>Clinical Psychologist (after Master's/M.Phil)</li>
+          <li>Industrial-Organizational Psychologist</li>
+          <li>HR Specialist / Recruiter</li>
+          <li>Social Worker</li>
+          <li>Market Research Analyst</li>
+        </ul>
+
+        <h5 class="mt-4">💰 Salary after B.Sc Psychology (Approx.)</h5>
+        <p>
+          <strong>Freshers:</strong> ₹2.5 – 4.5 LPA<br>
+          <strong>Experienced:</strong> ₹5 – 8+ LPA<br>
+          <strong>Clinical Psychologists (with higher degree):</strong> ₹8 – 12+ LPA
+        </p>
+
+        <h5 class="mt-4">📈 Career Growth Path</h5>
+        <p>
+          B.Sc Psychology → M.Sc / M.A Psychology → M.Phil / PhD (for Clinical License) → Psychologist
+        </p>
+
+        <h5 class="mt-4">🎯 Who should choose B.Sc Psychology?</h5>
+        <p>
+          This course is ideal for students who are curious about human behavior,
+          empathetic, good listeners, and want a career in mental health,
+          counseling, or understanding human dynamics in workplaces.
+        </p>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= B.SC LIFE SCIENCES MODAL ================= -->
+<div class="modal fade" id="lifescienceModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header bg-secondary text-white">
+        <h5 class="modal-title">B.Sc Life Sciences</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+
+        <h5>📌 What is B.Sc Life Sciences?</h5>
+        <p>
+          B.Sc Life Sciences is an interdisciplinary undergraduate degree that studies
+          living organisms and life processes. It combines subjects such as biology,
+          chemistry, biochemistry, microbiology, and environmental science to build
+          a strong foundation for research, laboratory work, healthcare support,
+          and higher studies in life science fields.
+        </p>
+
+        <h5 class="mt-4">🔬 What does a Life Sciences student study?</h5>
+        <ul>
+          <li>Structure and function of living organisms</li>
+          <li>Cell biology and molecular processes</li>
+          <li>Biological chemistry and metabolism</li>
+          <li>Microorganisms and their applications</li>
+          <li>Environment, ecology, and biodiversity</li>
+          <li>Basic research methods and laboratory techniques</li>
+        </ul>
+
+        <h5 class="mt-4">🎓 Eligibility & Admission</h5>
+        <ul>
+          <li>12th passed with <strong>PCB (Physics, Chemistry, Biology)</strong></li>
+          <li>Some universities allow students from related science streams</li>
+          <li>Minimum age: 17 years</li>
+          <li>Admission through entrance exam or merit-based selection</li>
+        </ul>
+
+        <h5 class="mt-4">⏱️ Course Duration</h5>
+        <ul>
+          <li><strong>3 years</strong> undergraduate degree</li>
+          <li>Includes laboratory practicals, fieldwork, and projects</li>
+        </ul>
+
+        <h5 class="mt-4">📚 Subjects Studied in B.Sc Life Sciences</h5>
+        <ul>
+          <li>Cell Biology</li>
+          <li>Genetics</li>
+          <li>Biochemistry</li>
+          <li>Microbiology</li>
+          <li>Molecular Biology</li>
+          <li>Ecology & Environmental Science</li>
+          <li>Plant & Animal Physiology</li>
+          <li>Research Methodology & Biostatistics</li>
+        </ul>
+
+        <h5 class="mt-4">🧩 Major Areas & Pathways</h5>
+        <ul>
+          <li>Biomedical & Health Sciences</li>
+          <li>Environmental & Ecological Sciences</li>
+          <li>Biotechnology & Molecular Biology</li>
+          <li>Microbiology & Diagnostics</li>
+          <li>Academic & Research Pathways</li>
+        </ul>
+
+        <h5 class="mt-4">💼 Career Options after B.Sc Life Sciences</h5>
+        <ul>
+          <li>Laboratory Assistant / Technician</li>
+          <li>Research Assistant</li>
+          <li>Clinical Research Coordinator (entry-level)</li>
+          <li>Quality Control / Quality Assurance Executive</li>
+          <li>Scientific Content Writer</li>
+          <li>Teaching Assistant (with higher studies)</li>
+        </ul>
+
+        <h5 class="mt-4">🏢 Scope in the Private Sector</h5>
+        <p>
+          Life Sciences graduates are employed in private research laboratories,
+          biotechnology companies, pharmaceutical firms,
+          diagnostic centers, healthcare startups,
+          environmental consulting companies, and educational organizations.
+        </p>
+
+        <h5 class="mt-4">🏛️ Government Job Scope</h5>
+        <ul>
+          <li>Government Research Institutes</li>
+          <li>Public Health & Environmental Departments</li>
+          <li>Universities & Government Colleges</li>
+          <li>CSIR / DBT / ICMR funded research projects</li>
+        </ul>
+
+        <h5 class="mt-4">💰 Salary after B.Sc Life Sciences (Approx.)</h5>
+        <p>
+          <strong>Freshers:</strong> ₹2.5 – 4 LPA<br>
+          <strong>Experienced:</strong> ₹5 – 7+ LPA<br>
+          <strong>Research / MNC roles:</strong> ₹8 – 10+ LPA
+        </p>
+
+        <h5 class="mt-4">📈 Career Growth Path</h5>
+        <p>
+          Life Sciences Graduate →
+          Lab / Research Assistant →
+          Senior Research Associate →
+          Scientist / Specialist →
+          Consultant / Academic Professional
+        </p>
+
+        <h5 class="mt-4">📘 Higher Study Options</h5>
+        <ul>
+          <li>M.Sc Life Sciences</li>
+          <li>M.Sc Biotechnology / Microbiology / Genetics</li>
+          <li>M.Sc Environmental Science</li>
+          <li>PhD & Research Careers</li>
+          <li>MS (Abroad)</li>
+        </ul>
+
+        <h5 class="mt-4">⚠️ Challenges in Life Sciences</h5>
+        <ul>
+          <li>Limited career growth without higher studies</li>
+          <li>Research-oriented field requires patience</li>
+          <li>Moderate starting salaries</li>
+          <li>Lab-intensive and detail-focused work</li>
+        </ul>
+
+        <h5 class="mt-4">🎯 Who should choose B.Sc Life Sciences?</h5>
+        <p>
+          This course is ideal for students who are interested in
+          biology, research, laboratory work, environmental studies,
+          and want a strong foundation for higher studies or
+          careers in science, healthcare support, and research.
+        </p>
+
+        <p class="fw-semibold fst-italic mt-4">
+          “Life Sciences explores life itself — from cells to ecosystems.”
+        </p>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= B.SC AGRICULTURE MODAL ================= -->
+<div class="modal fade" id="agricultureModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">B.Sc Agriculture</h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+
+        <h5>📌 What is B.Sc Agriculture?</h5>
+        <p>
+          B.Sc Agriculture is a professional undergraduate degree that focuses on
+          scientific farming, crop production, soil management, plant breeding,
+          agricultural economics, and modern agricultural technologies.
+          This course prepares students to improve food production, sustainability,
+          and rural development using scientific methods.
+        </p>
+
+        <h5 class="mt-4">🌾 What does an Agriculture professional do?</h5>
+        <ul>
+          <li>Improve crop yield and food quality</li>
+          <li>Apply modern farming techniques and technologies</li>
+          <li>Manage soil health and irrigation systems</li>
+          <li>Control pests and plant diseases</li>
+          <li>Support farmers with scientific guidance</li>
+          <li>Work in agriculture research and development</li>
+        </ul>
+
+        <h5 class="mt-4">🎓 Eligibility & Admission</h5>
+        <ul>
+          <li>12th passed with <strong>PCB or PCM</strong></li>
+          <li>Some universities require Biology as a compulsory subject</li>
+          <li>Minimum age: 17 years</li>
+          <li>Admission through state-level or university entrance exams</li>
+        </ul>
+
+        <h5 class="mt-4">⏱️ Course Duration</h5>
+        <ul>
+          <li><strong>4 years</strong> undergraduate degree</li>
+          <li>Includes practical training, fieldwork, and rural internship</li>
+        </ul>
+
+        <h5 class="mt-4">📚 Subjects Studied in B.Sc Agriculture</h5>
+        <ul>
+          <li>Agronomy (Crop Science)</li>
+          <li>Soil Science</li>
+          <li>Plant Pathology</li>
+          <li>Agricultural Entomology</li>
+          <li>Genetics & Plant Breeding</li>
+          <li>Agricultural Economics</li>
+          <li>Horticulture</li>
+          <li>Farm Machinery & Power</li>
+          <li>Agroforestry & Environmental Science</li>
+        </ul>
+
+        <h5 class="mt-4">🧩 Major Specializations in Agriculture</h5>
+        <ul>
+          <li>Agronomy</li>
+          <li>Horticulture</li>
+          <li>Plant Breeding & Genetics</li>
+          <li>Soil Science</li>
+          <li>Agricultural Economics</li>
+          <li>Plant Protection</li>
+        </ul>
+
+        <h5 class="mt-4">💼 Career Options after B.Sc Agriculture</h5>
+        <ul>
+          <li>Agricultural Officer</li>
+          <li>Field Officer / Extension Officer</li>
+          <li>Farm Manager</li>
+          <li>Agriculture Analyst</li>
+          <li>Agri-input Sales Officer</li>
+          <li>Research Assistant</li>
+          <li>Agripreneur (Startup / Farming Business)</li>
+        </ul>
+
+        <h5 class="mt-4">🏢 Scope in the Private Sector</h5>
+        <p>
+          Agriculture graduates are employed in agri-based companies,
+          fertilizer & seed companies, food processing industries,
+          agri-tech startups, farming consultancies,
+          and corporate agriculture firms.
+        </p>
+
+        <h5 class="mt-4">🏛️ Government Job Scope</h5>
+        <ul>
+          <li>Agricultural Officer (State & Central Govt.)</li>
+          <li>Agriculture Development Officer (ADO)</li>
+          <li>Scientist (ICAR & Research Institutes)</li>
+          <li>Banking (Agriculture Officer roles)</li>
+          <li>Krishi Vigyan Kendras (KVK)</li>
+        </ul>
+
+        <h5 class="mt-4">💰 Salary after B.Sc Agriculture (Approx.)</h5>
+        <p>
+          <strong>Freshers:</strong> ₹3 – 5 LPA<br>
+          <strong>Experienced:</strong> ₹6 – 10+ LPA<br>
+          <strong>Government Jobs:</strong> Pay as per state/central scales
+        </p>
+
+        <h5 class="mt-4">📈 Career Growth Path</h5>
+        <p>
+          Agriculture Graduate →
+          Field / Agriculture Officer →
+          Senior Officer / Specialist →
+          Manager / Scientist →
+          Consultant / Agripreneur
+        </p>
+
+        <h5 class="mt-4">📘 Higher Study Options</h5>
+        <ul>
+          <li>M.Sc Agriculture (Various Specializations)</li>
+          <li>MBA / PGDM (Agri-Business Management)</li>
+          <li>PhD & Research Careers</li>
+          <li>MS (Abroad)</li>
+        </ul>
+
+        <h5 class="mt-4">⚠️ Challenges in Agriculture</h5>
+        <ul>
+          <li>Fieldwork-intensive profession</li>
+          <li>Dependence on weather and environment</li>
+          <li>Requires strong practical skills</li>
+          <li>Government exam competition</li>
+        </ul>
+
+        <h5 class="mt-4">🎯 Who should choose B.Sc Agriculture?</h5>
+        <p>
+          This course is ideal for students who are interested in
+          farming, plant science, food production, rural development,
+          sustainability, and want a stable career with strong
+          government and private sector opportunities.
+        </p>
+
+        <p class="fw-semibold fst-italic mt-4">
+          “Agriculture is the backbone of the nation and the future of food security.”
+        </p>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= B.SC HORTICULTURE MODAL ================= -->
+<div class="modal fade" id="horticultureModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- Header -->
+      <div class="modal-header bg-warning text-dark">
+        <h5 class="modal-title">B.Sc Horticulture</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+
+        <h5>📌 What is B.Sc Horticulture?</h5>
+        <p>
+          B.Sc Horticulture is a professional undergraduate degree that focuses on the
+          scientific cultivation, production, improvement, and management of fruits,
+          vegetables, flowers, spices, plantation crops, and medicinal plants.
+          The course emphasizes modern horticultural practices, post-harvest management,
+          and sustainable crop production.
+        </p>
+
+        <h5 class="mt-4">🌿 What does a Horticulture professional do?</h5>
+        <ul>
+          <li>Grow and manage fruits, vegetables, flowers, and plantation crops</li>
+          <li>Apply modern cultivation and nursery techniques</li>
+          <li>Improve crop quality, yield, and shelf life</li>
+          <li>Manage post-harvest handling, storage, and marketing</li>
+          <li>Support farmers and agribusinesses with technical guidance</li>
+          <li>Work in landscaping, floriculture, and greenhouse management</li>
+        </ul>
+
+        <h5 class="mt-4">🎓 Eligibility & Admission</h5>
+        <ul>
+          <li>12th passed with <strong>PCB or PCM</strong></li>
+          <li>Some universities require Biology as a compulsory subject</li>
+          <li>Minimum age: 17 years</li>
+          <li>Admission through state-level or university entrance exams</li>
+        </ul>
+
+        <h5 class="mt-4">⏱️ Course Duration</h5>
+        <ul>
+          <li><strong>4 years</strong> undergraduate degree</li>
+          <li>Includes practical training, fieldwork, and rural / industrial internship</li>
+        </ul>
+
+        <h5 class="mt-4">📚 Subjects Studied in B.Sc Horticulture</h5>
+        <ul>
+          <li>Pomology (Fruit Science)</li>
+          <li>Olericulture (Vegetable Science)</li>
+          <li>Floriculture & Landscape Gardening</li>
+          <li>Plantation Crops & Spices</li>
+          <li>Plant Propagation & Nursery Management</li>
+          <li>Protected Cultivation (Greenhouse)</li>
+          <li>Post-Harvest Technology</li>
+          <li>Plant Pathology & Entomology</li>
+          <li>Soil Science & Irrigation</li>
+        </ul>
+
+        <h5 class="mt-4">🧩 Major Specializations in Horticulture</h5>
+        <ul>
+          <li>Fruit Production & Orchard Management</li>
+          <li>Vegetable Production</li>
+          <li>Floriculture & Landscaping</li>
+          <li>Nursery & Seed Production</li>
+          <li>Post-Harvest Technology</li>
+          <li>Protected / Organic Farming</li>
+        </ul>
+
+        <h5 class="mt-4">💼 Career Options after B.Sc Horticulture</h5>
+        <ul>
+          <li>Horticulture Officer</li>
+          <li>Field / Extension Officer</li>
+          <li>Nursery Manager</li>
+          <li>Greenhouse Manager</li>
+          <li>Landscape Designer (with experience)</li>
+          <li>Quality Control Officer (Agri-based industries)</li>
+          <li>Agripreneur (Fruits, Vegetables, Floriculture business)</li>
+        </ul>
+
+        <h5 class="mt-4">🏢 Scope in the Private Sector</h5>
+        <p>
+          Horticulture graduates are employed in private agri-companies,
+          fruit & vegetable export firms, seed and nursery companies,
+          landscaping firms, food processing industries,
+          greenhouse projects, and agri-tech startups.
+        </p>
+
+        <h5 class="mt-4">🏛️ Government Job Scope</h5>
+        <ul>
+          <li>Horticulture Officer (State & Central Govt.)</li>
+          <li>Agriculture / Horticulture Development Officer</li>
+          <li>Krishi Vigyan Kendras (KVK)</li>
+          <li>ICAR & Research Institutes</li>
+          <li>Public Sector Undertakings (Agri-based)</li>
+        </ul>
+
+        <h5 class="mt-4">💰 Salary after B.Sc Horticulture (Approx.)</h5>
+        <p>
+          <strong>Freshers:</strong> ₹3 – 4.5 LPA<br>
+          <strong>Experienced:</strong> ₹5 – 9+ LPA<br>
+          <strong>Business / Export:</strong> Income depends on scale & market
+        </p>
+
+        <h5 class="mt-4">📈 Career Growth Path</h5>
+        <p>
+          Horticulture Graduate →
+          Field / Nursery Officer →
+          Senior Officer / Specialist →
+          Manager / Consultant →
+          Agripreneur / Exporter
+        </p>
+
+        <h5 class="mt-4">📘 Higher Study Options</h5>
+        <ul>
+          <li>M.Sc Horticulture (Various Specializations)</li>
+          <li>MBA / PGDM (Agri-Business Management)</li>
+          <li>PhD & Research Careers</li>
+          <li>MS (Abroad)</li>
+        </ul>
+
+        <h5 class="mt-4">⚠️ Challenges in Horticulture</h5>
+        <ul>
+          <li>Fieldwork-intensive and seasonal work</li>
+          <li>Market price fluctuations</li>
+          <li>Requires strong practical and management skills</li>
+          <li>Initial income may be moderate</li>
+        </ul>
+
+        <h5 class="mt-4">🎯 Who should choose B.Sc Horticulture?</h5>
+        <p>
+          This course is ideal for students who are interested in
+          fruits, vegetables, flowers, plant science,
+          sustainable farming, agribusiness,
+          and want a career combining science, nature, and entrepreneurship.
+        </p>
+
+        <p class="fw-semibold fst-italic mt-4">
+          “Horticulture nurtures health, nutrition, and sustainable livelihoods.”
+        </p>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>

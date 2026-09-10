@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduation</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Outfit:wght@400;600;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            /* Core Palette */
+            --primary-color: #4f46e5;
+            /* Indigo 600 - sharper */
+            --primary-dark: #4338ca;
+            /* Indigo 700 */
+            --primary-light: #eef2ff;
+            /* Indigo 50 */
+
+            --secondary-color: #64748b;
+            --accent-color: #818cf8;
+
+            --success-color: #10b981;
+            --success-dark: #047857;
+            /* Emerald 700 */
+            --success-light: #ecfdf5;
+
+            /* Neutral - DARKENED as requested */
+            --bg-body: #f8fafc;
+            --text-main: #020617;
+            /* Slate 950 - Almost Black */
+            --text-muted: #334155;
+            /* Slate 700 - Dark Gray (was lighter) */
+            --border-color: #cbd5e1;
+
+            /* Shadows & Effects */
+            --card-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            /* Softer, deeper shadow */
+            --hover-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+            /* Colored glow on hover */
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.8);
+            --backdrop-blur: blur(16px);
+
+            /* Gradients - More Vibrant */
+            --gradient-primary: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            /* Indigo to Violet */
+            --gradient-success: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+            /* Emerald to Teal */
+            --gradient-text-pvt: linear-gradient(to right, #4f46e5, #9333ea);
+            --gradient-text-govt: linear-gradient(to right, #059669, #0284c7);
+
+            /* Body Gradient */
+            --bg-gradient: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            /* Fallback */
+        }
+
+        /* Premium Modal Animations */
+        @keyframes modalPop {
+            0% {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes iconPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(99, 102, 241, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+            }
+        }
+
+        .modal-premium .modal-content {
+            border: 1px solid rgba(255, 255, 255, 0.7) !important;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25) !important;
+            border-radius: 32px !important;
+            animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .icon-pulse-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .icon-pulse-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary-color);
+            opacity: 0.15;
+            z-index: -1;
+            animation: iconPulse 2s infinite;
+        }
+
+        /* --------------------------
+           PREMIUM SEARCH OVERLAY
+           -------------------------- */
+        /* --------------------------
+           SIMPLE SEARCH OVERLAY (Restored)
+           -------------------------- */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .search-box {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .search-box input,
+        .search-box #searchInput {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: #f1f5f9;
+            box-shadow: none;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+            text-align: left;
+            text-shadow: none;
+            color: var(--text-main);
+        }
+
+        .search-box input:focus,
+        .search-box #searchInput:focus {
+            background: white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+            border-bottom-color: transparent;
+        }
+
+        .search-box input::placeholder {
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        .search-overlay .btn-close-search {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.5;
+            transition: all 0.3s;
+            width: auto;
+            height: auto;
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        .search-overlay .btn-close-search:hover {
+            opacity: 1;
+            transform: translateY(-50%) rotate(90deg);
+            background: transparent;
+            color: var(--text-main);
+            box-shadow: none;
+        }
+
+        #suggestionBox {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-top: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 220px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        #suggestionBox li a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #212529;
+            transition: background 0.2s;
+        }
+
+        #suggestionBox li a:hover {
+            background-color: #f3f3f3;
+        }
+
+        /* Remove animations */
+        .search-icon-anim {
+            display: none;
+        }
+
+        /* Global Reset & Typography */
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.7;
+            /* Attractive Gradient Background */
+            background:
+                radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.08), transparent 25%);
+            background-color: #f8fafc;
+            /* Base */
+            background-attachment: fixed;
+            overflow-x: hidden;
+            font-weight: 500;
+            padding-top: 140px;
+            /* Increased global weight */
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .navbar-brand {
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
+            /* Ensure headers are dark */
+        }
+
+        /* Navbar */
+        .navbar.fixed-top {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: var(--backdrop-blur);
+            -webkit-backdrop-filter: var(--backdrop-blur);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            padding: 1.2rem 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.scrolled .navbar.fixed-top {
+            padding: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img,
+        .navbar-brand span {
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.scrolled .navbar-brand img {
+            width: 55px;
+            height: 55px;
+        }
+
+        body.scrolled .navbar-brand span {
+            font-size: 1.5rem !important;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--text-muted) !important;
+            padding: 0.7rem 1rem !important;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            margin-left: 25px;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color) !important;
+            background: transparent;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        .navbar .btn-primary {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.8rem 2.4rem;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .navbar .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .profile-icon {
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .profile-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.7rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.5);
+            background: var(--gradient-primary);
+            /* Keep gradient */
+            filter: brightness(1.1);
+        }
+
+        /* Section Title Styling */
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+
+        .section-title h1 {
+            font-weight: 800;
+            font-size: 3.5rem;
+            /* Larger */
+            background: var(--gradient-text-pvt);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            /* Subtle text shadow for pop */
+        }
+
+        .section-title.govt h1 {
+            background: var(--gradient-text-govt);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .lead-text {
+            font-size: 1.35rem;
+            /* Larger lead */
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        /* Premium Cards */
+        .card {
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            background: #ffffff;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+            border-color: rgba(99, 102, 241, 0.2);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-body {
+            padding: 2.5rem;
+        }
+
+        .card h5 {
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+            font-size: 1.4rem;
+        }
+
+        .text-muted {
+            color: var(--text-muted) !important;
+        }
+
+        .card p.text-muted {
+            color: var(--text-muted) !important;
+            /* Force darker muted text */
+            font-size: 1.05rem;
+        }
+
+        /* Feature Icons */
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            background: #f1f5f9;
+            /* Light gray bg default */
+            color: var(--primary-color);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover .icon-box {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+            transform: scale(1.05) rotate(-3deg);
+        }
+
+        /* Govt Specifics */
+        .govt-card .icon-box {
+            color: var(--success-dark);
+        }
+
+        .govt-card:hover .icon-box {
+            background: var(--gradient-success);
+            color: white;
+            box-shadow: 0 10px 20px rgba(5, 150, 105, 0.3);
+        }
+
+        .govt-card:hover {
+            border-color: rgba(16, 185, 129, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.15);
+        }
+
+        /* Modern Tables */
+        .table-custom {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            background: white;
+            border: none;
+        }
+
+        .table-custom thead {
+            background: var(--gradient-primary);
+        }
+
+        .table-custom th {
+            color: white;
+            font-weight: 700;
+            padding: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+        }
+
+        .table-custom td {
+            padding: 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+            color: var(--text-main);
+            /* Darker */
+            font-weight: 600;
+        }
+
+        .table-custom tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        /* Alerts & Quotes */
+        .alert-custom {
+            border: none;
+            border-radius: 24px;
+            padding: 2.5rem;
+            height: 100%;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .alert-custom:hover {
+            transform: translateY(-5px);
+        }
+
+        .alert-success-custom {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #bbf7d0;
+            color: #14532d;
+            /* darker green text */
+        }
+
+        .alert-warning-custom {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fde68a;
+            color: #78350f;
+            /* darker brown text */
+        }
+
+        .quote-box {
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(79, 70, 229, 0.4);
+        }
+
+        .quote-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 2.24 5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 2.24 5 5 2.24 5 5 2.24 5 5 2.24 5 5 2.24 5 5 2.24 5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 2.24 5 5 2.24 5 5 2.24 5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        /* Buttons */
+        .btn-outline-custom {
+            border: 2px solid;
+            border-radius: 50px;
+            font-weight: 700;
+            padding: 0.6rem 2rem;
+            transition: all 0.3s;
+            background: transparent;
+        }
+
+        .btn-outline-custom.text-primary {
+            border-color: var(--primary-color);
+            color: var(--primary-color) !important;
+        }
+
+        .btn-outline-custom.text-primary:hover {
+            background: var(--primary-color);
+            color: white !important;
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline-custom.text-success {
+            border-color: var(--success-dark);
+            color: var(--success-dark) !important;
+        }
+
+        .btn-outline-custom.text-success:hover {
+            background: var(--success-dark);
+            color: white !important;
+            box-shadow: 0 10px 20px rgba(5, 150, 105, 0.25);
+            transform: translateY(-3px);
+        }
+
+        /* Modal Enhancements */
+        .modal-content {
+            border: none;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            background: var(--bg-body);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991px) {
+            body {
+                padding-top: 100px;
+            }
+
+            .navbar-brand span {
+                font-size: 1.4rem !important;
+            }
+
+            .navbar-brand img {
+                width: 45px;
+                height: 45px;
+            }
+
+            .navbar-collapse {
+                background: rgba(255, 255, 255, 0.98);
+                padding: 20px;
+                border-radius: 20px;
+                margin-top: 15px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title h1 {
+                font-size: 2.2rem;
+            }
+
+            .stream-header-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .card-body {
+                padding: 1.5rem;
+            }
+
+            background: transparent;
+            color: white;
+            border-radius: 50%;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            vertical-align: middle;
+            width: 36px;
+            height: 36px;
+            font-size: 1rem;
+        }
+
+        .btn-favorite:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.1);
+            color: white;
+        }
+
+        .btn-favorite.active {
+            background: #ffc107;
+            color: white;
+            border-color: #ffc107 !important;
+        }
+
+        .btn-favorite.active i.bi-star::before {
+            content: "\f586";
+            /* bi-star-fill */
+        }
+
+        /* Favourite Button */
+        .n {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: white;
+            color: var(--secondary-color);
+            background-color: #fff;
+            color: var(--text-muted);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .n:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            background-color: #fff;
+            color: #ffc107;
+            transform: scale(1.1);
+        }
+
+        /* Search Overlay */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .search-box {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .search-box #searchInput {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: #f1f5f9;
+            box-shadow: none;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .search-box #searchInput:focus {
+            background: white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+
+        .search-overlay .btn-close-search {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+
+        .search-overlay .btn-close-search:hover {
+            opacity: 1;
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        /* Modal Standardization */
+        @media (min-width: 992px) {
+
+            .modal-lg,
+            .modal-xl {
+                max-width: 70%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid px-4">
+
+            <!-- Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="/home">
+                <img src="../static/Logo.png" alt="Logo" width="80" height="80" class="me-2">
+                <span class="fw-bold fs-2">CareerGuidance</span>
+            </a>
+
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/comparison">Comparison</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/path">Path</a>
+                    </li>
+
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="#" id="search-icon-btn"><i class="bi bi-search"></i></a>
+                    </li>
+                </ul>
+
+                <a href="/profile" class="me-3 profile-icon">
+                    <i class="bi bi-person-circle"></i>
+                </a>
+                <!-- Login Button -->
+                <a href="/signup" class="btn btn-primary">Login</a>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ================= PRIVATE SECTOR AFTER GRADUATION ================= -->
+
+    <div id="private" class="container px-4 mt-5 pt-5 mb-5">
+
+        <!-- MAIN HEADING -->
+        <div class="text-center mb-5 p-5 rounded-4 text-white"
+            style="background: var(--gradient-primary); box-shadow: 0 20px 40px rgba(79, 70, 229, 0.3);">
+            <div class="mt-4">
+                <h1 class="fw-bold display-4 mb-3 text-white">Private Sector After Graduation</h1>
+            </div>
+            <p class="lead-text text-white opacity-90" style="font-weight: 500;">
+                Skill-based careers offering fast growth, real-world exposure, and performance-driven success.
+            </p>
+            <p class="text-white opacity-75 mt-2">
+                Applicable to all graduation degrees listed in After 12th section
+                (Science, Commerce, Arts, etc.).
+            </p>
+        </div>
+
+        <!-- WHAT IS PRIVATE SECTOR -->
+        <section class="mb-5 row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card bg-white p-4 p-md-5">
+                    <h3 class="fw-bold mb-3">What is the Private Sector?</h3>
+                    <p class="text-muted fs-5 mb-0">
+                        The private sector includes companies and organizations owned by individuals or corporations.
+                        These jobs are not controlled by the government and focus mainly on performance, skills,
+                        productivity, and results.
+                    </p>
+                    <p class="text-muted mt-3">
+                        In the private sector, career growth depends on what you can do, how fast you learn,
+                        and how much value you add to the organization.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHERE CAN YOU WORK -->
+        <section class="mb-5">
+            <h3 class="fw-bold mb-4 ps-2 border-start border-4 border-primary">&nbsp;1️⃣ Where Can You Work?</h3>
+            <div class="row g-4">
+
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="icon-box">
+                                <i class="bi bi-laptop"></i>
+                            </div>
+                            <h5>IT & Software Companies</h5>
+                            <p class="text-muted">
+                                Software development, data analysis, cybersecurity, cloud services,
+                                web & app development.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="icon-box">
+                                <i class="bi bi-building"></i>
+                            </div>
+                            <h5>Corporate Offices</h5>
+                            <p class="text-muted">
+                                HR, operations, administration, business analysis, management roles.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="icon-box">
+                                <i class="bi bi-graph-up-arrow"></i>
+                            </div>
+                            <h5>Marketing & Sales Firms</h5>
+                            <p class="text-muted">
+                                Digital marketing, sales management, branding, client handling,
+                                growth strategy.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="icon-box">
+                                <i class="bi bi-palette"></i>
+                            </div>
+                            <h5>Design & Media Industry</h5>
+                            <p class="text-muted">
+                                Graphic design, UI/UX, animation, video editing, media production.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="icon-box">
+                                <i class="bi bi-gear-wide-connected"></i>
+                            </div>
+                            <h5>Manufacturing & Core Industry</h5>
+                            <p class="text-muted">
+                                Production, quality control, maintenance, supply chain, plant operations.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="icon-box">
+                                <i class="bi bi-heart-pulse"></i>
+                            </div>
+                            <h5>Finance, Healthcare & Startups</h5>
+                            <p class="text-muted">
+                                Accounting, consulting, hospitals, labs, research, startups & entrepreneurship.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- JOB DESIGNATIONS -->
+        <section class="mb-5">
+            <h3 class="fw-bold mb-4 ps-2 border-start border-4 border-primary">&nbsp;2️⃣ Job Positions & Career Levels
+            </h3>
+            <div class="card p-4">
+                <div class="row text-center g-4">
+                    <div class="col-md-3">
+                        <div class="p-3 rounded-4 bg-light h-100">
+                            <h6 class="fw-bold text-primary mb-3">Entry Level</h6>
+                            <ul class="list-unstyled text-muted small mb-0">
+                                <li>Trainee</li>
+                                <li>Junior Executive</li>
+                                <li>Associate</li>
+                                <li>Analyst</li>
+                                <li>Graduate Engineer Trainee</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3 rounded-4 bg-light h-100">
+                            <h6 class="fw-bold text-primary mb-3">Mid Level</h6>
+                            <ul class="list-unstyled text-muted small mb-0">
+                                <li>Executive</li>
+                                <li>Specialist</li>
+                                <li>Team Lead</li>
+                                <li>Assistant Manager</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3 rounded-4 bg-light h-100">
+                            <h6 class="fw-bold text-primary mb-3">Senior Level</h6>
+                            <ul class="list-unstyled text-muted small mb-0">
+                                <li>Manager</li>
+                                <li>Senior Manager</li>
+                                <li>Project Head</li>
+                                <li>Department Head</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3 rounded-4 bg-light h-100">
+                            <h6 class="fw-bold text-primary mb-3">Leadership</h6>
+                            <ul class="list-unstyled text-muted small mb-0">
+                                <li>Director</li>
+                                <li>Vice President</li>
+                                <li>Business Head</li>
+                                <li>Chief Manager</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SALARY STRUCTURE -->
+        <section class="mb-5">
+            <h3 class="fw-bold mb-4 ps-2 border-start border-4 border-primary">&nbsp;3️⃣ Salary Structure (Reality
+                Based)</h3>
+            <div class="table-responsive table-custom">
+                <table class="table mb-0 text-center align-middle">
+                    <thead>
+                        <tr>
+                            <th>Career Level</th>
+                            <th>Salary Range (India)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Freshers</td>
+                            <td>₹2 – 5 LPA</td>
+                        </tr>
+                        <tr>
+                            <td>2–5 Years Experience</td>
+                            <td>₹6 – 12 LPA</td>
+                        </tr>
+                        <tr>
+                            <td>5–10 Years Experience</td>
+                            <td>₹12 – 25 LPA</td>
+                        </tr>
+                        <tr>
+                            <td>Senior / Leadership</td>
+                            <td>₹30 LPA – ₹1 Cr+</td>
+                        </tr>
+                        <tr>
+                            <td>Exceptional Skills</td>
+                            <td>No Upper Limit </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-muted small mt-3 fst-italic text-center">
+                Salary depends on skills, certifications, company size, location, and individual performance.
+            </p>
+        </section>
+
+        <!-- BENEFITS -->
+        <section class="mb-5">
+            <h3 class="fw-bold mb-4 ps-2 border-start border-4 border-primary">&nbsp;4️⃣ Services, Facilities & Benefits
+            </h3>
+            <div class="card p-4">
+                <ul class="text-muted fs-6 mb-0">
+                    <li class="mb-2">Fixed monthly salary</li>
+                    <li class="mb-2">Paid leaves and public holidays</li>
+                    <li class="mb-2">Provident Fund (PF) & insurance</li>
+                    <li class="mb-2">Work from home / hybrid work model</li>
+                    <li class="mb-2">Performance bonuses and incentives</li>
+                    <li class="mb-2">Training, certifications & skill development</li>
+                    <li>Promotion and appraisal system</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- JOB SECURITY -->
+        <section class="mb-5">
+            <h3 class="fw-bold mb-3 ps-2 border-start border-4 border-primary">&nbsp;5️⃣ Job Security – Reality
+                Explained</h3>
+            <div class="card bg-white p-4">
+                <p class="text-muted mb-2">
+                    Private sector does not offer permanent job security, but it offers strong career security.
+                    Skilled professionals rarely stay unemployed for long.
+                </p>
+                <p class="text-muted mb-0">
+                    Employees who continuously learn and upgrade skills remain valuable to companies.
+                </p>
+            </div>
+        </section>
+
+        <!-- CAREER PATH -->
+        <section class="mb-5">
+            <h3 class="fw-bold mb-3 ps-2 border-start border-4 border-primary">&nbsp;7️⃣ Career Growth Path</h3>
+            <div class="card p-4">
+                <p class="text-muted mb-0 fs-5 text-center">
+                    Graduate → Entry Level Job → Skill Development → Promotion / Company Switch →
+                    Senior Role → Leadership / Business / Freelancing
+                </p>
+            </div>
+        </section>
+
+        <!-- REALITY CHECK -->
+        <section class="mb-5">
+            <h3 class="fw-bold mb-4 ps-2 border-start border-4 border-primary">&nbsp;6️⃣ Reality Check</h3>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="alert-custom alert-success-custom h-100">
+                        <strong class="fs-5 d-block mb-3">Advantages</strong>
+                        <ul class="mb-0">
+                            <li>Fast career growth</li>
+                            <li>Skill-based promotion</li>
+                            <li>High earning potential</li>
+                            <li>Multiple career options</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="alert-custom alert-warning-custom h-100">
+                        <strong class="fs-5 d-block mb-3">Challenges</strong>
+                        <ul class="mb-0">
+                            <li>Work pressure and deadlines</li>
+                            <li>Performance targets</li>
+                            <li>Job stability depends on skills</li>
+                            <li>Continuous learning required</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center my-5 py-4">
+                <blockquote class="blockquote fs-4 fst-italic text-center mx-auto"
+                    style="max-width: 700px; color: var(--text-muted); border-left: 5px solid var(--primary-color); padding-left: 1.5rem;">
+                    “Private sector gives opportunity, skills decide how far you go.”
+                </blockquote>
+            </div>
+        </section>
+    </div>
+
+    <!-- ================= GOVERNMENT SECTOR AFTER GRADUATION ================= -->
+
+    <div id="government" class="container px-4 mt-5 mb-5 pb-5">
+        <!-- MAIN HEADING -->
+        <div class="text-center mb-5 p-5 rounded-4 text-white"
+            style="background: var(--gradient-success); box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3);">
+            <div class="mt-4">
+                <h1 class="fw-bold display-4 mb-3 text-white">Government Sector After Graduation</h1>
+            </div>
+            <p class="lead-text text-white opacity-90" style="font-weight: 500;">
+                Explore stable and respected careers through competitive exams.
+            </p>
+            <p class="text-white opacity-75 mt-2">
+                Applicable to all graduation degrees listed in After 12th section.
+            </p>
+        </div>
+
+        <!-- JOB LEVELS -->
+        <div class="row g-4 justify-content-center">
+
+            <!-- Level 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card govt-card text-center h-100">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <div class="icon-box rounded-circle mb-3">
+                            <i class="bi bi-file-earmark-text"></i>
+                        </div>
+                        <button class="btn btn-favorite n"><i class="bi bi-star"
+                                data-name="Clerical & Assistant"></i></button>
+                        <h5 class="fw-bold">Clerical & Assistant</h5>
+                        <p class="text-muted small mb-4">SSC, State Exams</p>
+                        <button class="btn btn-outline-custom text-primary border-primary mt-auto"
+                            data-bs-toggle="modal" data-bs-target="#level1Modal">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card govt-card text-center h-100">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <div class="icon-box rounded-circle mb-3">
+                            <i class="bi bi-bank"></i>
+                        </div>
+                        <button class="btn btn-favorite n"><i class="bi bi-star"
+                                data-name="Banking & Insurance"></i></button>
+                        <h5 class="fw-bold">Banking & Insurance</h5>
+                        <p class="text-muted small mb-4">IBPS, SBI, RBI, Insurance Exams</p>
+                        <button class="btn btn-outline-custom text-primary border-primary mt-auto"
+                            data-bs-toggle="modal" data-bs-target="#level2Modal">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card govt-card text-center h-100">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <div class="icon-box rounded-circle mb-3">
+                            <i class="bi bi-tools"></i>
+                        </div>
+                        <button class="btn btn-favorite n"><i class="bi bi-star"
+                                data-name="Technical & Professional"></i></button>
+                        <h5 class="fw-bold">Technical & Professional</h5>
+                        <p class="text-muted small mb-4">SSC-JE, PSUs, State Engineering</p>
+                        <button class="btn btn-outline-custom text-primary border-primary mt-auto"
+                            data-bs-toggle="modal" data-bs-target="#level3Modal">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level 4 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card govt-card text-center h-100">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <div class="icon-box rounded-circle mb-3">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <button class="btn btn-favorite n"><i class="bi bi-star"
+                                data-name="Defence & Uniform"></i></button>
+                        <h5 class="fw-bold">Defence & Uniform</h5>
+                        <p class="text-muted small mb-4">CDS, AFCAT, CAPF</p>
+                        <button class="btn btn-outline-custom text-primary border-primary mt-auto"
+                            data-bs-toggle="modal" data-bs-target="#level4Modal">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level 5 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card govt-card text-center h-100">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <div class="icon-box rounded-circle mb-3">
+                            <i class="bi bi-award"></i>
+                        </div>
+                        <button class="btn btn-favorite n"><i class="bi bi-star"
+                                data-name="Civil Services"></i></button>
+                        <h5 class="fw-bold">Civil Services</h5>
+                        <p class="text-muted small mb-4">UPSC, State PSC</p>
+                        <button class="btn btn-outline-custom text-primary border-primary mt-auto"
+                            data-bs-toggle="modal" data-bs-target="#level5Modal">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="text-center my-5 py-4">
+            <blockquote class="blockquote fs-4 fst-italic text-center mx-auto"
+                style="max-width: 700px; color: var(--text-muted); border-left: 5px solid var(--success-color); padding-left: 1.5rem;">
+                “Government sector gives stability, dedication decides your impact.”
+            </blockquote>
+        </div>
+
+    </div>
+
+    <!-- ================= END PRIVATE SECTOR ================= -->
+    {% include 'streams/government.html' %}
+
+    <!-- ================= END GOVERNMENT SECTOR ================= -->
+    <footer class="text-center">
+        <p class="mb-1">© 2026 CareerGuide | All Rights Reserved</p>
+        <small>
+            Helping students choose the right career after 10th, 12th & Graduation
+        </small>
+    </footer>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <button class="btn-close-search" id="close-search-btn"><i class="bi bi-x-lg"></i></button>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search courses, degrees, careers..." autocomplete="off" />
+            <ul id="suggestionBox" class="dropdown-menu w-100" style="position: absolute; top: 100%; left: 0;"></ul>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button type="button" class="btn btn-primary btn-lg" id="btn-back-to-top"
+        style="position: fixed; bottom: 20px; right: 20px; display: none; border-radius: 50%; width: 50px; height: 50px; z-index: 1000;">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Back to top button logic
+        let mybutton = document.getElementById("btn-back-to-top");
+        window.addEventListener('scroll', function () {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        });
+        mybutton.addEventListener("click", function () {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        });
+
+        // Navbar Scroll Animation Logic
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                document.body.classList.add('scrolled');
+            } else {
+                document.body.classList.remove('scrolled');
+            }
+        });
+
+        // Search Overlay Logic
+        const searchIconBtn = document.getElementById('search-icon-btn');
+        const searchOverlay = document.getElementById('search-overlay');
+        const closeSearchBtn = document.getElementById('close-search-btn');
+        const searchInput = document.getElementById('searchInput');
+        const suggestionBox = document.getElementById('suggestionBox');
+
+        if (searchIconBtn) {
+            searchIconBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                searchOverlay.classList.add('active');
+                searchInput.focus();
+            });
+        }
+
+        if (closeSearchBtn) {
+            closeSearchBtn.addEventListener('click', function () {
+                searchOverlay.classList.remove('active');
+            });
+        }
+
+        // Handle "Enter" key
+        if (searchInput) {
+            searchInput.addEventListener("keydown", function (e) {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    let firstItem = suggestionBox.querySelector("li a");
+                    if (firstItem) {
+                        firstItem.click();
+                    } else if (searchInput.value.trim()) {
+                        window.location.href = `/search-redirect?q=${encodeURIComponent(searchInput.value.trim())}`;
+                    }
+                }
+            });
+
+            // Fetch suggestions
+            searchInput.addEventListener("keyup", function () {
+                let value = searchInput.value;
+
+                if (value.length === 0) {
+                    suggestionBox.innerHTML = "";
+                    suggestionBox.style.display = "none";
+                    return;
+                }
+
+                fetch(`/search-suggest?q=${encodeURIComponent(value)}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (searchInput.value !== value) return;
+                        suggestionBox.innerHTML = "";
+                        if (data.length === 0) {
+                            suggestionBox.style.display = "none";
+                            return;
+                        }
+                        suggestionBox.style.display = "block";
+
+                        data.forEach(item => {
+                            let li = document.createElement("li");
+                            // Page name handling (lowercase for Flask routes)
+                            let page = item.page_name ? item.page_name.replace(".html", "").toLowerCase() : "";
+                            li.innerHTML = `<a class="dropdown-item" href="/${page}?target=${item.div_id}&type=${item.target_type}"><b>${item.keyword}</b> <small>(${item.source})</small></a>`;
+                            suggestionBox.appendChild(li);
+                        });
+                    });
+            });
+        }
+
+        // Favorite button toggle
+        document.querySelectorAll('.btn-favorite').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.stopPropagation();
+                // Don't toggle class here; let addToFavourite handle it on success.
+
+                const icon = this.querySelector('i');
+                if (!icon) return;
+
+                const careerName = icon.getAttribute('data-name');
+
+                // Find the sibling "More Info" button (or "View Details") to get the modal ID
+                // Both are in the card-body
+                const cardBody = this.closest('.card-body');
+                let targetId = null;
+
+                if (cardBody) {
+                    const moreInfoBtn = cardBody.querySelector('button[data-bs-toggle="modal"]');
+                    if (moreInfoBtn) {
+                        const target = moreInfoBtn.getAttribute('data-bs-target');
+                        if (target && target.startsWith('#')) {
+                            targetId = target.substring(1);
+                        }
+                    }
+                }
+
+                addToFavourite(targetId, careerName);
+            });
+        });
+
+        // Auto-open modal if hash is present
+        window.addEventListener('load', function () {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement && targetElement.classList.contains('modal')) {
+                    const modal = new bootstrap.Modal(targetElement);
+                    modal.show();
+                }
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const p = new URLSearchParams(window.location.search);
+            const target = p.get("target");
+            const type = p.get("type");
+
+            if (!target || !type) return;
+
+            const el = document.getElementById(target);
+            if (!el) return;
+
+            if (type === "modal" || type === "modal-box") {
+                new bootstrap.Modal(el).show();
+            } else {
+                el.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+
+        // Fetch favorites and update UI on load
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/get_favourites")
+                .then(res => res.json())
+                .then(data => {
+                    data.forEach(item => {
+                        try {
+                            const fav = JSON.parse(item.favourite_career);
+                            const icon = document.querySelector(`i[data-name="${fav.career}"]`);
+                            if (icon) {
+                                const btn = icon.closest('.btn-favorite');
+                                if (btn) btn.classList.add('active');
+                            }
+                        } catch (e) { }
+                    });
+                });
+        });
+
+        function addToFavourite(targetId, careerName) {
+            const icon = document.querySelector(`i[data-name="${careerName}"]`);
+            const btn = icon.closest('.btn-favorite');
+
+            if (btn.classList.contains('active')) {
+                // Remove logic
+                showConfirmModal(
+                    "Remove from Favourites",
+                    "Are you sure you want to remove '" + careerName + "' from your favourites?",
+                    function () {
+                        fetch("/remove_favourite", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ career: careerName })
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                btn.classList.remove('active');
+                            });
+                    },
+                    "Confirm", "Cancel"
+                );
+            } else {
+                // Add logic
+                showConfirmModal(
+                    "Add to Favourites",
+                    "Are you sure you want to add '" + careerName + "' to your favourites?",
+                    function () {
+                        const element = document.getElementById(targetId);
+                        let favouriteData = {};
+
+                        // Common Icon Finding Logic
+                        let iconClass = "";
+                        const card = btn.closest('.card');
+                        if (card) {
+                            // In Graduation.html, icons are inside .icon-box i
+                            const cardIcon = card.querySelector('.icon-box i');
+                            if (cardIcon) {
+                                iconClass = cardIcon.className;
+                            }
+                        }
+
+                        if (element && element.classList.contains('modal')) {
+                            favouriteData = {
+                                career: careerName,
+                                title: element.querySelector('.modal-title').innerText,
+                                description: element.querySelector('.modal-body').innerHTML,
+                                header_class: element.querySelector('.modal-header').className,
+                                source_page: "Graduation.html",
+                                icon_class: iconClass
+                            };
+                        } else {
+                            // Fallback: Scrape from card
+                            const cardBody = btn.closest('.card-body');
+                            if (cardBody) {
+                                const titleEl = cardBody.querySelector('h5');
+                                const textEl = cardBody.querySelector('p');
+
+                                favouriteData = {
+                                    career: careerName,
+                                    title: titleEl ? titleEl.innerText : careerName,
+                                    description: textEl ? textEl.innerHTML : "No description available",
+                                    header_class: "bg-success text-white", // Default for graduation
+                                    source_page: "Graduation.html",
+                                    icon_class: iconClass
+                                };
+                            }
+                        }
+
+                        if (!favouriteData.career) {
+                            showAlertModal("Error", "Could not capture career details.");
+                            return;
+                        }
+
+                        // Define Comparison Data (Matches Backend Source of Truth)
+                        // Define Comparison Data (Matches Backend Source of Truth)
+                        const CAREER_COMPARISON_DATA = {
+                            // Private Sector
+                            "Clerical & Assistant": { "Eligibility": "Graduation (Any Stream)", "Job Opportunities": "Very High", "Starting Salary": "₹25,000–40,000/month", "Growth Potential": "Medium", "Job Stability": "High" },
+                            "Banking & Insurance": { "Eligibility": "Graduation (Any Stream)", "Job Opportunities": "Very High", "Starting Salary": "₹30,000–80,000/month", "Growth Potential": "High", "Job Stability": "Very High" },
+                            "Technical & Professional": { "Eligibility": "Graduation (Relevant Degree)", "Job Opportunities": "High", "Starting Salary": "₹40,000–1,00,000+/month", "Growth Potential": "High", "Job Stability": "Very High" },
+                            "Defence & Uniform": { "Eligibility": "Graduation + Physical Fitness", "Job Opportunities": "Very High", "Starting Salary": "₹40,000–1,20,000+/month", "Growth Potential": "High", "Job Stability": "Very High" },
+                            "Civil Services": { "Eligibility": "Graduation (Any Stream)", "Job Opportunities": "Very High", "Starting Salary": "₹56,100–2,50,000+/month", "Growth Potential": "Very High", "Job Stability": "Very High" }
+                        };
+
+                        fetch("/add_favourite", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                ...favouriteData,
+                                ...CAREER_COMPARISON_DATA[careerName]
+                            })
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.status === 'added') {
+                                    btn.classList.add('active');
+                                } else {
+                                    showAlertModal("Notice", data.message);
+                                }
+                            });
+                    },
+                    "Yes", "No"
+                );
+            }
+        }
+
+        // Custom Modal Helpers
+        let confirmCallbackFn = null;
+
+        function showConfirmModal(title, message, callback, confirmText = "Confirm", cancelText = "Cancel") {
+            document.getElementById('permModalTitle').innerText = title;
+            document.getElementById('permModalBody').innerText = message;
+            document.getElementById('permModalCancel').style.display = 'inline-block';
+            document.getElementById('permModalConfirm').innerText = confirmText;
+            document.getElementById('permModalCancel').innerText = cancelText;
+            confirmCallbackFn = callback;
+            new bootstrap.Modal(document.getElementById('permissionModal')).show();
+        }
+
+        function showAlertModal(title, message) {
+            document.getElementById('permModalTitle').innerText = title;
+            document.getElementById('permModalBody').innerText = message;
+            document.getElementById('permModalCancel').style.display = 'none';
+            document.getElementById('permModalConfirm').innerText = 'OK';
+            confirmCallbackFn = null;
+            new bootstrap.Modal(document.getElementById('permissionModal')).show();
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('permModalConfirm').addEventListener('click', function () {
+                if (confirmCallbackFn) {
+                    confirmCallbackFn();
+                }
+                const modalEl = document.getElementById('permissionModal');
+                const modalInstance = bootstrap.Modal.getInstance(modalEl);
+                if (modalInstance) {
+                    modalInstance.hide();
+                }
+            });
+        });
+    </script>
+
+    <!-- Permission/Feedback Modal -->
+    <div class="modal fade modal-premium" id="permissionModal" tabindex="-1" aria-labelledby="permModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0">
+                <div class="modal-header border-0 justify-content-center pb-0 position-relative"
+                    style="background: transparent;">
+                    <!-- Decorative Icon Layout -->
+                    <div class="icon-pulse-wrapper bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center"
+                        style="width: 90px; height: 90px; margin-top: 30px;">
+                        <i class="bi bi-question-lg text-primary" style="font-size: 3rem;"></i>
+                    </div>
+                </div>
+                <div class="modal-body text-center pt-4 pb-4 px-4 bg-transparent">
+                    <h3 class="fw-bold text-dark mb-2" id="permModalTitle" style="font-family: 'Outfit', sans-serif;">
+                        Permission</h3>
+                    <p id="permModalBody" class="text-muted fs-5 mb-0"
+                        style="font-family: 'DM Sans', sans-serif; line-height: 1.6;">Message goes here...</p>
+                </div>
+                <div class="modal-footer border-0 justify-content-center bg-transparent pb-5 pt-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4 py-2 me-3 fw-bold tracking-wide"
+                        data-bs-dismiss="modal" id="permModalCancel"
+                        style="min-width: 140px; background-color: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; transition: all 0.3s;">Cancel</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-4 py-2 fw-bold tracking-wide shadow-lg"
+                        id="permModalConfirm"
+                        style="min-width: 140px; background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); border: none; transition: transform 0.2s;">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #e0e7ff;
+            --secondary-color: #64748b;
+            --accent-color: #818cf8;
+            --success-color: #10b981;
+            --bg-body: #f1f5f9;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --backdrop-blur: blur(20px);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --gradient-hero: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+
+        html {
+            scroll-padding-top: 180px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding-top: 140px;
+            background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.05), transparent 40%),
+                radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.05), transparent 40%);
+            background-attachment: fixed;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .navbar-brand {
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.01em;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        /* Navbar */
+        .navbar.fixed-top {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: var(--backdrop-blur);
+            -webkit-backdrop-filter: var(--backdrop-blur);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            padding: 1.2rem 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.scrolled .navbar.fixed-top {
+            padding: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img,
+        .navbar-brand span {
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.scrolled .navbar-brand img {
+            width: 55px;
+            height: 55px;
+        }
+
+        body.scrolled .navbar-brand span {
+            font-size: 1.5rem !important;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--text-muted) !important;
+            padding: 0.7rem 1rem !important;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            margin-left: 25px;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color) !important;
+            background: transparent;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        .navbar .btn-primary {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.8rem 2.4rem;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .navbar .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .profile-icon {
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .profile-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .contact-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+            width: 100%;
+            font-size: 0.95rem;
+        }
+
+        footer h4 {
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.01em;
+        }
+
+        footer a {
+            color: #94a3b8 !important;
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            color: var(--accent-color) !important;
+        }
+
+        .hero-box {
+            background: var(--gradient-hero);
+            color: white;
+            padding: 80px 40px;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(79, 70, 229, 0.4);
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        /* Search Overlay */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .search-box {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .search-box #searchInput {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: #f1f5f9;
+            box-shadow: none;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .search-box #searchInput:focus {
+            background: white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+
+        .search-overlay .btn-close-search {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+
+        .search-overlay .btn-close-search:hover {
+            opacity: 1;
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .navbar-brand span {
+            font-size: 1.4rem !important;
+        }
+
+        #suggestionBox {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-top: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 220px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        #suggestionBox li a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #212529;
+            transition: background 0.2s;
+        }
+
+        #suggestionBox li a:hover {
+            background-color: #f3f3f3;
+        }
+
+        /* --------------------------
+           SIMPLE SEARCH OVERLAY (Restored)
+           -------------------------- */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .search-box {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .search-box input,
+        .search-box #searchInput {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: #f1f5f9;
+            box-shadow: none;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+            text-align: left;
+            text-shadow: none;
+            color: var(--text-main);
+        }
+
+        .search-box input:focus,
+        .search-box #searchInput:focus {
+            background: white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+            border-bottom-color: transparent;
+        }
+
+        .search-box input::placeholder {
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        .search-overlay .btn-close-search {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.5;
+            transition: all 0.3s;
+            width: auto;
+            height: auto;
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        .search-overlay .btn-close-search:hover {
+            opacity: 1;
+            transform: translateY(-50%) rotate(90deg);
+            background: transparent;
+            color: var(--text-main);
+            box-shadow: none;
+        }
+
+        #suggestionBox {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-top: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 220px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        #suggestionBox li a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #212529;
+            transition: background 0.2s;
+        }
+
+        #suggestionBox li a:hover {
+            background-color: #f3f3f3;
+        }
+
+        /* Remove animations */
+        .search-icon-anim {
+            display: none;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991px) {
+            body {
+                padding-top: 100px;
+            }
+
+            .hero-box {
+                padding: 40px 20px;
+            }
+
+            .display-4 {
+                font-size: 2.5rem;
+            }
+
+            .contact-card {
+                padding: 2rem;
+            }
+
+            .navbar-brand span {
+                font-size: 1.4rem !important;
+            }
+
+            .navbar-brand img {
+                width: 45px;
+                height: 45px;
+            }
+
+            /* Search Overlay Mobile */
+            .search-box {
+                width: 95%;
+            }
+
+            .search-box #searchInput {
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+
+            .search-overlay .btn-close-search {
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid px-4">
+
+            <a class="navbar-brand d-flex align-items-center" href="/home">
+                <img src="../static/Logo.png" alt="Logo" width="80" height="80" class="me-2">
+                <span class="fw-bold fs-2">CareerGuidance</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/comparison">Comparison</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/path">Path</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="#" id="search-icon-btn"><i class="bi bi-search"></i></a>
+                    </li>
+                </ul>
+                <a href="/profile" class="me-3 profile-icon">
+                    <i class="bi bi-person-circle"></i>
+                </a>
+                {% if session.get('is_logged_in') == 1 %}
+                <a href="/logout" class="btn btn-danger">Logout</a>
+                {% else %}
+                <a href="/login" class="btn btn-primary">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container px-4 mb-5">
+
+        <!-- 🔹 HEADER -->
+        <div class="hero-box text-center">
+            <span class="badge bg-white text-primary px-3 py-2 rounded-pill mb-3 fw-bold shadow-sm">
+                <i class="bi bi-chat-dots-fill me-2"></i>We'd love to hear from you
+            </span>
+            <h1 class="fw-bold display-4 mb-3">Let's Shape <span style="color: #e0e7ff;">Your Future Together</span>
+            </h1>
+            <p class="lead opacity-90 mx-auto mb-4" style="max-width: 700px;">
+                Have questions about your career path? Whether you're confused about streams, colleges, or skills,
+                we are here to provide the clarity and confidence you need.
+            </p>
+            <div class="d-flex justify-content-center gap-3 gap-md-4 flex-wrap text-white small fw-bold text-uppercase">
+                <span class="opacity-75"><i class="bi bi-check-circle-fill text-white me-2"></i>Expert Guidance</span>
+                <span class="opacity-75"><i class="bi bi-check-circle-fill text-white me-2"></i>Student Support</span>
+                <span class="opacity-75"><i class="bi bi-check-circle-fill text-white me-2"></i>Free Consultation</span>
+            </div>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- 🔹 ABOUT CONTACT -->
+            <div class="col-lg-6 animate-up delay-1">
+                <div class="contact-card">
+                    <div class="mb-4">
+                        <i class="bi bi-info-circle-fill text-primary fs-1"></i>
+                    </div>
+                    <h3 class="fw-bold mb-3">About This Platform</h3>
+                    <p class="text-muted">
+                        This career guidance platform is developed as an academic project to help students
+                        explore career options after <strong>10th, 12th, and Graduation</strong>.
+                    </p>
+                    <p class="text-muted">
+                        Our goal is to provide clear, structured, and practical career information so students
+                        can make informed decisions about their future.
+                    </p>
+                    <div class="mt-4 p-3 rounded-3 bg-light border border-primary border-opacity-10">
+                        <p class="mb-0 text-primary fw-medium">
+                            <i class="bi bi-lightbulb-fill me-2"></i>Focus: Simplicity, Usability, Relevance
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🔹 CONTACT INFO -->
+            <div class="col-lg-6 animate-up delay-2">
+                <div class="contact-card">
+                    <div class="mb-4">
+                        <i class="bi bi-envelope-paper-fill text-success fs-1"></i>
+                    </div>
+                    <h3 class="fw-bold mb-4">Contact Information</h3>
+
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-3 d-flex align-items-center">
+                            <i class="bi bi-envelope-at text-primary fs-4 me-3"></i>
+                            <span class="text-muted fs-5">careerguide@gmail.com</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center">
+                            <i class="bi bi-geo-alt text-danger fs-4 me-3"></i>
+                            <span class="text-muted fs-5">India</span>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center">
+                            <i class="bi bi-mortarboard text-warning fs-4 me-3"></i>
+                            <span class="text-muted fs-5">College Academic Project</span>
+                        </li>
+                    </ul>
+
+
+                    <h5 class="fw-bold mb-3">Project Team</h5>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <span class="badge bg-primary bg-opacity-10 text-primary p-2 fs-6 rounded-pill">Ladani
+                            Bhavya</span>
+                        <span class="badge bg-primary bg-opacity-10 text-primary p-2 fs-6 rounded-pill">Rakholiya
+                            Trunal</span>
+                        <span class="badge bg-primary bg-opacity-10 text-primary p-2 fs-6 rounded-pill">Bharad
+                            Laksh</span>
+                    </div>
+
+                    <p class="text-muted small mt-4 mb-0">
+                        We are a group of three students working together to build a helpful
+                        and student-friendly career guidance platform.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="text-center">
+        <p class="mb-1">© 2026 CareerGuide | All Rights Reserved</p>
+        <small>
+            Helping students choose the right career after 10th, 12th & Graduation
+        </small>
+    </footer>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <button class="btn-close-search" id="close-search-btn"><i class="bi bi-x-lg"></i></button>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search courses, degrees, careers..." autocomplete="off" />
+            <ul id="suggestionBox" class="dropdown-menu w-100" style="position: absolute; top: 100%; left: 0;"></ul>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Navbar Scroll Animation Logic
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                document.body.classList.add('scrolled');
+            } else {
+                document.body.classList.remove('scrolled');
+            }
+        });
+
+        // Search Overlay Logic
+        const searchIconBtn = document.getElementById('search-icon-btn');
+        const searchOverlay = document.getElementById('search-overlay');
+        const closeSearchBtn = document.getElementById('close-search-btn');
+        const searchInput = document.getElementById('searchInput');
+        const suggestionBox = document.getElementById('suggestionBox');
+
+        if (searchIconBtn) {
+            searchIconBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                searchOverlay.classList.add('active');
+                searchInput.focus();
+            });
+        }
+
+        if (closeSearchBtn) {
+            closeSearchBtn.addEventListener('click', function () {
+                searchOverlay.classList.remove('active');
+            });
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener("keydown", function (e) {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    let firstItem = suggestionBox.querySelector("li a");
+                    if (firstItem) {
+                        firstItem.click();
+                    } else if (searchInput.value.trim()) {
+                        window.location.href = `/search-redirect?q=${encodeURIComponent(searchInput.value.trim())}`;
+                    }
+                }
+            });
+
+            searchInput.addEventListener("keyup", function () {
+                let value = searchInput.value;
+                if (value.length === 0) {
+                    suggestionBox.innerHTML = "";
+                    suggestionBox.style.display = "none";
+                    return;
+                }
+                fetch(`/search-suggest?q=${encodeURIComponent(value)}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (searchInput.value !== value) return;
+                        suggestionBox.innerHTML = "";
+                        if (data.length === 0) {
+                            suggestionBox.style.display = "none";
+                            return;
+                        }
+                        suggestionBox.style.display = "block";
+                        data.forEach(item => {
+                            let li = document.createElement("li");
+                            let page = item.page_name.replace(".html", "").toLowerCase();
+                            li.innerHTML = `<a class="dropdown-item" href="/${page}?target=${item.div_id}&type=${item.target_type}"><b>${item.keyword}</b> <small>(${item.source})</small></a>`;
+                            suggestionBox.appendChild(li);
+                        });
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #e0e7ff;
+            --secondary-color: #64748b;
+            --accent-color: #818cf8;
+            --success-color: #10b981;
+            --bg-body: #f1f5f9;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --backdrop-blur: blur(20px);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --gradient-hero: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding-top: 140px;
+            background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.05), transparent 40%),
+                radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.05), transparent 40%);
+            background-attachment: fixed;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .navbar-brand {
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.01em;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        /* Navbar */
+        .navbar.fixed-top {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: var(--backdrop-blur);
+            -webkit-backdrop-filter: var(--backdrop-blur);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            padding: 1.2rem 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.scrolled .navbar.fixed-top {
+            padding: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img,
+        .navbar-brand span {
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.scrolled .navbar-brand img {
+            width: 55px;
+            height: 55px;
+        }
+
+        body.scrolled .navbar-brand span {
+            font-size: 1.5rem !important;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--text-muted) !important;
+            padding: 0.7rem 1rem !important;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            margin-left: 25px;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color) !important;
+            background: transparent;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        .navbar .btn-primary {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.8rem 2.4rem;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .navbar .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .profile-icon {
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .profile-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* Analysis Specific Styles */
+        .hero-box {
+            background: var(--gradient-hero);
+            color: white;
+            padding: 80px 20px;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(79, 70, 229, 0.4);
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .analysis-card {
+            background: #ffffff;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            height: 100%;
+            position: relative;
+            min-height: 420px;
+            /* Reduced height to minimize gap */
+        }
+
+        .analysis-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .card-front {
+            padding: 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: opacity 0.3s ease;
+        }
+
+        .card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            transform: translateY(100%);
+            /* Hidden at bottom */
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 10;
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .analysis-card.active .card-back {
+            transform: translateY(0);
+            /* Slide up */
+        }
+
+        .chart-container {
+            flex-grow: 1;
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 0;
+            /* Crucial for flex containers to prevent overflow */
+        }
+
+        .card-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: var(--primary-light);
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 50px 0 20px;
+            margin-top: 80px;
+            width: 100%;
+        }
+
+        footer h5 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        /* Search Overlay */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .search-box {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .search-box #searchInput {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: #f1f5f9;
+            box-shadow: none;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .search-box #searchInput:focus {
+            background: white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+
+        .search-overlay .btn-close-search {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+
+        .search-overlay .btn-close-search:hover {
+            opacity: 1;
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        #suggestionBox {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-top: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 220px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        #suggestionBox li a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #212529;
+            transition: background 0.2s;
+        }
+
+        #suggestionBox li a:hover {
+            background-color: #f3f3f3;
+        }
+
+        /* --------------------------
+           SIMPLE SEARCH OVERLAY (Restored)
+           -------------------------- */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .search-box {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .search-box input,
+        .search-box #searchInput {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: #f1f5f9;
+            box-shadow: none;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+            text-align: left;
+            text-shadow: none;
+            color: var(--text-main);
+        }
+
+        .search-box input:focus,
+        .search-box #searchInput:focus {
+            background: white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+            border-bottom-color: transparent;
+        }
+
+        .search-box input::placeholder {
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        .search-overlay .btn-close-search {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.5;
+            transition: all 0.3s;
+            width: auto;
+            height: auto;
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        .search-overlay .btn-close-search:hover {
+            opacity: 1;
+            transform: translateY(-50%) rotate(90deg);
+            background: transparent;
+            color: var(--text-main);
+            box-shadow: none;
+        }
+
+        #suggestionBox {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-top: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 220px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        #suggestionBox li a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #212529;
+            transition: background 0.2s;
+        }
+
+        #suggestionBox li a:hover {
+            background-color: #f3f3f3;
+        }
+
+        /* Remove animations */
+        .search-icon-anim {
+            display: none;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991px) {
+            body {
+                padding-top: 100px;
+            }
+
+            .hero-box {
+                padding: 40px 20px;
+            }
+
+            .display-4 {
+                font-size: 2.5rem;
+            }
+
+            .navbar-brand span {
+                font-size: 1.4rem !important;
+            }
+
+            .navbar-brand img {
+                width: 45px;
+                height: 45px;
+            }
+
+            .analysis-card {
+                min-height: auto;
+                height: auto;
+            }
+
+            .card-front,
+            .card-back {
+                position: relative;
+                transform: none !important;
+                opacity: 1 !important;
+                height: auto;
+            }
+
+            .card-back {
+                display: none;
+                /* JS toggle might need check, but for visual stacking */
+                margin-top: 20px;
+            }
+
+            .analysis-card.active .card-back {
+                display: flex;
+            }
+
+            .analysis-card.active .card-front {
+                display: none;
+            }
+
+            /* Search Overlay Mobile */
+            .search-box {
+                width: 95%;
+            }
+
+            .search-box #searchInput {
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+
+            .search-overlay .btn-close-search {
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid px-4">
+
+            <!-- Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="/home">
+                <img src="/static/Logo.png" alt="Logo" width="80" height="80" class="me-2">
+                <span class="fw-bold fs-2">CareerGuidance</span>
+            </a>
+
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/path">Path</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/analysis">Analysis</a></li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="#" id="search-icon-btn"><i class="bi bi-search"></i></a>
+                    </li>
+                </ul>
+
+                <a href="/profile" class="me-3 profile-icon"><i class="bi bi-person-circle"></i></a>
+
+                {% if session.get('is_logged_in') == 1 %}
+                <a href="/logout" class="btn btn-danger">Logout</a>
+                {% else %}
+                <a href="/login" class="btn btn-primary">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="container px-4">
+        <div class="hero-box text-center">
+            <h1 class="display-4 fw-bold mb-3 position-relative" style="z-index: 1;">Career Trends & Analysis</h1>
+            <p class="lead opacity-90 mx-auto position-relative" style="max-width: 700px; z-index: 1;">
+                Data-driven insights to help you understand the current job market, student preferences, and future
+                opportunities.
+            </p>
+        </div>
+    </div>
+
+    <!-- Analysis Grid -->
+    <div class="container px-4 mb-5">
+        <div class="row g-4">
+
+            <!-- 1. After 10th Trends -->
+            <div class="col-lg-6">
+                <div class="analysis-card" id="card-10th">
+                    <!-- Front Content -->
+                    <div class="card-front">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="card-icon-wrapper me-3">
+                                <i class="bi bi-pie-chart-fill"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-1">After 10th Trends</h3>
+                                <p class="text-muted mb-0 small">Stream selection statistics</p>
+                            </div>
+                        </div>
+                        <p class="text-muted mb-4">
+                            See which streams students are choosing most often after their 10th board exams.
+                            Understand the popularity of Science, Commerce, and Arts.
+                        </p>
+                        <button class="btn btn-primary w-100 mt-auto rounded-pill"
+                            onclick="showChart('card-10th', 'after10thChart', renderAfter10th)">
+                            <i class="bi bi-bar-chart-line-fill me-2"></i>View Analysis
+                        </button>
+                    </div>
+                    <!-- Back Content (Chart) -->
+                    <div class="card-back">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="fw-bold text-primary mb-0">After 10th Trends</h5>
+                            <button class="btn btn-light rounded-circle shadow-sm" onclick="hideChart('card-10th')"><i
+                                    class="bi bi-x-lg"></i></button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="after10thChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. After 12th Choices -->
+            <div class="col-lg-6">
+                <div class="analysis-card" id="card-12th">
+                    <div class="card-front">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="card-icon-wrapper me-3" style="background: #ecfdf5; color: #10b981;">
+                                <i class="bi bi-bar-chart-fill"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-1">After 12th Choices</h3>
+                                <p class="text-muted mb-0 small">Career paths after 12th</p>
+                            </div>
+                        </div>
+                        <p class="text-muted mb-4">
+                            Analyze the distribution of students moving into Engineering, Medical, Commerce, and other
+                            professional fields after 12th.
+                        </p>
+                        <button class="btn btn-primary w-100 mt-auto rounded-pill"
+                            onclick="showChart('card-12th', 'after12thCareerChart', renderAfter12th)">
+                            <i class="bi bi-bar-chart-line-fill me-2"></i>View Analysis
+                        </button>
+                    </div>
+                    <div class="card-back">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="fw-bold text-success mb-0">After 12th Choices</h5>
+                            <button class="btn btn-light rounded-circle shadow-sm" onclick="hideChart('card-12th')"><i
+                                    class="bi bi-x-lg"></i></button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="after12thCareerChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Engineering Preferences -->
+            <div class="col-lg-6">
+                <div class="analysis-card" id="card-eng">
+                    <div class="card-front">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="card-icon-wrapper me-3" style="background: #fffbeb; color: #f59e0b;">
+                                <i class="bi bi-gear-wide-connected"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-1">Engineering Branches</h3>
+                                <p class="text-muted mb-0 small">Most demanded fields</p>
+                            </div>
+                        </div>
+                        <p class="text-muted mb-4">
+                            A breakdown of the most popular engineering branches like CS, Mechanical, and Civil based on
+                            student enrollment.
+                        </p>
+                        <button class="btn btn-primary w-100 mt-auto rounded-pill"
+                            onclick="showChart('card-eng', 'engineeringPieChart', renderEngineering)">
+                            <i class="bi bi-bar-chart-line-fill me-2"></i>View Analysis
+                        </button>
+                    </div>
+                    <div class="card-back">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="fw-bold text-warning mb-0">Engineering Branches</h5>
+                            <button class="btn btn-light rounded-circle shadow-sm" onclick="hideChart('card-eng')"><i
+                                    class="bi bi-x-lg"></i></button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="engineeringPieChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Private Sector Demand -->
+            <div class="col-lg-6">
+                <div class="analysis-card" id="card-pvt">
+                    <div class="card-front">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="card-icon-wrapper me-3" style="background: #eff6ff; color: #3b82f6;">
+                                <i class="bi bi-briefcase-fill"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-1">Private Jobs Demand</h3>
+                                <p class="text-muted mb-0 small">Hiring trends</p>
+                            </div>
+                        </div>
+                        <p class="text-muted mb-4">
+                            Which sectors are hiring the most? Look at the demand for IT, Management, Finance, and Core
+                            Engineering roles.
+                        </p>
+                        <button class="btn btn-primary w-100 mt-auto rounded-pill"
+                            onclick="showChart('card-pvt', 'privateSectorPieChart', renderPrivateSector)">
+                            <i class="bi bi-bar-chart-line-fill me-2"></i>View Analysis
+                        </button>
+                    </div>
+                    <div class="card-back">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="fw-bold text-primary mb-0">Private Jobs Demand</h5>
+                            <button class="btn btn-light rounded-circle shadow-sm" onclick="hideChart('card-pvt')"><i
+                                    class="bi bi-x-lg"></i></button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="privateSectorPieChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Government Sector -->
+            <div class="col-lg-6">
+                <div class="analysis-card" id="card-govt">
+                    <div class="card-front">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="card-icon-wrapper me-3" style="background: #fef2f2; color: #ef4444;">
+                                <i class="bi bi-building"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-1">Govt. Job Trends</h3>
+                                <p class="text-muted mb-0 small">Public sector opportunities</p>
+                            </div>
+                        </div>
+                        <p class="text-muted mb-4">
+                            Explore the competition and seat distribution in Civil Services, Banking, Defence, and other
+                            government exams.
+                        </p>
+                        <button class="btn btn-primary w-100 mt-auto rounded-pill"
+                            onclick="showChart('card-govt', 'governmentSectorPieChart', renderGovtSector)">
+                            <i class="bi bi-bar-chart-line-fill me-2"></i>View Analysis
+                        </button>
+                    </div>
+                    <div class="card-back">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="fw-bold text-danger mb-0">Govt. Job Trends</h5>
+                            <button class="btn btn-light rounded-circle shadow-sm" onclick="hideChart('card-govt')"><i
+                                    class="bi bi-x-lg"></i></button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="governmentSectorPieChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Skill vs Degree -->
+            <div class="col-lg-6">
+                <div class="analysis-card" id="card-skill">
+                    <div class="card-front">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="card-icon-wrapper me-3" style="background: #fdf4ff; color: #d946ef;">
+                                <i class="bi bi-lightning-charge-fill"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold mb-1">Skill vs Degree</h3>
+                                <p class="text-muted mb-0 small">Changing landscape</p>
+                            </div>
+                        </div>
+                        <p class="text-muted mb-4">
+                            Are degrees still mandatory? See the shift towards skill-based careers, freelancing, and
+                            entrepreneurship.
+                        </p>
+                        <button class="btn btn-primary w-100 mt-auto rounded-pill"
+                            onclick="showChart('card-skill', 'skillVsDegreePieChart', renderSkillVsDegree)">
+                            <i class="bi bi-bar-chart-line-fill me-2"></i>View Analysis
+                        </button>
+                    </div>
+                    <div class="card-back">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="fw-bold text-dark mb-0">Skill vs Degree</h5>
+                            <button class="btn btn-light rounded-circle shadow-sm" onclick="hideChart('card-skill')"><i
+                                    class="bi bi-x-lg"></i></button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="skillVsDegreePieChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center">
+        <p class="mb-1">© 2026 CareerGuide | All Rights Reserved</p>
+        <small>Helping students choose the right career after 10th, 12th & Graduation</small>
+    </footer>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <button class="btn-close-search" id="close-search-btn"><i class="bi bi-x-lg"></i></button>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search courses, degrees, careers..." autocomplete="off" />
+            <ul id="suggestionBox" class="dropdown-menu w-100" style="position: absolute; top: 100%; left: 0;"></ul>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button type="button" class="btn btn-primary btn-lg" id="btn-back-to-top"
+        style="position: fixed; bottom: 20px; right: 20px; display: none; border-radius: 50%; width: 50px; height: 50px; z-index: 1000;">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Back to top button logic
+        let mybutton = document.getElementById("btn-back-to-top");
+        window.addEventListener('scroll', function () {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        });
+        mybutton.addEventListener("click", function () {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        });
+
+        // Navbar Scroll
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                document.body.classList.add('scrolled');
+            } else {
+                document.body.classList.remove('scrolled');
+            }
+        });
+
+        function showChart(cardId, canvasId, renderFunction) {
+            const card = document.getElementById(cardId);
+            card.classList.add('active');
+            const canvas = document.getElementById(canvasId);
+            if (!canvas.classList.contains('rendered')) {
+                renderFunction(canvasId);
+                canvas.classList.add('rendered');
+            }
+        }
+        function hideChart(cardId) {
+            document.getElementById(cardId).classList.remove('active');
+        }
+
+        // --- Chart Render Functions ---
+
+        function renderAfter10th(canvasId) {
+            fetch("/analysis-data-after10")
+                .then(res => res.json())
+                .then(chartData => {
+                    new Chart(document.getElementById(canvasId), {
+                        type: "pie",
+                        data: {
+                            labels: chartData.labels,
+                            datasets: [{
+                                data: chartData.values,
+                                backgroundColor: chartData.colors,
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: "bottom"
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function (ctx) {
+                                            return ctx.label + ": " + ctx.raw + "%";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+        }
+
+        function renderAfter12th(canvasId) {
+            fetch("/analysis-data-after12")
+                .then(res => res.json())
+                .then(data => {
+                    new Chart(document.getElementById(canvasId), {
+                        type: "pie",
+                        data: {
+                            labels: data.labels,
+                            datasets: [{
+                                data: data.values,
+                                backgroundColor: [
+                                    "#4e73df", // Engineering
+                                    "#e74a3b", // Medical
+                                    "#1cc88a", // Commerce
+                                    "#f6c23e", // Arts
+                                    "#36b9cc"  // Skill-Based
+                                ]
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: "bottom"
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function (ctx) {
+                                            return ctx.label + ": " + ctx.raw + "%";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+        }
+
+        function renderEngineering(canvasId) {
+            fetch("/analysis-data-engineering")
+                .then(res => res.json())
+                .then(data => {
+                    new Chart(document.getElementById(canvasId), {
+                        type: "pie",
+                        data: {
+                            labels: data.labels,
+                            datasets: [{
+                                data: data.values,
+                                backgroundColor: [
+                                    "#4e73df", // Computer / IT
+                                    "#1cc88a", // Mechanical
+                                    "#36b9cc", // Electrical
+                                    "#f6c23e", // Civil
+                                    "#e74a3b", // Electronics
+                                    "#858796"  // Other
+                                ]
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: "bottom"
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function (ctx) {
+                                            return ctx.label + ": " + ctx.raw + "%";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                });
+        }
+
+        function renderPrivateSector(canvasId) {
+            fetch("/analysis-data-private-sector")
+                .then(res => res.json())
+                .then(data => {
+                    new Chart(document.getElementById(canvasId), {
+                        type: "pie",
+                        data: {
+                            labels: data.labels,
+                            datasets: [{
+                                data: data.values,
+                                backgroundColor: [
+                                    "#4e73df", // IT / Software
+                                    "#1cc88a", // Management
+                                    "#36b9cc", // Core Engineering
+                                    "#f6c23e", // Finance
+                                    "#e74a3b"  // Sales / HR
+                                ]
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                legend: { position: "bottom" },
+                                tooltip: {
+                                    callbacks: {
+                                        label: ctx => ctx.label + ": " + ctx.raw + "%"
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                });
+        }
+
+        function renderGovtSector(canvasId) {
+            fetch("/analysis-data-government-sector")
+                .then(res => res.json())
+                .then(data => {
+                    new Chart(document.getElementById(canvasId), {
+                        type: "pie",
+                        data: {
+                            labels: data.labels,
+                            datasets: [{
+                                data: data.values,
+                                backgroundColor: [
+                                    "#4e73df", // Civil Services
+                                    "#1cc88a", // Banking
+                                    "#36b9cc", // Defence
+                                    "#f6c23e", // Clerical
+                                    "#e74a3b"  // Technical
+                                ]
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                legend: { position: "bottom" },
+                                tooltip: {
+                                    callbacks: {
+                                        label: ctx => ctx.label + ": " + ctx.raw + "%"
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                });
+        }
+
+        function renderSkillVsDegree(canvasId) {
+            fetch("/analysis-data-skill-vs-degree")
+                .then(res => res.json())
+                .then(data => {
+                    new Chart(document.getElementById(canvasId), {
+                        type: "pie",
+                        data: {
+                            labels: data.labels,
+                            datasets: [{
+                                data: data.values,
+                                backgroundColor: [
+                                    "#4e73df", // Degree-based
+                                    "#1cc88a", // Skill-based
+                                    "#f6c23e"  // Entrepreneurship
+                                ]
+                            }]
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            responsive: true,
+                            plugins: {
+                                legend: { position: "bottom" },
+                                tooltip: {
+                                    callbacks: {
+                                        label: ctx => ctx.label + ": " + ctx.raw + "%"
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                });
+        }
+
+        // Search Overlay Logic
+        const searchIconBtn = document.getElementById('search-icon-btn');
+        const searchOverlay = document.getElementById('search-overlay');
+        const closeSearchBtn = document.getElementById('close-search-btn');
+        const searchInput = document.getElementById('searchInput');
+        const suggestionBox = document.getElementById('suggestionBox');
+
+        if (searchIconBtn) {
+            searchIconBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                searchOverlay.classList.add('active');
+                searchInput.focus();
+            });
+        }
+
+        if (closeSearchBtn) {
+            closeSearchBtn.addEventListener('click', function () {
+                searchOverlay.classList.remove('active');
+            });
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener("keydown", function (e) {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    let firstItem = suggestionBox.querySelector("li a");
+                    if (firstItem) {
+                        firstItem.click();
+                    } else if (searchInput.value.trim()) {
+                        window.location.href = `/search-redirect?q=${encodeURIComponent(searchInput.value.trim())}`;
+                    }
+                }
+            });
+
+            searchInput.addEventListener("keyup", function () {
+                let value = searchInput.value;
+                if (value.length === 0) {
+                    suggestionBox.innerHTML = "";
+                    suggestionBox.style.display = "none";
+                    return;
+                }
+                fetch(`/search-suggest?q=${encodeURIComponent(value)}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (searchInput.value !== value) return;
+                        suggestionBox.innerHTML = "";
+                        if (data.length === 0) {
+                            suggestionBox.style.display = "none";
+                            return;
+                        }
+                        suggestionBox.style.display = "block";
+                        data.forEach(item => {
+                            let li = document.createElement("li");
+                            let page = item.page_name.replace(".html", "");
+                            li.innerHTML = `<a class="dropdown-item" href="/${page}?target=${item.div_id}&type=${item.target_type}"><b>${item.keyword}</b> <small>(${item.source})</small></a>`;
+                            suggestionBox.appendChild(li);
+                        });
+                    });
+            });
+        }
+    </script>
+
+</body>
+
+</html>

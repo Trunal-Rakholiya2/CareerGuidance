@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>After 12th</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --primary-color: #0d6efd;
+    }
+
+    /* Premium Modal Animations */
+    @keyframes modalPop {
+      0% {
+        transform: scale(0.95);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes iconPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.4);
+      }
+
+      70% {
+        box-shadow: 0 0 0 20px rgba(13, 110, 253, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(13, 110, 253, 0);
+      }
+    }
+
+    .modal-premium .modal-content {
+      border: 1px solid rgba(255, 255, 255, 0.7) !important;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 25px 50px -12px rgba(13, 110, 253, 0.25) !important;
+      border-radius: 32px !important;
+      animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    .icon-pulse-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    .icon-pulse-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--primary-color);
+      opacity: 0.15;
+      z-index: -1;
+      animation: iconPulse 2s infinite;
+    }
+
+    html {
+      scroll-padding-top: 180px;
+      /* Space for both navbars */
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      padding-top: 140px;
+      background-color: #f8f9fa;
+      color: #212529;
+      /* Darker text */
+      line-height: 1.7;
+      font-size: 1.12rem;
+      /* Increased font size */
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .navbar-brand {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: #000;
+      /* Pure black headings */
+    }
+
+    /* Navbar */
+    .navbar.fixed-top {
+      background: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      padding: 1.2rem 0;
+      transition: all 0.3s ease-in-out;
+    }
+
+    body.scrolled .navbar.fixed-top {
+      padding: 0.5rem 0;
+      background: rgba(255, 255, 255, 0.98) !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand img,
+    .navbar-brand span {
+      transition: all 0.3s ease-in-out;
+    }
+
+    body.scrolled .navbar-brand img {
+      width: 55px;
+      height: 55px;
+    }
+
+    body.scrolled .navbar-brand span {
+      font-size: 1.5rem !important;
+    }
+
+    .navbar-nav .nav-link {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #444;
+      margin-left: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.7rem 1rem !important;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      color: var(--primary-color);
+      background: transparent;
+    }
+
+    .navbar-nav .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 5px;
+      left: 50%;
+      background-color: var(--primary-color);
+      transition: width 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link.active::after {
+      width: 80%;
+    }
+
+    .profile-icon {
+      font-size: 1.6rem;
+      color: #555;
+      transition: all 0.3s ease;
+    }
+
+    .profile-icon:hover {
+      color: var(--primary-color);
+      transform: scale(1.1);
+    }
+
+    /* Section Headers (Gradients) */
+    .stream-header {
+      border-radius: 25px;
+      padding: 2rem 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #fff;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bg-pcm {
+      background: linear-gradient(135deg, #5f72bd 0%, #9b6b9b 100%);
+    }
+
+    /* --------------------------
+           SIMPLE SEARCH OVERLAY (Restored)
+           -------------------------- */
+    .search-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      padding: 20px 0;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-100%);
+      transition: all 0.3s ease;
+    }
+
+    .search-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .search-box {
+      position: relative;
+      width: 90%;
+      max-width: 700px;
+    }
+
+    .search-box input,
+    .search-box #searchInput {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 50px;
+      background: #f1f5f9;
+      box-shadow: none;
+      outline: none;
+      font-family: 'Outfit', sans-serif;
+      text-align: left;
+      text-shadow: none;
+      color: var(--text-main);
+    }
+
+    .search-box input:focus,
+    .search-box #searchInput:focus {
+      background: white;
+      box-shadow: 0 0 0 2px var(--primary-color);
+      border-bottom-color: transparent;
+    }
+
+    .search-box input::placeholder {
+      color: #aaa;
+      font-weight: 400;
+    }
+
+    .search-overlay .btn-close-search {
+      position: absolute;
+      top: 50%;
+      right: 30px;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      opacity: 0.5;
+      transition: all 0.3s;
+      width: auto;
+      height: auto;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .search-overlay .btn-close-search:hover {
+      opacity: 1;
+      transform: translateY(-50%) rotate(90deg);
+      background: transparent;
+      color: var(--text-main);
+      box-shadow: none;
+    }
+
+    #suggestionBox {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-top: none;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 220px;
+      overflow-y: auto;
+      z-index: 1000;
+      display: none;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    #suggestionBox li a {
+      display: block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #212529;
+      transition: background 0.2s;
+    }
+
+    #suggestionBox li a:hover {
+      background-color: #f3f3f3;
+    }
+
+    /* Remove animations */
+    .search-icon-anim {
+      display: none;
+    }
+
+    .bg-pcb {
+      background: linear-gradient(135deg, #26a0da 0%, #3dd5b5 100%);
+    }
+
+    .bg-pcmb {
+      background: linear-gradient(135deg, #ff8c42 0%, #ffc55c 100%);
+    }
+
+    .bg-commerce {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .bg-arts {
+      background: linear-gradient(135deg, #c33764 0%, #1d2671 100%);
+    }
+
+    .bg-diploma {
+      background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%);
+    }
+
+    /* Option Boxes (Interactive) */
+    .option-box {
+      background: white;
+      border: none;
+      border-radius: 24px;
+      padding: 45px 25px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      height: 100%;
+    }
+
+    .option-box:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      background: #fff;
+    }
+
+    .option-emoji {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    /* Degree Cards */
+    .degree-card {
+      background: #fff;
+      border: none;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      height: 100%;
+      position: relative;
+      border-top: 5px solid transparent;
+    }
+
+    .degree-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      border-top-color: #0d6efd;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background: linear-gradient(90deg, #0d6efd, #0a58ca);
+      border: none;
+      border-radius: 50px;
+      padding: 10px 30px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+      transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(13, 110, 253, 0.5);
+    }
+
+    /* Modals */
+    .modal-content {
+      border-radius: 24px;
+      border: none;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Increase Modal Width */
+
+
+    .modal-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      border-bottom: 0;
+      padding: 2rem 2.5rem;
+    }
+
+    .modal-header .btn-close {
+      filter: invert(1) grayscale(100%) brightness(200%);
+    }
+
+    .modal-title {
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: white;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Modal Body Styling */
+    .modal-body {
+      padding: 3rem;
+    }
+
+    .modal-body h5,
+    .modal-body h6 {
+      font-family: 'Outfit', sans-serif;
+      color: #2c3e50;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      border-left: 5px solid #667eea;
+      padding-left: 15px;
+    }
+
+    .modal-body ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .modal-body ul li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 0.8rem;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .modal-body ul li::before {
+      content: "\F26A";
+      /* Bootstrap check icon */
+      font-family: "bootstrap-icons";
+      color: #28a745;
+      /* Green check */
+      margin-right: 10px;
+      flex-shrink: 0;
+      line-height: 1.4;
+      font-size: 1.2rem;
+    }
+
+    /* Custom list style for checkmarks in content cards */
+    .section-content-card ul,
+    .degree-card ul:not([class]) {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .section-content-card ul li,
+    .degree-card ul:not([class]) li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-content-card ul li::before,
+    .degree-card ul:not([class]) li::before {
+      content: "\F26A";
+      font-family: "bootstrap-icons";
+      color: #28a745;
+      margin-right: 10px;
+      flex-shrink: 0;
+      line-height: 1.4;
+      font-size: 1.2rem;
+    }
+
+    .modal-body p {
+      color: #444;
+      margin-bottom: 1.2rem;
+    }
+
+    /* Darker muted text for better visibility */
+    .text-muted {
+      color: #555 !important;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Footer */
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 50px 0 20px;
+      margin-top: 80px;
+      width: 100%;
+    }
+
+    footer h5 {
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    footer a {
+      color: #94a3b8;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    .btn-favorite {
+      background: transparent;
+      color: white;
+      border-radius: 50%;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+      vertical-align: middle;
+      width: 36px;
+      height: 36px;
+      font-size: 1rem;
+    }
+
+    .btn-favorite:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.1);
+      color: white;
+    }
+
+    .btn-favorite.active {
+      background: #ffc107;
+      color: white;
+      border-color: #ffc107 !important;
+    }
+
+    .btn-favorite.active i.bi-star::before {
+      content: "\f586";
+      /* bi-star-fill */
+    }
+
+
+
+    /* Favourite Button */
+    .n {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #fff;
+      color: #555;
+      /* Fixed undefined variable */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .n:hover {
+      background-color: #fff;
+      color: #ffc107;
+      transform: scale(1.1);
+    }
+
+    /* Section Header Favorite Button (Transparent) */
+    .s {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      /* Inherits transparent bg and white color from .btn-favorite */
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .s:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+      color: #ffc107;
+      /* Star turns yellow on hover */
+    }
+
+    /* ===== Sticky ScrollSpy Nav ===== */
+    #streamSpyNav {
+      top: 120px;
+      z-index: 1010;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      padding: 18px 0;
+      border-radius: 0 0 50px 50px;
+      margin-bottom: 3rem;
+      transition: all 0.3s ease-in-out;
+    }
+
+    body.scrolled #streamSpyNav {
+      top: 72px;
+    }
+
+    #streamSpyNav .nav-link {
+      color: #555;
+      padding: 10px 22px !important;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    #streamSpyNav .nav-link:hover {
+      background: rgba(13, 110, 253, 0.05);
+      color: #0d6efd !important;
+    }
+
+    #streamSpyNav .nav-link.active {
+      background: linear-gradient(90deg, #0d6efd, #0a58ca);
+      color: white !important;
+      box-shadow: 0 8px 20px -4px rgba(13, 110, 253, 0.4);
+    }
+
+    /* Consistent Section Padding */
+
+    /* Styled Content Box for Expanded Sections */
+    .section-content-card,
+    #medicalSection,
+    #paramedicalSection,
+    #pharmacySection,
+    #researchSection {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      margin-top: 1.5rem;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    /* Hide Close Button in All Section Cards */
+    .section-content-card .btn-outline-secondary,
+    #medicalSection .btn-outline-secondary,
+    #paramedicalSection .btn-outline-secondary,
+    #pharmacySection .btn-outline-secondary,
+    #researchSection .btn-outline-secondary {
+      display: none !important;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Search Overlay */
+    .search-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      padding: 20px 0;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-100%);
+      transition: all 0.3s ease;
+    }
+
+    .search-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .search-box {
+      position: relative;
+      width: 90%;
+      max-width: 700px;
+    }
+
+    .search-box #searchInput {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 50px;
+      background: #f1f5f9;
+      box-shadow: none;
+      outline: none;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .search-box #searchInput:focus {
+      background: white;
+      box-shadow: 0 0 0 2px var(--primary-color);
+    }
+
+    .search-overlay .btn-close-search {
+      position: absolute;
+      top: 50%;
+      right: 30px;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+    }
+
+    .search-overlay .btn-close-search:hover {
+      opacity: 1;
+      transform: translateY(-50%) rotate(90deg);
+    }
+
+    /* Modal Standardization */
+    @media (min-width: 992px) {
+
+      .modal-lg,
+      .modal-xl {
+        max-width: 70%;
+      }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 991px) {
+      body {
+        padding-top: 100px;
+      }
+
+      #streamSpyNav {
+        top: 72px;
+        padding: 10px 0;
+      }
+
+      #streamSpyNav .nav-pills {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 5px;
+        -webkit-overflow-scrolling: touch;
+        padding-left: 15px;
+      }
+
+      #streamSpyNav .nav-link {
+        white-space: nowrap;
+        font-size: 0.9rem;
+        padding: 8px 16px !important;
+      }
+
+      .stream-header {
+        padding: 1.5rem 1rem;
+      }
+
+      .modal-body {
+        padding: 1.5rem;
+      }
+
+      .degree-card {
+        padding: 1.5rem;
+      }
+
+      /* Search Overlay Mobile */
+      .search-box {
+        width: 95%;
+      }
+
+      .search-box #searchInput {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+      }
+
+      .search-overlay .btn-close-search {
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#streamSpyNav" data-bs-root-margin="-130px 0px -25%" tabindex="0">
+  <!-- ===== Navbar ===== -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid px-4">
+
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center" href="/home">
+        <img src="../static/Logo.png" alt="Logo" width="80" height="80" class="me-2">
+        <span class="fw-bold text-primary fs-2">CareerGuidance</span>
+      </a>
+
+      <!-- Toggle -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto me-3">
+
+          <li class="nav-item">
+            <a class="nav-link" href="/home">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/comparison">Comparison</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/path">Path</a>
+          </li>
+
+          <li class="nav-item me-2">
+            <a class="nav-link" href="#" id="search-icon-btn"><i class="bi bi-search"></i></a>
+          </li>
+        </ul>
+
+        <a href="/profile" class="me-3 profile-icon">
+          <i class="bi bi-person-circle"></i>
+        </a>
+        <!-- Button -->
+        {% if session.get('is_logged_in') == 1 %}
+        <a href="/logout" class="btn btn-danger">Logout</a>
+        {% else %}
+        <a href="/login" class="btn btn-primary">Login</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== Stream ScrollSpy Navigation ===== -->
+  <nav id="streamSpyNav" class="navbar sticky-top py-3 mb-4 shadow-sm">
+    <div class="container justify-content-center">
+      <ul class="nav nav-pills gap-2">
+        <li class="nav-item">
+          <a class="nav-link" href="#pcm-section">PCM</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#pcb-section">PCB</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#pcmb-section">PCMB</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#commerce-section">Commerce</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#arts-section">Arts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#diploma-section">Diploma</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-4 px-4">
+    <div id="pcm-section" class="py-3">
+      <div class="stream-header bg-pcm">
+        <h1 class="fw-bold">PCM – Interest Based Career Paths</h1>
+        <p class="fs-5 mt-2 opacity-75">
+          Explore career options after 12th PCM based on your interest, skills, and thinking style.
+        </p>
+      </div>
+    </div>
+
+    <div class="my-4">
+
+      <!-- QUESTION -->
+      <div class="text-center mb-4">
+        <h2 class="fw-bold">What excites you the most?</h2>
+        <p class="text-muted fs-5">Choose based on interest, not pressure</p>
+      </div>
+
+      <!-- OPTIONS -->
+      <div class="row g-4 text-center">
+        <div class="col-md-4">
+          <div class="option-box" onclick="showDesign()">
+            <span class="option-emoji">🎨</span>
+            <h5 class="mt-2 fw-bold">Design & Creativity</h5>
+            <p class="text-muted">For creative & visual thinkers</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="option-box" onclick="showScience()">
+            <span class="option-emoji">🔬</span>
+            <h5 class="mt-2 fw-bold">Science & Research</h5>
+            <p class="text-muted">For theory & discovery lovers</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="option-box" onclick="showTech()">
+            <span class="option-emoji">💻</span>
+            <h5 class="mt-2 fw-bold">Technology & Engineering</h5>
+            <p class="text-muted">For problem solvers</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIVIDER -->
+      <hr class="my-4">
+
+      <!-- DESIGN SECTION -->
+      <div id="designSection" class="hidden section-content-card">
+
+        <div class="mb-4">
+          <h3 class="fw-bold">🎨 Design & Creativity (After 12th PCM)</h3>
+        </div>
+
+        <p class="text-muted">
+          Design & Creativity is a career stream for students who love art, visuals, innovation,
+          and original thinking. PCM students fit well because modern design combines
+          <strong>logic, creativity, and technology</strong>.
+        </p>
+
+        <p>👉 Perfect for students who prefer <strong>skills and creativity over memorization</strong>.</p>
+
+        <h5 class="fw-bold mt-4">Who Should Choose This Stream?</h5>
+        <ul>
+          <li>Love drawing, sketching, or designing</li>
+          <li>Enjoy art, digital creativity, or visual thinking</li>
+          <li>Want a career based on skill + portfolio</li>
+          <li>PCM students interested in creative technology</li>
+          <li>Prefer practical work over theory</li>
+        </ul>
+
+        <h5 class="mt-4 fw-bold">Main Design Degrees After 12th PCM</h5>
+
+        <div class="row g-4 mt-2">
+
+          <div class="col-md-6 col-lg-6">
+            <div class="degree-card">
+              <button class="btn btn-favorite n" onclick="addToFavourite('bdesModal','Bachelor of Design (B.Des)')"><i
+                  class="bi bi-star" data-name="Bachelor of Design (B.Des)"></i></button>
+              <h6 class="fw-bold">Bachelor of Design (B.Des)</h6>
+              <p class="text-muted">Core professional design degree</p>
+              <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#bdesModal">
+                View Full Details
+              </button>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-6">
+            <div class="degree-card">
+              <button class="btn btn-favorite n"
+                onclick="addToFavourite('designEngModal','B.Tech / B.Des in Design Engineering')"><i class="bi bi-star"
+                  data-name="B.Tech / B.Des in Design Engineering"></i></button>
+              <h6 class="fw-bold">B.Tech / B.Des in Design Engineering</h6>
+              <p class="text-muted">Design + engineering concepts</p>
+              <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#designEngModal">
+                View Full Details
+              </button>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-6">
+            <div class="degree-card">
+              <button class="btn btn-favorite n" onclick="addToFavourite('uiuxModal','Interaction Design (UI/UX)')"><i
+                  class="bi bi-star" data-name="Interaction Design (UI/UX)"></i></button>
+              <h6 class="fw-bold">Interaction Design (UI/UX)</h6>
+              <p class="text-muted">App & website experience design</p>
+              <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#uiuxModal">
+                View Full Details
+              </button>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-6">
+            <div class="degree-card">
+              <button class="btn btn-favorite n"
+                onclick="addToFavourite('industrialDesignModal','Industrial / Product Design')"><i class="bi bi-star"
+                  data-name="Industrial / Product Design"></i></button>
+              <h6 class="fw-bold">Industrial / Product Design</h6>
+              <p class="text-muted">Designing real-world physical products</p>
+              <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#industrialDesignModal">
+                View Full Details
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <!-- ================= SCIENCE & RESEARCH SECTION ================= -->
+    <div id="scienceSection" class="hidden section-content-card">
+
+      <div class="mb-4">
+        <h3 class="fw-bold">🔬 Science & Research (After 12th PCM)</h3>
+      </div>
+
+      <p class="text-muted">
+        Science & Research is a core academic career path for PCM students who enjoy
+        <strong>concepts, logic, experiments, and deep subject understanding</strong>.
+        This branch focuses on discovering, analyzing, and explaining how the physical world works.
+      </p>
+
+      <p>👉 Best for students who prefer <strong>knowledge, theory, and long-term academic growth</strong>.</p>
+
+      <h5 class="fw-bold mt-4">Who Should Choose This Branch?</h5>
+      <ul>
+        <li>Students who enjoy Physics, Chemistry, and Mathematics</li>
+        <li>Those who like formulas, derivations, and concepts</li>
+        <li>Interested in research, teaching, or scientific roles</li>
+        <li>Comfortable with higher studies (M.Sc / PhD)</li>
+        <li>Prefer depth of knowledge over quick placements</li>
+      </ul>
+
+      <h5 class="mt-4 fw-bold">Main Branches in Science & Research (PCM)</h5>
+
+      <div class="row g-4 mt-2 justify-content-center">
+
+        <div class="col-md-4">
+          <div class="degree-card">
+            <button class="btn btn-favorite n" onclick="addToFavourite('scienceResearchModal','Physics')"><i
+                class="bi bi-star" data-name="Physics"></i></button>
+            <h6 class="fw-bold">Physics</h6>
+            <p class="text-muted">Energy, motion, electronics, space & research</p>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#scienceResearchModal">
+              View Full Details
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="degree-card">
+            <button class="btn btn-favorite n" onclick="addToFavourite('scienceResearchModal','Chemistry')"><i
+                class="bi bi-star" data-name="Chemistry"></i></button>
+            <h6 class="fw-bold">Chemistry</h6>
+            <p class="text-muted">Chemicals, reactions, materials & lab work</p>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#scienceResearchModal">
+              View Full Details
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="degree-card">
+            <button class="btn btn-favorite n" onclick="addToFavourite('scienceResearchModal','Mathematics')"><i
+                class="bi bi-star" data-name="Mathematics"></i></button>
+            <h6 class="fw-bold">Mathematics</h6>
+            <p class="text-muted">Logic, numbers, proofs & abstract thinking</p>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#scienceResearchModal">
+              View Full Details
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="degree-card">
+            <button class="btn btn-favorite n" onclick="addToFavourite('scienceResearchModal','Statistics')"><i
+                class="bi bi-star" data-name="Statistics"></i></button>
+            <h6 class="fw-bold">Statistics</h6>
+            <p class="text-muted">Data, probability & analytical modeling</p>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#scienceResearchModal">
+              View Full Details
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="degree-card">
+            <button class="btn btn-favorite n"
+              onclick="addToFavourite('scienceResearchModal','Data Science (Science Route)')"><i class="bi bi-star"
+                data-name="Data Science (Science Route)"></i></button>
+            <h6 class="fw-bold">Data Science (Science Route)</h6>
+            <p class="text-muted">Maths + statistics + research computing</p>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#scienceResearchModal">
+              View Full Details
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ================= TECHNOLOGY & ENGINEERING SECTION ================= -->
+    <div id="techSection" class="hidden section-content-card">
+      <div class="mb-4">
+        <h3 class="fw-bold">💻 Technology & Engineering (After 12th PCM)</h3>
+      </div>
+
+      <p class="text-muted">
+        Technology & Engineering is the most popular career path for PCM students.
+        It focuses on <strong>applying scientific principles to build machines, software, structures, and
+          systems</strong>.
+      </p>
+
+      <p>👉 Best for students who love <strong>problem-solving, innovation, and practical application</strong>.</p>
+
+      <h5 class="fw-bold mt-4">Who Should Choose This Stream?</h5>
+      <ul>
+        <li>Love technology, gadgets, or machines</li>
+        <li>Enjoy coding, building, or fixing things</li>
+        <li>Want a career with high industry demand</li>
+        <li>Good at logical reasoning and mathematics</li>
+        <li>Interested in how things work (software or hardware)</li>
+      </ul>
+
+      <h5 class="mt-4 fw-bold">Main Engineering Branches</h5>
+
+      <div class="row g-4 mt-2 justify-content-center">
+        <!-- CSE -->
+        <div class="col-md-6 col-lg-3">
+          <div class="degree-card">
+            <button class="btn btn-favorite n" onclick="addToFavourite('cseModal','Computer Science (CSE)')"><i
+                class="bi bi-star" data-name="Computer Science (CSE)"></i></button>
+            <h6 class="fw-bold">Computer Science (CSE)</h6>
+            <p class="text-muted">Software, coding, AI & web development</p>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#cseModal">
+              View Full Details
+            </button>
+          </div>
+        </div>
+
+        <!-- Mechanical -->
+        <div class="col-md-6 col-lg-3">
+          <div class="degree-card">
+            <button class="btn btn-favorite n" onclick="addToFavourite('mechModal','Mechanical Engineering')"><i
+                class="bi bi-star" data-name="Mechanical Engineering"></i></button>
+            <h6 class="fw-bold">Mechanical Engineering</h6>
+            <p class="text-muted">Machines, automobiles & robotics</p>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#mechModal">
+              View Full Details
+            </button>
+          </div>
+        </div>
+
+        <!-- Civil -->
+        <div class="col-md-6 col-lg-3">
+          <div class="degree-card">
+            <button class="btn btn-favorite n" onclick="addToFavourite('civilModal','Civil Engineering')"><i
+                class="bi bi-star" data-name="Civil Engineering"></i></button>
+            <h6 class="fw-bold">Civil Engineering</h6>
+            <p class="text-muted">Construction, infrastructure & design</p>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#civilModal">
+              View Full Details
+            </button>
+          </div>
+        </div>
+
+        <!-- Electrical -->
+        <div class="col-md-6 col-lg-3">
+          <div class="degree-card">
+            <button class="btn btn-favorite n" onclick="addToFavourite('eeModal','Electrical Engineering')"><i
+                class="bi bi-star" data-name="Electrical Engineering"></i></button>
+            <h6 class="fw-bold">Electrical Engineering</h6>
+            <p class="text-muted">Power systems, circuits & electronics</p>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#eeModal">
+              View Full Details
+            </button>
+          </div>
+        </div>
+
+        <!-- ECE -->
+        <div class="col-md-6 col-lg-3">
+          <div class="degree-card">
+            <button class="btn btn-favorite n" onclick="addToFavourite('eceModal','Electronics (ECE)')"><i
+                class="bi bi-star" data-name="Electronics (ECE)"></i></button>
+            <h6 class="fw-bold">Electronics (ECE)</h6>
+            <p class="text-muted">Communication systems & microchips</p>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#eceModal">
+              View Full Details
+            </button>
+          </div>
+        </div>
+
+        <!-- Chemical -->
+        <div class="col-md-6 col-lg-3">
+          <div class="degree-card">
+            <button class="btn btn-favorite n" onclick="addToFavourite('chemicalModal','Chemical Engineering')"><i
+                class="bi bi-star" data-name="Chemical Engineering"></i></button>
+            <h6 class="fw-bold">Chemical Engineering</h6>
+            <p class="text-muted">Chemical processes & manufacturing</p>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#chemicalModal">
+              View Full Details
+            </button>
+          </div>
+        </div>
+        <!-- Aerospace -->
+        <div class="col-md-6 col-lg-3">
+          <div class="degree-card">
+            <button class="btn btn-favorite n" onclick="addToFavourite('aeroModal','Aerospace Engineering')"><i
+                class="bi bi-star" data-name="Aerospace Engineering"></i></button>
+            <h6 class="fw-bold">Aerospace Engineering</h6>
+            <p class="text-muted">Aircraft, spacecraft & space technology</p>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#aeroModal">
+              View Full Details
+            </button>
+          </div>
+        </div>
+        <!-- Automobile -->
+        <div class="col-md-6 col-lg-3">
+          <div class="degree-card">
+            <button class="btn btn-favorite n" onclick="addToFavourite('autoModal','Automobile Engineering')"><i
+                class="bi bi-star" data-name="Automobile Engineering"></i></button>
+            <h6 class="fw-bold">Automobile Engineering</h6>
+            <p class="text-muted">Vehicle design, engines & manufacturing</p>
+            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#autoModal">
+              View Full Details
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- MODALS -->
+    <!-- Technology & Engineering Section -->
+    <!-- ================= Technology Modals (Empty) ================= -->
+    {% include 'streams/pcm.html' %}
+
+    <!-- PCB Start-->
+    <!-- ================= PCB HEADER ================= -->
+    <div class="py-3">
+      <div id="pcb-section">
+        <div class="stream-header bg-pcb">
+          <h1 class="fw-bold">PCB – Interest Based Career Paths</h1>
+          <p class="fs-5 mt-2 opacity-75">
+            Explore career options after 12th PCB based on your interest,
+            aptitude, and long-term goals — not just MBBS pressure.
+          </p>
+        </div>
+      </div>
+
+      <!-- ================= PCB MAIN CONTENT ================= -->
+      <div class="my-4">
+
+        <!-- Question -->
+        <div class="text-center mb-4">
+          <h2 class="fw-bold">What excites you the most?</h2>
+          <p class="text-muted fs-5">
+            Choose based on interest, not comparison or pressure
+          </p>
+        </div>
+
+        {% include 'streams/pcb.html' %}
+      </div>
+      <!-- ================= PCMB STREAM SECTION ================= -->
+      <section id="pcmb" class="py-3">
+        <section id="pcmb-section">
+          <!-- Header -->
+          <div class="stream-header bg-pcmb text-center mb-4">
+            <button class="btn btn-favorite s" onclick="addToFavourite('pcmb-section','PCMB Stream')"><i
+                class="bi bi-star" data-name="PCMB Stream"></i></button>
+            <h2 class="fw-bold">PCMB Stream After 12th</h2>
+            <p class="text-muted">
+              <span class="badge bg-light text-dark">Physics</span>
+              <span class="badge bg-light text-dark">Chemistry</span>
+              <span class="badge bg-light text-dark">Mathematics</span>
+              <span class="badge bg-light text-dark">Biology</span>
+            </p>
+            <p class="fst-italic mt-3 opacity-75">
+              “PCMB is for students who want options, not limitations.”
+            </p>
+          </div>
+
+          <!-- What is PCMB -->
+          <div class="mb-4">
+            <h4 class="fw-semibold">What is PCMB?</h4>
+            <p>
+              PCMB is a science stream that includes Physics, Chemistry, Mathematics, and Biology.
+              It is considered the most flexible science combination because it allows students
+              to choose careers in medical, engineering, research, and interdisciplinary fields.
+            </p>
+          </div>
+          {% include 'streams/pcmb.html' %}
+        </section>
+      </section>
+      <!-- ================= END PCMB SECTION ================= -->
+
+      <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+      <!-- ================= COMMERCE HEADER ================= -->
+      <div class="py-3">
+        <div id="commerce-section">
+          <div class="stream-header bg-commerce">
+            <h1 class="fw-bold">Commerce – Interest Based Career Paths</h1>
+            <p class="fs-5 mt-2 opacity-75">
+              Explore career options after 12th Commerce based on business interest,
+              financial thinking, and real-world skills.
+            </p>
+          </div>
+        </div>
+
+        <div class="my-4">
+          <div class="row g-4">
+            <!-- Core Commerce -->
+            <div class="col-md-4">
+              <div class="degree-card h-100 text-center">
+                <button class="btn btn-favorite n" onclick="addToFavourite('commerceCoreModal','Core Commerce')"><i
+                    class="bi bi-star" data-name="Core Commerce"></i></button>
+                <h5 class="fw-bold mt-2">Core Commerce</h5>
+                <p class="text-muted">B.Com, Economics & Finance</p>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#commerceCoreModal">View
+                  Details</button>
+              </div>
+            </div>
+            <!-- Management -->
+            <div class="col-md-4">
+              <div class="degree-card h-100 text-center">
+                <button class="btn btn-favorite n" onclick="addToFavourite('commerceManagementModal','Management')"><i
+                    class="bi bi-star" data-name="Management"></i></button>
+                <h5 class="fw-bold mt-2">Management</h5>
+                <p class="text-muted">BBA, BMS & Business Studies</p>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                  data-bs-target="#commerceManagementModal">View Details</button>
+              </div>
+            </div>
+            <!-- Professional -->
+            <div class="col-md-4">
+              <div class="degree-card h-100 text-center">
+                <button class="btn btn-favorite n"
+                  onclick="addToFavourite('commerceProfessionalModal','Professional Courses')"><i class="bi bi-star"
+                    data-name="Professional Courses"></i></button>
+                <h5 class="fw-bold mt-2">Professional Courses</h5>
+                <p class="text-muted">CA, CS, CMA & CFA</p>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                  data-bs-target="#commerceProfessionalModal">View Details</button>
+              </div>
+            </div>
+            <!-- Law -->
+            <div class="col-md-4">
+              <div class="degree-card h-100 text-center">
+                <button class="btn btn-favorite n" onclick="addToFavourite('commerceLawModal','Law & Legal Studies')"><i
+                    class="bi bi-star" data-name="Law & Legal Studies"></i></button>
+                <h5 class="fw-bold mt-2">Law & Legal Studies</h5>
+                <p class="text-muted">B.Com LLB, BBA LLB</p>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#commerceLawModal">View
+                  Details</button>
+              </div>
+            </div>
+            <!-- Banking -->
+            <div class="col-md-4">
+              <div class="degree-card h-100 text-center">
+                <h5 class="fw-bold mt-2">Banking & Insurance</h5>
+                <button class="btn btn-favorite n"
+                  onclick="addToFavourite('commerceBankingModal','Banking & Financial Markets')"><i class="bi bi-star"
+                    data-name="Banking & Financial Markets"></i></button>
+                <p class="text-muted">BBI, BAF & Financial Markets</p>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                  data-bs-target="#commerceBankingModal">View Details</button>
+              </div>
+            </div>
+            <!-- Modern -->
+            <div class="col-md-4">
+              <div class="degree-card h-100 text-center">
+                <button class="btn btn-favorite n" onclick="addToFavourite('commerceModernModal','Modern Commerce')"><i
+                    class="bi bi-star" data-name="Modern Commerce"></i></button>
+                <h5 class="fw-bold mt-2">Modern Commerce</h5>
+                <p class="text-muted">Digital Marketing, Fintech & Analytics</p>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#commerceModernModal">View
+                  Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% include 'streams/commerce.html' %}
+      </div>
+
+      <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+      <!-- Arts Stream -->
+
+      <div class="py-3">
+        <div id="arts-section">
+          <div class="stream-header bg-arts">
+            <h1 class="fw-bold">Arts Stream</h1>
+            <p class="fs-5 mt-2 opacity-75">
+              Explore creative, humanities, media, and social science degree options after Class 12
+            </p>
+          </div>
+        </div>
+
+        <div class="my-4">
+          <div class="row g-4 justify-content-center">
+            <!-- Core Arts -->
+            <div class="col-md-4">
+              <div class="degree-card h-100 text-center">
+                <button class="btn btn-favorite n" onclick="addToFavourite('coreArtsModal','Core Arts')"><i
+                    class="bi bi-star" data-name="Core Arts"></i></button>
+                <h5 class="fw-bold mt-2">Core Arts</h5>
+                <p class="text-muted">BA, BA (Hons) & Liberal Arts</p>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#coreArtsModal">View
+                  Details</button>
+              </div>
+            </div>
+            <!-- Humanities -->
+            <div class="col-md-4">
+              <div class="degree-card h-100 text-center">
+                <button class="btn btn-favorite n"
+                  onclick="addToFavourite('humanitiesModal','Humanities & Social Sciences')"><i class="bi bi-star"
+                    data-name="Humanities & Social Sciences"></i></button>
+                <h5 class="fw-bold mt-2">Humanities & Social Sciences</h5>
+                <p class="text-muted">History, Pol. Sci, Sociology & Psychology</p>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#humanitiesModal">View
+                  Details</button>
+              </div>
+            </div>
+            <!-- Fine Arts -->
+            <div class="col-md-4">
+              <div class="degree-card h-100 text-center">
+                <button class="btn btn-favorite n" onclick="addToFavourite('fineArtsModal','Fine & Performing Arts')"><i
+                    class="bi bi-star" data-name="Fine & Performing Arts"></i></button>
+                <h5 class="fw-bold mt-2">Fine & Performing Arts</h5>
+                <p class="text-muted">BFA, Music, Dance & Drama</p>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#fineArtsModal">View
+                  Details</button>
+              </div>
+            </div>
+            <!-- Media -->
+            <div class="col-md-4">
+              <div class="degree-card h-100 text-center">
+                <button class="btn btn-favorite n" onclick="addToFavourite('mediaModal','Media & Design')"><i
+                    class="bi bi-star" data-name="Media & Design"></i></button>
+                <h5 class="fw-bold mt-2">Media & Design</h5>
+                <p class="text-muted">Journalism, Mass Comm & Animation</p>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#mediaModal">View
+                  Details</button>
+              </div>
+            </div>
+            <!-- Language -->
+            <div class="col-md-4">
+              <div class="degree-card h-100 text-center">
+                <button class="btn btn-favorite n" onclick="addToFavourite('languageModal','Languages & Literature')"><i
+                    class="bi bi-star" data-name="Languages & Literature"></i></button>
+                <h5 class="fw-bold mt-2">Languages</h5>
+                <p class="text-muted">Foreign Languages & Literature</p>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#languageModal">View
+                  Details</button>
+              </div>
+            </div>
+            <!-- Law -->
+            <div class="col-md-4">
+              <div class="degree-card h-100 text-center">
+                <button class="btn btn-favorite n" onclick="addToFavourite('lawModal','Law & Public Service')"><i
+                    class="bi bi-star" data-name="Law & Public Service"></i></button>
+                <h5 class="fw-bold mt-2">Law & Public Service</h5>
+                <p class="text-muted">BA LLB, Education & Policy</p>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#lawModal">View
+                  Details</button>
+              </div>
+            </div>
+            <!-- Special -->
+            <div class="col-md-4">
+              <div class="degree-card h-100 text-center">
+                <button class="btn btn-favorite n" onclick="addToFavourite('specialModal','Specialized Arts')"><i
+                    class="bi bi-star" data-name="Specialized Arts"></i></button>
+                <h5 class="fw-bold mt-2">Specialized Arts</h5>
+                <p class="text-muted">Rural Dev, Archaeology & Tourism</p>
+                <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#specialModal">View
+                  Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% include 'streams/arts.html' %}
+      </div>
+
+      <!--Diploma Section -->
+      <div class="py-3">
+        <div id="diploma-section">
+          <div class="stream-header bg-diploma">
+            <button class="btn btn-favorite s" onclick="addToFavourite('diploma-section','Diploma Courses')"><i
+                class="bi bi-star" data-name="Diploma Courses"></i></button>
+            <h1 class="fw-bold">Diploma</h1>
+            <p class="fs-5 mt-2 opacity-75">
+              A practical education route designed for hands-on learning, early employment, and industry
+              readiness.
+            </p>
+          </div>
+          {% include 'streams/diploma.html' %}
+        </div>
+      </div>
+
+      <!-- Motivation Section -->
+      <div class="py-3">
+        <div class="p-5 rounded-4 text-center text-white" style="background: linear-gradient(45deg, #00c6ff, #0072ff);">
+          <h2 class="fw-bold">"Your Career is a Journey, Not a Race"</h2>
+          <p class="fs-5 mt-2 opacity-90">
+            Don't stress about the destination. Focus on learning, growing, and discovering what you love.
+            Every step you take brings you closer to your success.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <footer class="text-center">
+      <p class="mb-1">© 2026 CareerGuide | All Rights Reserved</p>
+      <small>
+        Helping students choose the right career after 10th, 12th & Graduation
+      </small>
+    </footer>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+      <button class="btn-close-search" id="close-search-btn"><i class="bi bi-x-lg"></i></button>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search courses, degrees, careers..." autocomplete="off" />
+        <ul id="suggestionBox" class="dropdown-menu w-100" style="position: absolute; top: 100%; left: 0;"></ul>
+      </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button type="button" class="btn btn-primary btn-lg" id="btn-back-to-top"
+      style="position: fixed; bottom: 20px; right: 20px; display: none; border-radius: 50%; width: 50px; height: 50px; z-index: 1000;">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script>
+      function showDesign() {
+        document.getElementById("scienceSection").style.display = "none";
+        document.getElementById("techSection").style.display = "none";
+        document.getElementById("designSection").style.display = "block";
+      }
+      function hideDesign() {
+        document.getElementById("designSection").style.display = "none";
+      }
+      function showScience() {
+        document.getElementById("designSection").style.display = "none";
+        document.getElementById("techSection").style.display = "none";
+        document.getElementById("scienceSection").style.display = "block";
+      }
+
+      function hideScience() {
+        document.getElementById("scienceSection").style.display = "none";
+      }
+      function showTech() {
+        document.getElementById("designSection").style.display = "none";
+        document.getElementById("scienceSection").style.display = "none";
+        document.getElementById("techSection").style.display = "block";
+      }
+      function hideTech() {
+        document.getElementById("techSection").style.display = "none";
+      }
+      function showMedical() {
+        document.getElementById("medicalSection").style.display = "block";
+        document.getElementById("paramedicalSection").style.display = "none";
+        document.getElementById("pharmacySection").style.display = "none";
+        document.getElementById("researchSection").style.display = "none";
+      }
+      function hideMedical() {
+        document.getElementById("medicalSection").style.display = "none";
+      }
+      function showParamedical() {
+        document.getElementById("medicalSection").style.display = "none";
+        document.getElementById("paramedicalSection").style.display = "block";
+        document.getElementById("pharmacySection").style.display = "none";
+        document.getElementById("researchSection").style.display = "none";
+      }
+      function hideParamedical() {
+        document.getElementById("paramedicalSection").style.display = "none";
+      }
+      function showPharmacy() {
+        document.getElementById("medicalSection").style.display = "none";
+        document.getElementById("paramedicalSection").style.display = "none";
+        document.getElementById("pharmacySection").style.display = "block";
+        document.getElementById("researchSection").style.display = "none";
+      }
+      function hidePharmacy() {
+        document.getElementById("pharmacySection").style.display = "none";
+      }
+      function showResearch() {
+        document.getElementById("medicalSection").style.display = "none";
+        document.getElementById("paramedicalSection").style.display = "none";
+        document.getElementById("pharmacySection").style.display = "none";
+        document.getElementById("researchSection").style.display = "block";
+      }
+      function hideResearch() {
+        document.getElementById("researchSection").style.display = "none";
+      }
+
+      // Back to top button logic
+      let mybutton = document.getElementById("btn-back-to-top");
+      window.addEventListener('scroll', function () {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          mybutton.style.display = "block";
+        } else {
+          mybutton.style.display = "none";
+        }
+      });
+      mybutton.addEventListener("click", function () {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      });
+
+      // Navbar Scroll Animation Logic
+      window.addEventListener('scroll', function () {
+        if (window.scrollY > 50) {
+          document.body.classList.add('scrolled');
+        } else {
+          document.body.classList.remove('scrolled');
+        }
+      });
+
+      // Search Overlay Logic
+      const searchIconBtn = document.getElementById('search-icon-btn');
+      const searchOverlay = document.getElementById('search-overlay');
+      const closeSearchBtn = document.getElementById('close-search-btn');
+      const searchInput = document.getElementById('searchInput');
+      const suggestionBox = document.getElementById('suggestionBox');
+
+      if (searchIconBtn) {
+        searchIconBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          searchOverlay.classList.add('active');
+          searchInput.focus();
+        });
+      }
+
+      if (closeSearchBtn) {
+        closeSearchBtn.addEventListener('click', function () {
+          searchOverlay.classList.remove('active');
+        });
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            let firstItem = suggestionBox.querySelector("li a");
+            if (firstItem) {
+              firstItem.click();
+            } else if (searchInput.value.trim()) {
+              window.location.href = `/search-redirect?q=${encodeURIComponent(searchInput.value.trim())}`;
+            }
+          }
+        });
+
+        searchInput.addEventListener("keyup", function () {
+          let value = searchInput.value;
+          if (value.length === 0) {
+            suggestionBox.innerHTML = "";
+            suggestionBox.style.display = "none";
+            return;
+          }
+          fetch(`/search-suggest?q=${encodeURIComponent(value)}`)
+            .then(res => res.json())
+            .then(data => {
+              if (searchInput.value !== value) return;
+              suggestionBox.innerHTML = "";
+              if (data.length === 0) {
+                suggestionBox.style.display = "none";
+                return;
+              }
+              suggestionBox.style.display = "block";
+              data.forEach(item => {
+                let li = document.createElement("li");
+                let page = item.page_name.replace(".html", "").toLowerCase();
+                li.innerHTML = `<a class="dropdown-item" href="/${page}?target=${item.div_id}&type=${item.target_type}"><b>${item.keyword}</b> <small>(${item.source})</small></a>`;
+                suggestionBox.appendChild(li);
+              });
+            });
+        });
+      }
+
+      // Favorite button toggle removed to allow addToFavourite to control state
+      // document.querySelectorAll('.btn-favorite').forEach...
+
+      // Auto-open modal if hash is present
+      window.addEventListener('load', function () {
+        if (window.location.hash) {
+          const targetId = window.location.hash.substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement && targetElement.classList.contains('modal')) {
+            const modal = new bootstrap.Modal(targetElement);
+            modal.show();
+          }
+        }
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        const p = new URLSearchParams(window.location.search);
+        const target = p.get("target");
+        const type = p.get("type");
+
+        if (target && type) {
+          const el = document.getElementById(target);
+          if (el) {
+            if (type === "modal" || type === "modal-box") {
+              new bootstrap.Modal(el).show();
+            } else {
+              el.scrollIntoView({ behavior: "smooth" });
+            }
+          }
+        }
+
+        // Fetch user favourites to mark them as active
+        fetch("/get_favourites")
+          .then(res => res.json())
+          .then(data => {
+            data.forEach(item => {
+              try {
+                const fav = JSON.parse(item.favourite_career);
+                // Check logic: if it's the current page
+                // Check logic: If the icon with this career name exists on this page, mark it active.
+                // We do NOT strictly check fav.source_page === "12th.html" to handle legacy data or cross-page shared items.
+                const icon = document.querySelector(`i[data-name="${fav.career}"]`);
+                if (icon) {
+                  const btn = icon.closest('.btn-favorite');
+                  if (btn) btn.classList.add('active');
+                }
+              } catch (e) { }
+            });
+          });
+      });
+
+      function addToFavourite(targetId, careerName) {
+        const icon = document.querySelector(`i[data-name="${careerName}"]`);
+        const btn = icon.closest('.btn-favorite');
+
+        if (btn.classList.contains('active')) {
+          // Remove logic
+          showConfirmModal(
+            "Remove from Favourites",
+            "Are you sure you want to remove '" + careerName + "' from your favourites?",
+            function () {
+              fetch("/remove_favourite", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ career: careerName })
+              })
+                .then(res => res.json())
+                .then(data => {
+                  // Auto close (no alert), just toggle
+                  btn.classList.remove('active');
+                });
+            },
+            "Confirm", "Cancel" // Custom buttons for remove
+          );
+        } else {
+          // Add logic with permission
+          showConfirmModal(
+            "Add to Favourites",
+            "Are you sure you want to add '" + careerName + "' to your favourites?",
+            function () {
+              const element = document.getElementById(targetId);
+              let favouriteData = {};
+
+              // Determine Icon Class based on targetId
+              let iconClass = "bi-mortarboard"; // Default
+              const tId = targetId.toLowerCase();
+
+              // PCM & Tech
+              if (tId.includes('cse') || tId.includes('tech')) iconClass = "bi-laptop";
+              else if (tId.includes('mech')) iconClass = "bi-gear-wide-connected";
+              else if (tId.includes('civil')) iconClass = "bi-building";
+              else if (tId.includes('ee') || tId.includes('electric')) iconClass = "bi-lightning-charge";
+              else if (tId.includes('ece')) iconClass = "bi-cpu";
+              else if (tId.includes('aero')) iconClass = "bi-airplane";
+              else if (tId.includes('auto')) iconClass = "bi-car-front";
+              else if (tId.includes('chem')) iconClass = "bi-radioactive";
+              else if (tId.includes('design') || tId.includes('bdes')) iconClass = "bi-palette";
+              else if (tId.includes('science') || tId.includes('research')) iconClass = "bi-eyedropper";
+              // PCB
+              else if (tId.includes('mbbs') || tId.includes('medical')) iconClass = "bi-hospital";
+              else if (tId.includes('pharm')) iconClass = "bi-capsule";
+              else if (tId.includes('nurs') || tId.includes('para')) iconClass = "bi-activity";
+              // Commerce
+              else if (tId.includes('commerce')) iconClass = "bi-graph-up-arrow";
+              else if (tId.includes('bank') || tId.includes('finance')) iconClass = "bi-bank";
+              else if (tId.includes('law')) iconClass = "bi-hammer";
+              // Arts
+              else if (tId.includes('arts') || tId.includes('humanities')) iconClass = "bi-easel";
+              else if (tId.includes('media')) iconClass = "bi-camera-reels";
+              else if (tId.includes('lang')) iconClass = "bi-translate";
+
+              if (element.classList.contains('modal')) {
+                favouriteData = {
+                  career: careerName,
+                  title: element.querySelector('.modal-title').innerText,
+                  description: element.querySelector('.modal-body').innerHTML,
+                  header_class: element.querySelector('.modal-header').className,
+                  source_page: "12th.html",
+                  icon_class: iconClass
+                };
+              } else {
+                // Assert it is a section
+                // Cleanup button from saved content
+                let content = element.cloneNode(true);
+                let btnInContent = content.querySelector('.btn-favorite');
+                if (btnInContent) btnInContent.remove();
+
+                // Ensure header class is good for modal display
+                let colorClass = "";
+                if (targetId.includes('pcm')) colorClass = "bg-pcm";
+                else if (targetId.includes('pcb')) colorClass = "bg-pcb";
+                else if (targetId.includes('pcmb')) colorClass = "bg-pcmb";
+                else if (targetId.includes('commerce')) colorClass = "bg-commerce";
+                else if (targetId.includes('arts')) colorClass = "bg-arts";
+                else if (targetId.includes('diploma')) colorClass = "bg-diploma";
+                else colorClass = "bg-primary"; // fallback
+
+                favouriteData = {
+                  career: careerName,
+                  title: element.querySelector('h1, h2, h3').innerText,
+                  description: content.innerHTML,
+                  header_class: `modal-header ${colorClass} text-white`,
+                  source_page: "12th.html",
+                  icon_class: iconClass
+                };
+              }
+
+              // Define Comparison Data (Matches Backend Source of Truth)
+              const CAREER_COMPARISON_DATA = {
+                // Science - Pure
+                "Physics": { "Eligibility": "12th PCM", "Duration": "3 Years", "Job Opportunities": "High", "Starting Salary": "₹3–6 LPA", "Growth Potential": "High", "Job Stability": "High" },
+                "Chemistry": { "Eligibility": "12th Science", "Duration": "3 Years", "Job Opportunities": "High", "Starting Salary": "₹3–5 LPA", "Growth Potential": "Medium", "Job Stability": "High" },
+                "Mathematics": { "Eligibility": "12th PCM", "Duration": "3 Years", "Job Opportunities": "High", "Starting Salary": "₹4–8 LPA", "Growth Potential": "Very High", "Job Stability": "High" },
+                "Statistics": { "Eligibility": "12th Maths/Stats", "Duration": "3 Years", "Job Opportunities": "Very High", "Starting Salary": "₹5–9 LPA", "Growth Potential": "Very High", "Job Stability": "High" },
+                "Data Science (Science Route)": { "Eligibility": "12th Maths/Stats", "Duration": "3–4 Years", "Job Opportunities": "Very High", "Starting Salary": "₹6–12 LPA", "Growth Potential": "Very High", "Job Stability": "High" },
+
+                // Engineering
+                "Computer Science (CSE)": { "Eligibility": "12th PCM", "Duration": "4 Years", "Job Opportunities": "Very High", "Starting Salary": "₹5–15 LPA", "Growth Potential": "Very High", "Job Stability": "High" },
+                "Mechanical Engineering": { "Eligibility": "12th PCM", "Duration": "4 Years", "Job Opportunities": "High", "Starting Salary": "₹3.5–7 LPA", "Growth Potential": "High", "Job Stability": "High" },
+                "Civil Engineering": { "Eligibility": "12th PCM", "Duration": "4 Years", "Job Opportunities": "High", "Starting Salary": "₹3.5–6 LPA", "Growth Potential": "High", "Job Stability": "High" },
+                "Electrical Engineering": { "Eligibility": "12th PCM", "Duration": "4 Years", "Job Opportunities": "High", "Starting Salary": "₹3.5–6 LPA", "Growth Potential": "High", "Job Stability": "High" },
+                "Electronics (ECE)": { "Eligibility": "12th PCM", "Duration": "4 Years", "Job Opportunities": "High", "Starting Salary": "₹3.5–7 LPA", "Growth Potential": "High", "Job Stability": "Medium" },
+                "Chemical Engineering": { "Eligibility": "12th PCM", "Duration": "4 Years", "Job Opportunities": "High", "Starting Salary": "₹4–8 LPA", "Growth Potential": "High", "Job Stability": "High" },
+                "Aerospace Engineering": { "Eligibility": "12th PCM", "Duration": "4 Years", "Job Opportunities": "Medium", "Starting Salary": "₹5–10 LPA", "Growth Potential": "High", "Job Stability": "High" },
+                "Automobile Engineering": { "Eligibility": "12th PCM", "Duration": "4 Years", "Job Opportunities": "High", "Starting Salary": "₹3.5–6 LPA", "Growth Potential": "Medium", "Job Stability": "Medium" },
+
+                // PCB
+                "MBBS": { "Eligibility": "12th PCB", "Duration": "5.5 Years", "Job Opportunities": "Very High", "Starting Salary": "₹6–12 LPA", "Growth Potential": "Very High", "Job Stability": "Very High" },
+                "BDS": { "Eligibility": "12th PCB", "Duration": "5 Years", "Job Opportunities": "High", "Starting Salary": "₹4–8 LPA", "Growth Potential": "High", "Job Stability": "High" },
+                "BAMS": { "Eligibility": "12th PCB", "Duration": "5.5 Years", "Job Opportunities": "High", "Starting Salary": "₹3–7 LPA", "Growth Potential": "High", "Job Stability": "High" },
+                "BHMS": { "Eligibility": "12th PCB", "Duration": "5.5 Years", "Job Opportunities": "Medium", "Starting Salary": "₹3–6 LPA", "Growth Potential": "Medium", "Job Stability": "Medium" },
+                "B.Pharm": { "Eligibility": "12th PCB/PCM", "Duration": "4 Years", "Job Opportunities": "High", "Starting Salary": "₹3–6 LPA", "Growth Potential": "High", "Job Stability": "High" },
+                "B.Sc Nursing": { "Eligibility": "12th PCB", "Duration": "4 Years", "Job Opportunities": "Very High", "Starting Salary": "₹2.5–5 LPA", "Growth Potential": "High", "Job Stability": "Very High" },
+                "BPT (Physiotherapy)": { "Eligibility": "12th PCB", "Duration": "4.5 Years", "Job Opportunities": "High", "Starting Salary": "₹3–6 LPA", "Growth Potential": "High", "Job Stability": "High" },
+                "BMLT (Medical Lab Tech)": { "Eligibility": "12th PCB", "Duration": "3 Years", "Job Opportunities": "High", "Starting Salary": "₹2.5–5 LPA", "Growth Potential": "Medium", "Job Stability": "High" },
+                "B.Sc Biotechnology": { "Eligibility": "12th PCB", "Duration": "3 Years", "Job Opportunities": "High", "Starting Salary": "₹3–6 LPA", "Growth Potential": "High", "Job Stability": "Medium" },
+                "B.Sc Microbiology": { "Eligibility": "12th PCB/CB", "Duration": "3 Years", "Job Opportunities": "Medium", "Starting Salary": "₹3–5 LPA", "Growth Potential": "High", "Job Stability": "Medium" },
+                "B.Sc Psychology": { "Eligibility": "12th Pass", "Duration": "3 Years", "Job Opportunities": "Medium", "Starting Salary": "₹3–5 LPA", "Growth Potential": "Medium", "Job Stability": "Medium" },
+                "B.Sc Agriculture": { "Eligibility": "12th Science", "Duration": "4 Years", "Job Opportunities": "High", "Starting Salary": "₹3–6 LPA", "Growth Potential": "High", "Job Stability": "High" },
+                "B.Sc Horticulture": { "Eligibility": "12th Science", "Duration": "4 Years", "Job Opportunities": "Medium", "Starting Salary": "₹3–5 LPA", "Growth Potential": "Medium", "Job Stability": "High" },
+                "B.Sc Life Sciences": { "Eligibility": "12th Science", "Duration": "3 Years", "Job Opportunities": "Medium", "Starting Salary": "₹3–4 LPA", "Growth Potential": "Medium", "Job Stability": "Medium" },
+
+                // PCMB
+                "PCMB Stream": { "Eligibility": "12th Science", "Duration": "2 Years", "Job Opportunities": "Very High", "Starting Salary": "Variable", "Growth Potential": "Very High", "Job Stability": "Variable" },
+
+                // Commerce
+                "Core Commerce": { "Eligibility": "12th Commerce", "Duration": "3 Years", "Job Opportunities": "High", "Starting Salary": "₹3–5 LPA", "Growth Potential": "High", "Job Stability": "Medium" },
+                "Management": { "Eligibility": "12th Any", "Duration": "3 Years", "Job Opportunities": "High", "Starting Salary": "₹3–6 LPA", "Growth Potential": "High", "Job Stability": "Medium" },
+                "Professional Courses": { "Eligibility": "12th Any", "Duration": "3–5 Years", "Job Opportunities": "Very High", "Starting Salary": "₹6–10 LPA", "Growth Potential": "Very High", "Job Stability": "Very High" },
+                "Law & Legal Studies": { "Eligibility": "12th Any", "Duration": "5 Years", "Job Opportunities": "High", "Starting Salary": "₹4–8 LPA", "Growth Potential": "Very High", "Job Stability": "High" },
+                "Banking & Financial Markets": { "Eligibility": "12th Commerce", "Duration": "3 Years", "Job Opportunities": "Very High", "Starting Salary": "₹3.5–7 LPA", "Growth Potential": "High", "Job Stability": "High" },
+                "Modern Commerce": { "Eligibility": "12th Commerce", "Duration": "3 Years", "Job Opportunities": "Very High", "Starting Salary": "Variable", "Growth Potential": "Very High", "Job Stability": "Medium" },
+
+                // Arts
+                "Core Arts": { "Eligibility": "12th Arts", "Duration": "3 Years", "Job Opportunities": "Medium", "Starting Salary": "₹2.5–5 LPA", "Growth Potential": "Medium", "Job Stability": "Medium" },
+                "Humanities & Social Sciences": { "Eligibility": "12th Arts", "Duration": "3 Years", "Job Opportunities": "High", "Starting Salary": "₹3–6 LPA", "Growth Potential": "High", "Job Stability": "High" },
+                "Fine & Performing Arts": { "Eligibility": "12th Any", "Duration": "3–4 Years", "Job Opportunities": "Medium", "Starting Salary": "Variable", "Growth Potential": "High", "Job Stability": "Low" },
+                "Media & Design": { "Eligibility": "12th Any", "Duration": "3–4 Years", "Job Opportunities": "High", "Starting Salary": "₹3–6 LPA", "Growth Potential": "High", "Job Stability": "Medium" },
+                "Languages & Literature": { "Eligibility": "12th Arts", "Duration": "3 Years", "Job Opportunities": "Medium", "Starting Salary": "₹3–5 LPA", "Growth Potential": "Medium", "Job Stability": "Medium" },
+                "Law & Public Service": { "Eligibility": "12th Any", "Duration": "5 Years / Graduation", "Job Opportunities": "Very High", "Starting Salary": "₹56,100/mo (Govt)", "Growth Potential": "Very High", "Job Stability": "Very High" },
+                "Specialized Arts": { "Eligibility": "12th Arts", "Duration": "3 Years", "Job Opportunities": "Medium", "Starting Salary": "Variable", "Growth Potential": "Medium", "Job Stability": "Medium" },
+
+                // Diploma
+                "Diploma Courses": { "Eligibility": "10th/12th Pass", "Duration": "1–3 Years", "Job Opportunities": "High", "Starting Salary": "₹1.5–3 LPA", "Growth Potential": "Medium", "Job Stability": "Medium" }
+              };
+
+              fetch("/add_favourite", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  ...favouriteData,
+                  ...CAREER_COMPARISON_DATA[careerName]
+                })
+              })
+                .then(res => res.json())
+                .then(data => {
+                  if (data.status === 'added') {
+                    // Auto close (no alert), just toggle
+                    btn.classList.add('active');
+                  } else {
+                    showAlertModal("Notice", data.message);
+                  }
+                });
+            },
+            "Yes", "No" // Custom buttons for add
+          );
+        }
+      }
+
+      // Custom Modal Helpers
+      let confirmCallbackFn = null;
+
+      function showConfirmModal(title, message, callback, confirmText = "Confirm", cancelText = "Cancel") {
+        document.getElementById('permModalTitle').innerText = title;
+        document.getElementById('permModalBody').innerText = message;
+        document.getElementById('permModalCancel').style.display = 'inline-block';
+        document.getElementById('permModalConfirm').innerText = confirmText;
+        document.getElementById('permModalCancel').innerText = cancelText;
+        confirmCallbackFn = callback;
+        new bootstrap.Modal(document.getElementById('permissionModal')).show();
+      }
+
+      function showAlertModal(title, message) {
+        document.getElementById('permModalTitle').innerText = title;
+        document.getElementById('permModalBody').innerText = message;
+        document.getElementById('permModalCancel').style.display = 'none';
+        document.getElementById('permModalConfirm').innerText = 'OK';
+        confirmCallbackFn = null;
+        new bootstrap.Modal(document.getElementById('permissionModal')).show();
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('permModalConfirm').addEventListener('click', function () {
+          if (confirmCallbackFn) {
+            confirmCallbackFn();
+          }
+          const modalEl = document.getElementById('permissionModal');
+          const modalInstance = bootstrap.Modal.getInstance(modalEl);
+          if (modalInstance) {
+            modalInstance.hide();
+          }
+        });
+      });
+    </script>
+
+    <!-- Permission/Feedback Modal -->
+    <div class="modal fade modal-premium" id="permissionModal" tabindex="-1" aria-labelledby="permModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0">
+          <div class="modal-header border-0 justify-content-center pb-0 position-relative"
+            style="background: transparent;">
+            <!-- Decorative Icon Layout -->
+            <div
+              class="icon-pulse-wrapper bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center"
+              style="width: 90px; height: 90px; margin-top: 30px;">
+              <i class="bi bi-question-lg text-primary" style="font-size: 3rem;"></i>
+            </div>
+          </div>
+          <div class="modal-body text-center pt-4 pb-4 px-4 bg-transparent">
+            <h3 class="fw-bold text-dark mb-2" id="permModalTitle" style="font-family: 'Outfit', sans-serif;">
+              Permission</h3>
+            <p id="permModalBody" class="text-muted fs-5 mb-0"
+              style="font-family: 'DM Sans', sans-serif; line-height: 1.6;">Message goes here...</p>
+          </div>
+          <div class="modal-footer border-0 justify-content-center bg-transparent pb-5 pt-0">
+            <button type="button" class="btn btn-light rounded-pill px-4 py-2 me-3 fw-bold tracking-wide"
+              data-bs-dismiss="modal" id="permModalCancel"
+              style="min-width: 140px; background-color: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; transition: all 0.3s;">Cancel</button>
+            <button type="button" class="btn btn-primary rounded-pill px-4 py-2 fw-bold tracking-wide shadow-lg"
+              id="permModalConfirm"
+              style="min-width: 140px; background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%); border: none; transition: transform 0.2s;">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

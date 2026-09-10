@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg-body: #f1f5f9;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --backdrop-blur: blur(20px);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --hover-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+            /* New Variables for Modal Styling */
+            --success-color: #10b981;
+            --secondary-color: #64748b;
+        }
+
+        /* Premium Modal Animations */
+        @keyframes modalPop {
+            0% {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes iconPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(99, 102, 241, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+            }
+        }
+
+        .modal-premium .modal-content {
+            border: 1px solid rgba(255, 255, 255, 0.7) !important;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25) !important;
+            border-radius: 32px !important;
+            animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .icon-pulse-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .icon-pulse-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary-color);
+            opacity: 0.15;
+            z-index: -1;
+            animation: iconPulse 2s infinite;
+        }
+
+        /* Modal & List Styling Copied from 10th.html */
+        .modal-body h6 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .modal-body p,
+        .modal-body li {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.15rem;
+            color: var(--text-muted);
+        }
+
+        ul.custom-list li,
+        .modal-body ul li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 14px;
+            font-size: 1.15rem;
+        }
+
+        /* Default bullet for lists inside modal if not custom-list, matching general look */
+        .modal-body ul li::before {
+            content: "\F26A";
+            /* Bootstrap Icon check-circle-fill */
+            font-family: "bootstrap-icons";
+            margin-right: 12px;
+            flex-shrink: 0;
+            line-height: 1.3;
+            color: var(--success-color);
+            /* Default to green, or override via JS if needed */
+            font-size: 1.4rem;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            padding-top: 140px;
+            background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 20%),
+                linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .navbar-brand {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Navbar */
+        .navbar.fixed-top {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: var(--backdrop-blur);
+            -webkit-backdrop-filter: var(--backdrop-blur);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            padding: 1.2rem 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.scrolled .navbar.fixed-top {
+            padding: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img,
+        .navbar-brand span {
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.scrolled .navbar-brand img {
+            width: 55px;
+            height: 55px;
+        }
+
+        body.scrolled .navbar-brand span {
+            font-size: 1.5rem !important;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--text-muted) !important;
+            padding: 0.7rem 1rem !important;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            margin-left: 25px;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color) !important;
+            background: transparent;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        .profile-icon {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .profile-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Dashboard Layout */
+        .dashboard-card {
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .dashboard-card:hover {
+            box-shadow: var(--hover-shadow);
+            transform: translateY(-5px);
+        }
+
+        .profile-avatar {
+            width: 130px;
+            height: 130px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.15);
+            border: 5px solid #fff;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-box {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .info-box:hover {
+            background: #fff;
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.1);
+        }
+
+        .label-text {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .value-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* Favorites Section */
+        .favorite-placeholder {
+            text-align: center;
+            padding: 3rem;
+            background: #f8fafc;
+            border-radius: 20px;
+            border: 2px dashed #cbd5e1;
+            color: var(--text-muted);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Search Overlay */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .search-box {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .search-box #searchInput {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: #f1f5f9;
+            box-shadow: none;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .search-box #searchInput:focus {
+            background: white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+
+        .search-overlay .btn-close-search {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+
+        .search-overlay .btn-close-search:hover {
+            opacity: 1;
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        #suggestionBox {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-top: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 220px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Custom Pills for Favorites */
+        .nav-pills .nav-link {
+            color: var(--text-muted);
+            background: transparent;
+            padding: 8px 20px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-pills .nav-link:hover {
+            color: var(--primary-color);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .nav-pills .nav-link.active {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            border-color: transparent;
+        }
+
+        /* Profile Card Hover Effect */
+        .profile-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .profile-card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+            border-color: rgba(99, 102, 241, 0.2) !important;
+        }
+
+        .single-line-truncate {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .multiline-truncate {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #suggestionBox li a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #212529;
+            transition: background 0.2s;
+        }
+
+        #suggestionBox li a:hover {
+            background-color: #f3f3f3;
+        }
+
+        /* --------------------------
+           PREMIUM SEARCH OVERLAY
+           -------------------------- */
+        /* --------------------------
+           SIMPLE SEARCH OVERLAY (Restored)
+           -------------------------- */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .search-box {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .search-box input,
+        .search-box #searchInput {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: #f1f5f9;
+            box-shadow: none;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+            text-align: left;
+            text-shadow: none;
+            color: var(--text-main);
+        }
+
+        .search-box input:focus,
+        .search-box #searchInput:focus {
+            background: white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+            border-bottom-color: transparent;
+        }
+
+        .search-box input::placeholder {
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        .search-overlay .btn-close-search {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.5;
+            transition: all 0.3s;
+            width: auto;
+            height: auto;
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        .search-overlay .btn-close-search:hover {
+            opacity: 1;
+            transform: translateY(-50%) rotate(90deg);
+            background: transparent;
+            color: var(--text-main);
+            box-shadow: none;
+        }
+
+        #suggestionBox {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-top: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 220px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        #suggestionBox li a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #212529;
+            transition: background 0.2s;
+        }
+
+        #suggestionBox li a:hover {
+            background-color: #f3f3f3;
+        }
+
+        /* Remove animations */
+        .search-icon-anim {
+            display: none;
+        }
+
+        #suggestionBox li {
+            list-style: none;
+        }
+
+        #suggestionBox .dropdown-item {
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #suggestionBox .dropdown-item:hover {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        #suggestionBox .dropdown-item b {
+            font-weight: 600;
+        }
+
+        #suggestionBox .dropdown-item small {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Search Icon Animation inside overlay */
+        .search-icon-anim {
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991px) {
+            body {
+                padding-top: 100px;
+            }
+
+            .navbar-brand span {
+                font-size: 1.4rem !important;
+            }
+
+            .navbar-brand img {
+                width: 45px;
+                height: 45px;
+            }
+
+            .navbar-collapse {
+                background: rgba(255, 255, 255, 0.98);
+                padding: 20px;
+                border-radius: 20px;
+                margin-top: 15px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-card {
+                padding: 1.5rem !important;
+            }
+
+            .profile-avatar {
+                width: 100px !important;
+                height: 100px !important;
+                font-size: 2.5rem !important;
+            }
+
+            h2.display-6 {
+                font-size: 1.8rem;
+            }
+
+            /* Search Overlay Mobile */
+            .search-box {
+                width: 95%;
+            }
+
+            .search-box #searchInput {
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+
+            .search-overlay .btn-close-search {
+                right: 20px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center" href="/home">
+                <img src="../static/Logo.png" alt="Logo" width="80" height="80" class="me-2">
+                <span class="fw-bold fs-2">CareerGuidance</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/path">Path</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/comparison">Comparison</a></li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="#" id="search-icon-btn"><i class="bi bi-search"></i></a>
+                    </li>
+                </ul>
+                <a href="/profile" class="me-3 profile-icon"><i class="bi bi-person-circle"></i></a>
+                {% if session.get('is_logged_in') == 1 %}
+                <a href="/logout" class="btn btn-danger">Logout</a>
+                {% else %}
+                <a href="/login" class="btn btn-primary">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+
+        <!-- Top Section: Hero Profile Card -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="dashboard-card p-4 p-lg-5 position-relative overflow-hidden">
+                    <!-- Decorative Background Blob -->
+                    <div
+                        style="position: absolute; top: -50px; right: -50px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; pointer-events: none;">
+                    </div>
+
+                    <div class="row align-items-center g-4">
+                        <!-- Avatar -->
+                        <div class="col-md-auto text-center text-md-start">
+                            <div class="profile-avatar mb-0 mx-auto mx-md-0"
+                                style="width: 120px; height: 120px; font-size: 3.5rem; border-width: 4px;">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+                        </div>
+
+                        <!-- User Info -->
+                        <div class="col-md text-center text-md-start">
+                            <h2 class="fw-bold mb-1 display-6" style="font-family: 'Outfit', sans-serif;">{{ detail.name
+                                }}</h2>
+                            <p class="text-muted mb-3 fs-5">{{ detail.email }}</p>
+
+                            <!-- Personal Details Badges -->
+                            <div class="d-flex flex-wrap justify-content-center justify-content-md-start gap-3 mt-2">
+                                <div class="px-3 py-2 rounded-4 bg-light border d-flex align-items-center">
+                                    <i class="bi bi-phone text-primary me-2"></i>
+                                    <span class="fw-semibold text-dark">{{ detail.mobile }}</span>
+                                </div>
+                                <div class="px-3 py-2 rounded-4 bg-light border d-flex align-items-center">
+                                    <i class="bi bi-mortarboard text-primary me-2"></i>
+                                    <span class="fw-semibold text-dark">{{ detail.education }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="col-md-auto text-center text-md-end mt-4 mt-md-0">
+                            <div class="d-flex flex-column flex-sm-row gap-2 justify-content-center">
+                                <!-- <button class="btn btn-outline-primary rounded-pill px-4 py-2 fw-semibold">
+                                    <i class="bi bi-pencil-square me-2"></i>Edit
+                                </button> -->
+                                <a href="/logout" class="btn btn-danger rounded-pill px-4 py-2 fw-semibold">
+                                    <i class="bi bi-box-arrow-right me-2"></i>Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Section: Favorites -->
+        <div class="row">
+            <div class="col-12">
+                <div class="dashboard-card p-4 p-lg-5">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                            <i class="bi bi-heart-fill text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h4 class="fw-bold mb-0">Favorite Careers</h4>
+                            <p class="text-muted small mb-0">Manage your saved career paths</p>
+                        </div>
+                    </div>
+
+                    <hr class="border-light opacity-50 mb-4">
+
+                    <!-- Favorites Container -->
+                    <div id="favouriteContainer" class="row g-4">
+                        <!-- Items injected here -->
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="text-center py-5" id="emptyState" style="display: none;">
+                        <img src="https://cdni.iconscout.com/illustration/premium/thumb/empty-state-2130362-1800926.png"
+                            alt="Empty" style="width: 200px; opacity: 0.6;">
+                        <h5 class="fw-bold mt-3 text-muted">No favorites yet</h5>
+                        <p class="text-muted mb-4">Start exploring to save your dream careers!</p>
+                        <a href="/home" class="btn btn-primary rounded-pill px-5 shadow-sm">Explore Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <button class="btn-close-search" id="close-search-btn"><i class="bi bi-x-lg"></i></button>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search courses, degrees, careers..." autocomplete="off" />
+            <ul id="suggestionBox" class="dropdown-menu w-100" style="position: absolute; top: 100%; left: 0;"></ul>
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal fade" id="detailModal" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header border-0 py-3 px-4 align-items-center">
+                    <h4 class="modal-title fw-bold" id="detailModalTitle">Modal Title</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <!-- Custom Progress Line -->
+                <div class="progress" style="height: 3px;">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"></div>
+                </div>
+                <div class="modal-body p-4 p-lg-5" id="detailModalBody">
+                    <!-- Content will be injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.fetchedFavorites = []; // Global store
+        window.currentFilter = 'all';
+
+        // Navbar Scroll
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) document.body.classList.add('scrolled');
+            else document.body.classList.remove('scrolled');
+        });
+
+        // Search Logic
+        const searchIconBtn = document.getElementById('search-icon-btn');
+        const searchOverlay = document.getElementById('search-overlay');
+        const closeSearchBtn = document.getElementById('close-search-btn');
+        const searchInput = document.getElementById('searchInput');
+        const suggestionBox = document.getElementById('suggestionBox');
+
+        if (searchIconBtn) {
+            searchIconBtn.addEventListener('click', (e) => { e.preventDefault(); searchOverlay.classList.add('active'); searchInput.focus(); });
+        }
+        if (closeSearchBtn) {
+            closeSearchBtn.addEventListener('click', () => searchOverlay.classList.remove('active'));
+        }
+        if (searchInput) {
+            searchInput.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    let firstItem = suggestionBox.querySelector("li a");
+                    if (firstItem) firstItem.click();
+                    else if (searchInput.value.trim()) window.location.href = `/search-redirect?q=${encodeURIComponent(searchInput.value.trim())}`;
+                }
+            });
+            searchInput.addEventListener("keyup", () => {
+                let value = searchInput.value;
+                if (value.length === 0) { suggestionBox.innerHTML = ""; suggestionBox.style.display = "none"; return; }
+                fetch(`/search-suggest?q=${encodeURIComponent(value)}`).then(res => res.json()).then(data => {
+                    if (searchInput.value !== value) return;
+                    suggestionBox.innerHTML = "";
+                    if (data.length === 0) { suggestionBox.style.display = "none"; return; }
+                    suggestionBox.style.display = "block";
+                    data.forEach(item => {
+                        let li = document.createElement("li");
+                        let page = item.page_name.replace(".html", "");
+                        li.innerHTML = `<a class="dropdown-item" href="/${page}?target=${item.div_id}&type=${item.target_type}"><b>${item.keyword}</b> <small>(${item.source})</small></a>`;
+                        suggestionBox.appendChild(li);
+                    });
+                });
+            });
+        }
+
+        // Fetch Data
+        fetch("/get_favourites", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(res => {
+                if (!res.ok) throw new Error("Network response was not ok");
+                return res.json();
+            })
+            .then(data => {
+                window.fetchedFavorites = data;
+                renderFavorites();
+            })
+            .catch(err => console.error("Error fetching favorites:", err));
+
+        function renderFavorites() {
+            const container = document.getElementById("favouriteContainer");
+            container.innerHTML = "";
+            let isEmpty = true;
+
+            window.fetchedFavorites.forEach(item => {
+                let fav;
+                try {
+                    fav = (typeof item.favourite_career === 'string') ? JSON.parse(item.favourite_career) : item.favourite_career;
+                } catch (e) { return; }
+                isEmpty = false;
+
+                const col = document.createElement("div");
+                // Responsive Grid: 1 col mobile, 2 tablet, 3 desktop, 4 large desktop
+                col.className = "col-md-6 col-lg-4 col-xl-3";
+
+                // Dynamic Badge Color
+                let badgeClass = "bg-secondary";
+                const source = (fav.source_page || "").toLowerCase();
+                if (source.includes("12th") || source.includes("10th")) badgeClass = "bg-info";
+                if (source.includes("graduation") || source.includes("grad")) badgeClass = "bg-success";
+                if (source.includes("unique")) badgeClass = "bg-warning text-dark";
+
+                // Icon HTML (Dynamic or Fallback)
+                let iconHtml = '';
+                if (fav.icon_class) {
+                    iconHtml = `<div class="mb-3 d-inline-flex align-items-center justify-content-center p-3 rounded-circle bg-light text-primary" style="width: 60px; height: 60px;">
+                                    <i class="${fav.icon_class}" style="font-size: 1.5rem;"></i>
+                                 </div>`;
+                } else {
+                    // Fallback visual if no icon class (legacy data)
+                    iconHtml = `<div class="mb-3 d-inline-flex align-items-center justify-content-center p-3 rounded-circle bg-light text-muted" style="width: 60px; height: 60px;">
+                                    <i class="bi bi-bookmark-star" style="font-size: 1.5rem;"></i>
+                                </div>`;
+                }
+
+                // Color tweaks for icon background based on source
+                if (source.includes("unique")) iconHtml = iconHtml.replace("bg-light", "bg-warning bg-opacity-10").replace("text-primary", "text-warning");
+                if (source.includes("graduation")) iconHtml = iconHtml.replace("bg-light", "bg-success bg-opacity-10").replace("text-primary", "text-success");
+
+                col.innerHTML = `
+                    <div class="card h-100 border-0 shadow-sm profile-card-hover" style="background: #fff; border-radius: 20px; transition: transform 0.3s;">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <span class="badge ${badgeClass} bg-opacity-10 text-dark border border-opacity-10 rounded-pill px-3 py-2" style="font-size: 0.75rem; letter-spacing: 0.5px;">${fav.source_page ? fav.source_page.replace('.html', '') : 'Saved'}</span>
+                                <button class="btn btn-light rounded-circle text-warning p-2 d-flex align-items-center justify-content-center shadow-sm" style="width: 35px; height: 35px;" onclick="removeFromProfile(event, '${fav.career}')" title="Remove">
+                                    <i class="bi bi-star-fill" style="font-size: 0.9rem;"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="mt-2 text-center text-md-start">
+                                ${iconHtml}
+                            </div>
+
+                            <h5 class="fw-bold text-dark mb-2 multiline-truncate" style="min-height: 3rem; line-height: 1.4;">${fav.career}</h5>
+                            <p class="text-muted small mb-4 single-line-truncate opacity-75">${fav.title}</p>
+                            
+                            <div class="mt-auto">
+                                <button class="btn btn-outline-primary w-100 rounded-pill fw-semibold py-2" onclick="showDetailModalByCareer('${fav.career.replace(/'/g, "\\'")}')">
+                                    View Details <i class="bi bi-arrow-right-short ms-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>`;
+                container.appendChild(col);
+            });
+
+            document.getElementById("emptyState").style.display = isEmpty ? "block" : "none";
+        }
+
+        function showDetailModalByCareer(careerName) {
+            const item = window.fetchedFavorites.find(i => {
+                try {
+                    let f = (typeof i.favourite_career === 'string') ? JSON.parse(i.favourite_career) : i.favourite_career;
+                    return f.career === careerName;
+                } catch (e) { return false; }
+            });
+            if (!item) return;
+            let fav = (typeof item.favourite_career === 'string') ? JSON.parse(item.favourite_career) : item.favourite_career;
+
+            document.getElementById('detailModalTitle').innerText = fav.title || fav.career;
+            document.getElementById('detailModalBody').innerHTML = fav.description;
+
+            const header = document.querySelector('#detailModal .modal-header');
+            if (fav.header_class) {
+                // Keep the structural classes but add the colored background
+                header.className = `modal-header border-0 py-3 px-4 align-items-center ${fav.header_class}`;
+                // Fix for text color in close button
+                const closeBtn = header.querySelector('.btn-close');
+                if (fav.header_class.includes('text-white') || fav.header_class.includes('bg-primary') || fav.header_class.includes('bg-dark')) {
+                    closeBtn.classList.add('btn-close-white');
+                    document.getElementById('detailModalTitle').classList.add('text-white');
+                } else {
+                    closeBtn.classList.remove('btn-close-white');
+                    document.getElementById('detailModalTitle').classList.remove('text-white');
+                }
+            } else {
+                header.className = "modal-header border-0 py-3 px-4 align-items-center bg-light";
+                document.getElementById('detailModalTitle').classList.remove('text-white');
+            }
+
+            const modal = new bootstrap.Modal(document.getElementById('detailModal'));
+            modal.show();
+        }
+
+        function removeFromProfile(event, careerName) {
+            event.stopPropagation();
+            showConfirmModal(
+                "Remove from Favourites",
+                "Are you sure you want to remove '" + careerName + "' from your favourites?",
+                function () {
+                    fetch("/remove_favourite", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ career: careerName })
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            window.fetchedFavorites = window.fetchedFavorites.filter(i => {
+                                try {
+                                    let f = (typeof i.favourite_career === 'string') ? JSON.parse(i.favourite_career) : i.favourite_career;
+                                    return f.career !== careerName;
+                                } catch (e) { return false; }
+                            });
+                            renderFavorites();
+                        });
+                },
+                "Confirm", "Cancel"
+            );
+        }
+
+        // Custom Modal Helpers
+        let confirmCallbackFn = null;
+
+        function showConfirmModal(title, message, callback, confirmText = "Confirm", cancelText = "Cancel") {
+            document.getElementById('permModalTitle').innerText = title;
+            document.getElementById('permModalBody').innerText = message;
+            document.getElementById('permModalCancel').style.display = 'inline-block';
+            document.getElementById('permModalConfirm').innerText = confirmText;
+            document.getElementById('permModalCancel').innerText = cancelText;
+            confirmCallbackFn = callback;
+            new bootstrap.Modal(document.getElementById('permissionModal')).show();
+        }
+
+        function showAlertModal(title, message) {
+            document.getElementById('permModalTitle').innerText = title;
+            document.getElementById('permModalBody').innerText = message;
+            document.getElementById('permModalCancel').style.display = 'none';
+            document.getElementById('permModalConfirm').innerText = 'OK';
+            confirmCallbackFn = null;
+            new bootstrap.Modal(document.getElementById('permissionModal')).show();
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('permModalConfirm').addEventListener('click', function () {
+                if (confirmCallbackFn) {
+                    confirmCallbackFn();
+                }
+                const modalEl = document.getElementById('permissionModal');
+                const modalInstance = bootstrap.Modal.getInstance(modalEl);
+                if (modalInstance) {
+                    modalInstance.hide();
+                }
+            });
+        });
+    </script>
+
+    <!-- Permission/Feedback Modal -->
+    <div class="modal fade modal-premium" id="permissionModal" tabindex="-1" aria-labelledby="permModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0">
+                <div class="modal-header border-0 justify-content-center pb-0 position-relative"
+                    style="background: transparent;">
+                    <!-- Decorative Icon Layout -->
+                    <div class="icon-pulse-wrapper bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center"
+                        style="width: 90px; height: 90px; margin-top: 30px;">
+                        <i class="bi bi-question-lg text-primary" style="font-size: 3rem;"></i>
+                    </div>
+                </div>
+                <div class="modal-body text-center pt-4 pb-4 px-4 bg-transparent">
+                    <h3 class="fw-bold text-dark mb-2" id="permModalTitle" style="font-family: 'Outfit', sans-serif;">
+                        Permission</h3>
+                    <p id="permModalBody" class="text-muted fs-5 mb-0"
+                        style="font-family: 'DM Sans', sans-serif; line-height: 1.6;">Message goes here...</p>
+                </div>
+                <div class="modal-footer border-0 justify-content-center bg-transparent pb-5 pt-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4 py-2 me-3 fw-bold tracking-wide"
+                        data-bs-dismiss="modal" id="permModalCancel"
+                        style="min-width: 140px; background-color: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; transition: all 0.3s;">Cancel</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-4 py-2 fw-bold tracking-wide shadow-lg"
+                        id="permModalConfirm"
+                        style="min-width: 140px; background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); border: none; transition: transform 0.2s;">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

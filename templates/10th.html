@@ -1,0 +1,2706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>After 10th</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font: DM Sans & Outfit -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #e0e7ff;
+            --secondary-color: #64748b;
+            --accent-color: #818cf8;
+            --success-color: #10b981;
+            --success-dark: #059669;
+            --bg-body: #f1f5f9;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --backdrop-blur: blur(20px);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --gradient-hero: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+
+        /* Premium Modal Animations */
+        @keyframes modalPop {
+            0% {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes iconPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 20px rgba(99, 102, 241, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+            }
+        }
+
+        .modal-premium .modal-content {
+            border: 1px solid rgba(255, 255, 255, 0.7) !important;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25) !important;
+            border-radius: 32px !important;
+            animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .icon-pulse-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .icon-pulse-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--primary-color);
+            opacity: 0.15;
+            z-index: -1;
+            animation: iconPulse 2s infinite;
+        }
+
+        html {
+            scroll-padding-top: 180px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding-top: 140px;
+            background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.05), transparent 40%),
+                radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.05), transparent 40%);
+            background-color: var(--bg-body);
+            background-attachment: fixed;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .navbar-brand {
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.01em;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 3.8rem;
+        }
+
+        h4 {
+            font-size: 1.85rem;
+        }
+
+        .navbar.fixed-top {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: var(--backdrop-blur);
+            -webkit-backdrop-filter: var(--backdrop-blur);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            padding: 1.2rem 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Scrolled Navbar State */
+        body.scrolled .navbar.fixed-top {
+            padding: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img,
+        .navbar-brand span {
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.scrolled .navbar-brand img {
+            width: 55px;
+            height: 55px;
+        }
+
+        body.scrolled .navbar-brand span {
+            font-size: 1.5rem !important;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--text-muted) !important;
+            padding: 0.7rem 1rem !important;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            margin-left: 25px;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color) !important;
+            background: transparent;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        .navbar .btn-primary {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.8rem 2.4rem;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .navbar .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .profile-icon {
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .profile-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* Search Overlay */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .search-box {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .search-box #searchInput {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: #f1f5f9;
+            box-shadow: none;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .search-box #searchInput:focus {
+            background: white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+
+        .search-overlay .btn-close-search {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+
+        .search-overlay .btn-close-search:hover {
+            opacity: 1;
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        .hero-section {
+            background: var(--gradient-hero);
+            color: white;
+            padding: 100px 0 100px;
+            margin-bottom: -50px;
+            border-radius: 0 0 50px 50px;
+            box-shadow: 0 25px 50px -12px rgba(79, 70, 229, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            font-size: 4.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.45rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        #streamSpyNav {
+            top: 120px;
+            z-index: 1010;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            padding: 18px 0;
+            border-radius: 0 0 50px 50px;
+            margin-bottom: 3rem;
+            transition: top 0.3s ease-in-out;
+        }
+
+        body.scrolled #streamSpyNav {
+            top: 72px;
+        }
+
+        #streamSpyNav .nav-link {
+            color: var(--text-muted);
+            padding: 10px 22px !important;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        #streamSpyNav .nav-link:hover {
+            background: rgba(99, 102, 241, 0.05);
+            color: var(--primary-color) !important;
+        }
+
+        #streamSpyNav .nav-link.active {
+            background: var(--gradient-primary);
+            color: white !important;
+            box-shadow: 0 8px 20px -4px rgba(99, 102, 241, 0.4);
+        }
+
+        #streamSpyNav .nav-link::after {
+            content: none;
+        }
+
+        .stream-header-card {
+            border-radius: 32px;
+            padding: 3rem 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card,
+        .p-4.border.rounded-4 {
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.8) !important;
+            border-radius: 28px !important;
+            box-shadow: var(--card-shadow);
+            padding: 2rem 1.5rem !important;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--text-main);
+        }
+
+        .info-card:hover,
+        .p-4.border.rounded-4:hover {
+            transform: translateY(-8px) !important;
+            box-shadow: var(--hover-shadow) !important;
+            border-color: rgba(99, 102, 241, 0.3) !important;
+        }
+
+        .info-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #e2e8f0;
+            transition: 0.4s;
+        }
+
+        .info-card:hover::after {
+            background: var(--primary-color);
+        }
+
+        section {
+            padding: 20px 0;
+        }
+
+        section h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        p,
+        li {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+        }
+
+        ul.custom-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 14px;
+            font-size: 1.15rem;
+        }
+
+        ul.custom-list li::before {
+            content: "\F26A";
+            font-family: "bootstrap-icons";
+            margin-right: 12px;
+            flex-shrink: 0;
+            line-height: 1.3;
+            color: var(--success-color);
+            font-size: 1.4rem;
+        }
+
+        .badge {
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 0.8em 1.2em !important;
+            border-radius: 12px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+        }
+
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .navbar-brand span {
+            font-size: 1.4rem !important;
+        }
+
+
+        .modal-content {
+            border: none;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 2rem 2.5rem;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-title {
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .modal-body h6 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .modal-body p,
+        .modal-body li {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .reality-check {
+            border: none;
+            border-radius: 24px;
+            padding: 2rem;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .alert-warning.reality-check {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fde68a;
+            color: #78350f;
+        }
+
+        .alert-success.reality-check {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #bbf7d0;
+            color: #064e3b;
+        }
+
+        .alert-danger.reality-check {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border: 1px solid #fecaca;
+            color: #7f1d1d;
+        }
+
+        .btn-outline-primary,
+        .btn-outline-success,
+        .btn-outline-warning {
+            border-width: 2px;
+            font-weight: 600;
+            border-radius: 50px;
+            padding: 0.5rem 1.8rem;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-outline-primary:hover {
+            box-shadow: 0 10px 25px -5px rgba(13, 110, 253, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Fix for text visibility in dark headers */
+        .hero-section h1,
+        .hero-section p {
+            color: white !important;
+        }
+
+        .text-white h1,
+        .text-white h2,
+        .text-white h3,
+        .text-white h4,
+        .text-white h5,
+        .text-white h6,
+        .text-white p,
+        .text-white li {
+            color: white !important;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 50px 0 20px;
+            margin-top: 80px;
+            width: 100%;
+        }
+
+        footer h5 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        .btn-favorite {
+            background: transparent;
+            color: white;
+            border-radius: 50%;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            vertical-align: middle;
+            width: 36px;
+            height: 36px;
+            font-size: 1rem;
+        }
+
+        .btn-favorite:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.1);
+            color: white;
+        }
+
+        .btn-favorite.active {
+            background: #ffc107;
+            color: white;
+            border-color: #ffc107 !important;
+        }
+
+        .btn-favorite.active i.bi-star::before {
+            content: "\f586";
+            /* bi-star-fill */
+        }
+
+        /* Favourite Button */
+        .n {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: white;
+            color: var(--secondary-color);
+            background-color: #fff;
+            color: var(--text-muted);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .n:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            background-color: #fff;
+            color: #ffc107;
+            transform: scale(1.1);
+        }
+
+        /* Modal Standardization */
+        @media (min-width: 992px) {
+
+            .modal-lg,
+            .modal-xl {
+                max-width: 70%;
+            }
+        }
+
+        /* --------------------------
+           SIMPLE SEARCH OVERLAY (Restored)
+           -------------------------- */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .search-box {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .search-box input,
+        .search-box #searchInput {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: #f1f5f9;
+            box-shadow: none;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+            text-align: left;
+            text-shadow: none;
+            color: var(--text-main);
+        }
+
+        .search-box input:focus,
+        .search-box #searchInput:focus {
+            background: white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+            border-bottom-color: transparent;
+        }
+
+        .search-box input::placeholder {
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        .search-overlay .btn-close-search {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.5;
+            transition: all 0.3s;
+            width: auto;
+            height: auto;
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        .search-overlay .btn-close-search:hover {
+            opacity: 1;
+            transform: translateY(-50%) rotate(90deg);
+            background: transparent;
+            color: var(--text-main);
+            box-shadow: none;
+        }
+
+        #suggestionBox {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-top: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 220px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        #suggestionBox li a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #212529;
+            transition: background 0.2s;
+        }
+
+        #suggestionBox li a:hover {
+            background-color: #f3f3f3;
+        }
+
+        /* Remove animations */
+        .search-icon-anim {
+            display: none;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991px) {
+            body {
+                padding-top: 100px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            #streamSpyNav {
+                top: 70px;
+                padding: 10px 0;
+            }
+
+            #streamSpyNav .nav-pills {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 5px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            #streamSpyNav .nav-link {
+                white-space: nowrap;
+                font-size: 0.9rem;
+                padding: 8px 16px !important;
+            }
+
+            .stream-header-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .navbar-brand span {
+                font-size: 1.4rem !important;
+            }
+
+            .navbar-brand img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#streamSpyNav" data-bs-root-margin="-130px 0px -25%" tabindex="0">
+    <!-- ===== Navbar ===== -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid px-4">
+
+            <!-- Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="/home">
+                <img src="../static/Logo.png" alt="Logo" width="80" height="80" class="me-2">
+                <span class="fw-bold fs-2">CareerGuidance</span>
+            </a>
+
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/comparison">Comparison</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/path">Path</a>
+                    </li>
+
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="#" id="search-icon-btn"><i class="bi bi-search"></i></a>
+                    </li>
+                </ul>
+
+                <a href="/profile" class="me-3 profile-icon">
+                    <i class="bi bi-person-circle"></i>
+                </a>
+                <!-- Button -->
+                {% if session.get('is_logged_in') == 1 %}
+                <a href="/logout" class="btn btn-danger">Logout</a>
+                {% else %}
+                <a href="/login" class="btn btn-primary">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== Hero Section ===== -->
+    <div class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 hero-title">Explore Your Path After 10th</h1>
+            <p class="hero-subtitle mb-0">
+                Discover the right stream, understand career options, and shape your future with clarity.
+            </p>
+        </div>
+    </div>
+
+    <!-- ===== Stream ScrollSpy Navigation ===== -->
+    <nav id="streamSpyNav" class="navbar sticky-top py-3 mb-4 shadow-sm">
+        <div class="container justify-content-center">
+            <ul class="nav nav-pills gap-2">
+                <li class="nav-item">
+                    <a class="nav-link" href="#science-section">Science</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#commerce-section">Commerce</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#arts-section">Arts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#diploma-section">Diploma</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#iti-section">ITI</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#vocational-section">Vocational</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#apprenticeship-section">Apprenticeship</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="science-section">
+
+        <!-- Science Stream Header -->
+        <div class="container px-4 mb-5">
+
+            <div class="stream-header-card text-white" style="background: linear-gradient(135deg, #1e3c72, #2a5298);">
+
+                <h1 class="fw-bold mb-2">Science Stream</h1>
+
+                <p class="fs-5 mb-3">
+                    A complete guide for students choosing <strong>Science after 10th</strong>
+                </p>
+
+                <p class="mb-0">
+                    The Science stream is for students who are interested in
+                    <strong>Engineering, Medical, Technology, Research, and Innovation</strong>.
+                    Below you can explore all Science combinations like
+                    <strong>PCM, PCB, and PCMB</strong> in detail.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="container px-4 mb-5">
+            <div class="row g-4">
+
+                <!-- PCM -->
+                <div class="col-md-4">
+                    <div
+                        class="p-4 border rounded-4 h-100 text-center hover-shadow bg-white d-flex flex-column align-items-center">
+                        <button class="btn btn-favorite n" onclick="addToFavourite('pcmModal','PCM')"><i
+                                class="bi bi-star" data-name="PCM"></i></button>
+                        <h4 class="text-success fw-bold">PCM</h4>
+                        <p class="text-muted">Physics • Chemistry • Mathematics</p>
+                        <button class="btn btn-outline-success rounded-pill mt-auto" data-bs-toggle="modal"
+                            data-bs-target="#pcmModal">
+                            Explore More
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PCB -->
+                <div class="col-md-4">
+                    <div
+                        class="p-4 border rounded-4 h-100 text-center hover-shadow bg-white d-flex flex-column align-items-center">
+                        <button class="btn btn-favorite n" onclick="addToFavourite('pcbModal','PCB')"><i
+                                class="bi bi-star" data-name="PCB"></i></button>
+                        <h4 class="text-primary fw-bold">PCB</h4>
+                        <p class="text-muted">Physics • Chemistry • Biology</p>
+                        <button class="btn btn-outline-primary rounded-pill mt-auto" data-bs-toggle="modal"
+                            data-bs-target="#pcbModal">
+                            Explore More
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PCMB -->
+                <div class="col-md-4">
+                    <div
+                        class="p-4 border rounded-4 h-100 text-center hover-shadow bg-white d-flex flex-column align-items-center">
+                        <button class="btn btn-favorite n" onclick="addToFavourite('pcmbModal','PCMB')"><i
+                                class="bi bi-star" data-name="PCMB"></i></button>
+                        <h4 class="text-warning fw-bold">PCMB</h4>
+                        <p class="text-muted">Physics • Chemistry • Maths • Biology</p>
+                        <button class="btn btn-outline-warning text-dark rounded-pill mt-auto" data-bs-toggle="modal"
+                            data-bs-target="#pcmbModal">
+                            Explore More
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="modal fade" id="pcmModal" tabindex="-1">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title">PCM – Engineering & Technology Path</h5>
+                        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <h6>📘 What is PCM?</h6>
+                        <p>
+                            PCM includes <strong>Physics, Chemistry, and Mathematics</strong>.
+                            It focuses on logic, problem-solving, machines, and technology.
+                            PCM is mainly chosen by students who want engineering or technical careers.
+                        </p>
+
+                        <h6>📚 Subjects</h6>
+                        <ul>
+                            <li><strong>Physics:</strong> Motion, electricity, mechanics, electronics</li>
+                            <li><strong>Chemistry:</strong> Materials, reactions, fuels, compounds</li>
+                            <li><strong>Mathematics:</strong> Algebra, calculus, reasoning</li>
+                        </ul>
+                        <h6>🏫 Board Exam Importance (For PCM Students)</h6>
+                        <p>
+                            Your <strong>10th and 12th board marks</strong> play an important role in the PCM path.
+                        </p>
+
+                        <ul>
+                            <li>
+                                <strong>After 10th:</strong> Schools use board marks to give admission
+                                into Science (PCM). Higher marks = better school options.
+                            </li>
+                            <li>
+                                <strong>After 12th:</strong> Board marks are required to be
+                                <strong>eligible for engineering colleges</strong>.
+                                Even if you clear JEE, minimum board percentage is compulsory.
+                            </li>
+                            <li>
+                                <strong>College Admissions:</strong> Many private and state colleges
+                                consider board marks along with entrance exams.
+                            </li>
+                        </ul>
+
+                        <p class="text-muted">
+                            <small>
+                                Tip: Strong board basics help you perform better in JEE and engineering studies.
+                            </small>
+                        </p>
+
+                        <h6>🎯 Why choose PCM?</h6>
+                        <ul>
+                            <li>You like Maths and logic</li>
+                            <li>You enjoy problem-solving</li>
+                            <li>You want a technical career</li>
+                        </ul>
+
+                        <h6>🏭 Job Opportunities</h6>
+                        <p>
+                            Engineering, IT companies, software industry, AI & data science,
+                            defence services, space research, government technical jobs.
+                        </p>
+
+                        <h6>📝 Important Exams</h6>
+                        <p>
+                            <strong>JEE (Joint Entrance Examination)</strong> is required for
+                            engineering colleges like IITs, NITs, and other technical institutes.
+                        </p>
+
+                        <h6>⏱ Duration</h6>
+                        <p>11–12 PCM (2 years) → Engineering (4 years)</p>
+
+                        <h6>💰 Salary</h6>
+                        <p>₹25,000/month (starter) → ₹10–20+ LPA (experienced)</p>
+
+                        <div class="alert alert-warning reality-check">
+                            <strong>Reality Check:</strong> PCM needs daily practice and patience.
+                            Choose it only if you like Maths.
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="pcbModal" tabindex="-1">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">PCB – Medical & Healthcare Path</h5>
+                        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <h6>📘 What is PCB?</h6>
+                        <p>
+                            PCB includes <strong>Physics, Chemistry, and Biology</strong>.
+                            It focuses on the human body, health, and life sciences.
+                            PCB is compulsory for medical careers.
+                        </p>
+
+                        <h6>📚 Subjects</h6>
+                        <ul>
+                            <li><strong>Biology:</strong> Human body, plants, animals, genetics</li>
+                            <li><strong>Chemistry:</strong> Medicines, drugs, reactions</li>
+                            <li><strong>Physics:</strong> Medical instruments & principles</li>
+                        </ul>
+                        <h6>🏫 Board Exam Importance (For PCB Students)</h6>
+                        <p>
+                            Board exams are <strong>very important</strong> for students choosing PCB.
+                        </p>
+
+                        <ul>
+                            <li>
+                                <strong>After 10th:</strong> Good board marks help you get admission
+                                into Science (PCB) stream easily.
+                            </li>
+                            <li>
+                                <strong>After 12th:</strong> You must <strong>pass board exams</strong>
+                                to be eligible for <strong>NEET</strong>.
+                                Without passing 12th board, medical admission is not possible.
+                            </li>
+                            <li>
+                                <strong>Medical Colleges:</strong> Board marks are checked for
+                                eligibility and document verification.
+                            </li>
+                        </ul>
+
+                        <p class="text-muted">
+                            <small>
+                                Tip: Biology concepts studied for boards directly help
+                            </small>
+                        </p>
+
+                        <h6>🎯 Why choose PCB?</h6>
+                        <ul>
+                            <li>You want to become a doctor or work in healthcare</li>
+                            <li>You enjoy Biology</li>
+                            <li>You want a respected medical profession</li>
+                        </ul>
+
+                        <h6>🏥 Job Opportunities</h6>
+                        <p>
+                            Hospitals, clinics, laboratories, pharmaceutical companies,
+                            medical research centers.
+                        </p>
+
+                        <h6>📝 Important Exams</h6>
+                        <p>
+                            <strong>NEET (National Eligibility cum Entrance Test)</strong>
+                            is mandatory for MBBS, BDS, and medical courses in India.
+                        </p>
+
+                        <h6>⏱ Duration</h6>
+                        <p>11–12 PCB (2 years) → Medical studies (5–6 years)</p>
+
+                        <h6>💰 Salary</h6>
+                        <p>₹30,000/month → ₹15–30+ LPA (specialists)</p>
+
+                        <div class="alert alert-warning reality-check">
+                            <strong>Reality Check:</strong> Medical careers need long study time
+                            and strong dedication.
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PCMB Modal -->
+        <div class="modal fade" id="pcmbModal" tabindex="-1" aria-labelledby="pcmbModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header bg-warning">
+                        <h5 class="modal-title fw-bold" id="pcmbModalLabel">
+                            PCMB – Dual Engineering & Medical Option
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+
+                        <!-- What is PCMB -->
+                        <h6>📘 What is PCMB?</h6>
+                        <p>
+                            PCMB stands for <strong>Physics, Chemistry, Mathematics, and Biology</strong>.
+                            This combination allows students to keep
+                            <strong>both Engineering and Medical career options open</strong>.
+                            It is chosen by students who are strong in all science subjects.
+                        </p>
+
+                        <!-- Subjects -->
+                        <h6>📚 Subjects</h6>
+                        <ul>
+                            <li><strong>Physics:</strong> Core concepts used in Engineering and Medical fields</li>
+                            <li><strong>Chemistry:</strong> Important for technology, medicines, and research</li>
+                            <li><strong>Mathematics:</strong> Required for Engineering and technical careers</li>
+                            <li><strong>Biology:</strong> Required for Medical and healthcare careers</li>
+                        </ul>
+
+                        <!-- Board Importance -->
+                        <h6>🏫 Board Exam Importance (Very Important)</h6>
+                        <p>
+                            Board exams are <strong>extremely important</strong> for PCMB students
+                            because this combination includes <strong>both Maths and Biology</strong>.
+                        </p>
+                        <ul>
+                            <li>
+                                <strong>After 10th:</strong>
+                                Schools usually require <strong>high board marks</strong>
+                                to allow the PCMB combination.
+                            </li>
+                            <li>
+                                <strong>After 12th:</strong>
+                                Passing the board exam is <strong>mandatory</strong>
+                                to be eligible for <strong>both JEE and NEET</strong>.
+                            </li>
+                            <li>
+                                <strong>Career Flexibility:</strong>
+                                Good board marks help keep
+                                <strong>Engineering and Medical options open</strong>.
+                            </li>
+                        </ul>
+
+                        <!-- Why Choose -->
+                        <h6>🎯 Why choose PCMB?</h6>
+                        <ul>
+                            <li>You are strong in both Mathematics and Biology</li>
+                            <li>You are confused between Engineering and Medical</li>
+                            <li>You want maximum career flexibility</li>
+                        </ul>
+
+                        <!-- Where Used -->
+                        <h6>🏭 Job Opportunities</h6>
+                        <p>
+                            Engineering fields, Medical fields, Biotechnology,
+                            Research, Interdisciplinary science careers,
+                            and advanced innovation-based roles.
+                        </p>
+
+                        <!-- Exams -->
+                        <h6>📝 Entrance Exams</h6>
+                        <p>
+                            PCMB students are eligible for:
+                            <br>
+                            <strong>JEE</strong> – for Engineering colleges
+                            <br>
+                            <strong>NEET</strong> – for Medical colleges
+                        </p>
+
+                        <!-- Duration -->
+                        <h6>⏱ Duration</h6>
+                        <p>
+                            11th–12th PCMB: <strong>2 years</strong><br>
+                            After 12th:
+                            Engineering (<strong>4 years</strong>) or
+                            Medical (<strong>5–6 years</strong>)
+                        </p>
+
+                        <!-- Salary -->
+                        <h6>💰 Salary (Approximate)</h6>
+                        <p>
+                            Starting salary: <strong>₹30,000/month</strong><br>
+                            Experienced professionals:
+                            <strong>₹15–30+ LPA</strong>
+                        </p>
+
+                        <!-- Reality Check -->
+                        <div class="alert alert-danger mt-3 reality-check">
+                            <strong>Reality Check:</strong><br>
+                            PCMB has a <strong>very heavy syllabus</strong>.
+                            Choose it only if you are mentally prepared,
+                            disciplined, and ready for regular study.
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- Commerce Stream Header -->
+    <section id="commerce-section">
+
+        <div class="container mb-5">
+            <div class="stream-header-card text-white" style="background: linear-gradient(135deg, #0d6efd, #0a58ca);">
+                <button class="btn btn-favorite n" onclick="addToFavourite('commerce-section','Commerce')"><i
+                        class="bi bi-star" data-name="Commerce"></i></button>
+                <h1 class="fw-bold mb-2">Commerce Stream</h1>
+                <p class="fs-5 mb-3">
+                    A complete guide for students choosing <strong>Commerce after 10th</strong>
+                </p>
+
+                <p class="mb-0">
+                    The Commerce stream focuses on
+                    <strong>business, finance, economics, and management</strong>.
+                    It is an ideal choice for students interested in money, companies,
+                    planning, and professional careers.
+                </p>
+            </div>
+
+        </div>
+        <div class="container mb-4">
+            <h4 class="fw-bold">📚 Subjects</h4>
+
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="info-card">Accountancy</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Business Studies</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Economics</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Other School-Approved Subjects</div>
+                </div>
+            </div>
+        </div>
+        <div class="container mb-4">
+            <h4 class="fw-bold">🏫 Board Exam Importance</h4>
+            <ul class="custom-list">
+                <li>
+                    <strong>After 10th:</strong>
+                    Board marks are used for admission into Commerce stream.
+                </li>
+                <li>
+                    <strong>After 12th:</strong>
+                    Passing board exams is mandatory for higher studies
+                    like B.Com, CA, CS, CMA, Banking, and MBA.
+                </li>
+                <li>
+                    <strong>Foundation:</strong>
+                    Strong basics in Accountancy and Economics help in professional courses.
+                </li>
+            </ul>
+        </div>
+        <div class="container mb-4">
+            <h4 class="fw-bold">🎯 Why should you choose Commerce?</h4>
+            <ul class="custom-list">
+                <li>You are interested in business, money, or finance</li>
+                <li>You like planning, analysis, and management</li>
+                <li>You want professional careers without Science pressure</li>
+                <li>You are aiming for corporate, banking, or business jobs</li>
+            </ul>
+        </div>
+        <div class="container mb-4">
+            <h4 class="fw-bold">🏭 Job Opportunities</h4>
+
+            <div class="d-flex flex-wrap gap-3">
+                <span class="badge bg-secondary p-2">Banks</span>
+                <span class="badge bg-secondary p-2">Corporate Offices</span>
+                <span class="badge bg-secondary p-2">Finance Companies</span>
+                <span class="badge bg-secondary p-2">Government Departments</span>
+                <span class="badge bg-secondary p-2">Business & Startups</span>
+            </div>
+        </div>
+        <div class="container mb-4">
+            <h4 class="fw-bold">📝 Career Options & Exams</h4>
+
+            <p><strong>CA (Chartered Accountant):</strong> Accounting, auditing, taxation</p>
+            <p><strong>CS (Company Secretary):</strong> Company law & compliance</p>
+            <p><strong>CMA:</strong> Cost & financial management</p>
+            <p><strong>Banking Exams:</strong> SBI, IBPS for bank jobs</p>
+            <p><strong>MBA:</strong> Management & leadership roles</p>
+        </div>
+        <div class="container mb-5">
+            <h4 class="fw-bold">⏱ Duration
+                <p>
+                    <strong>Duration:</strong>
+                    11–12 Commerce (2 years) → Degree / Professional course
+                </p>
+            </h4>
+            <h4 class="fw-bold"> 💰 Salary
+                <p>
+                    <strong>Salary:</strong>
+                    ₹20,000–40,000/month (starting) →
+                    ₹8–20+ LPA (experienced)
+                </p>
+            </h4>
+            <div class="alert alert-warning mt-3 reality-check">
+                <strong>Reality Check:</strong><br>
+                Commerce is practical but not easy.
+                Success depends on consistency, especially in Accountancy.
+            </div>
+        </div>
+    </section>
+
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- Arts Stream Section -->
+    <section id="arts-section">
+
+        <!-- Arts Stream Header -->
+        <div class="container px-4 mb-5">
+            <div class="stream-header-card text-white" style="background: linear-gradient(135deg, #6f42c1, #59339d);">
+                <button class="btn btn-favorite n" onclick="addToFavourite('arts-section','Arts')"><i class="bi bi-star"
+                        data-name="Arts"></i></button>
+                <h1 class="fw-bold mb-2">Arts / Humanities Stream</h1>
+                <p class="fs-5 mb-3">
+                    A complete guide for students choosing <strong>Arts after 10th</strong>
+                </p>
+
+                <p class="mb-0">
+                    The Arts stream focuses on
+                    <strong>society, history, politics, culture, human behavior, and creativity</strong>.
+                    It is ideal for students interested in
+                    <strong>civil services, law, media, teaching, social work, and creative careers</strong>.
+                </p>
+            </div>
+        </div>
+
+        <!-- Subjects -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">📚 Subjects</h4>
+
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="info-card">History</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Political Science</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Geography</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Economics</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Sociology</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Psychology</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Philosophy</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">English & Optional Subjects</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Board Importance -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🏫 Board Exam Importance</h4>
+            <ul class="custom-list">
+                <li>
+                    <strong>After 10th:</strong>
+                    Board marks are used for admission into Arts stream in schools and colleges.
+                </li>
+                <li>
+                    <strong>After 12th:</strong>
+                    Passing board exams is mandatory for BA, Law, Journalism,
+                    Civil Services eligibility, and higher education.
+                </li>
+                <li>
+                    <strong>Foundation:</strong>
+                    Strong understanding of subjects helps in UPSC, PSC, and Law exams.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Why Choose Arts -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🎯 Why should you choose Arts?</h4>
+            <ul class="custom-list">
+                <li>You enjoy reading, writing, and theoretical subjects</li>
+                <li>You are interested in society, history, politics, or psychology</li>
+                <li>You want careers in civil services, law, teaching, or media</li>
+                <li>You prefer conceptual thinking over calculations</li>
+            </ul>
+        </div>
+
+        <!-- Where Arts is Used -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🏛️ Job Opportunities</h4>
+
+            <div class="d-flex flex-wrap gap-3">
+                <span class="badge bg-secondary p-2">Government Services</span>
+                <span class="badge bg-secondary p-2">Law & Judiciary</span>
+                <span class="badge bg-secondary p-2">Media & Journalism</span>
+                <span class="badge bg-secondary p-2">Education & Teaching</span>
+                <span class="badge bg-secondary p-2">Social Work & NGOs</span>
+                <span class="badge bg-secondary p-2">Creative Industries</span>
+            </div>
+        </div>
+
+        <!-- Careers & Exams -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">📝 Career Options & Exams</h4>
+
+            <p><strong>UPSC / State PSC:</strong> IAS, IPS, IFS, administrative services</p>
+            <p><strong>Law (LLB):</strong> Lawyer, legal advisor, judiciary</p>
+            <p><strong>Journalism & Media:</strong> Reporter, anchor, content creator</p>
+            <p><strong>Teaching:</strong> School & college-level education</p>
+            <p><strong>Psychology & Social Work:</strong> Counselling, NGOs, research</p>
+        </div>
+
+        <!-- Duration & Salary -->
+        <div class="container px-4 mb-5">
+            <h4 class="fw-bold">⏱ Duration</h4>
+
+            <p>
+                <strong>Duration:</strong>
+                11–12 Arts (2 years) → BA / Professional courses
+            </p>
+
+            <h4 class="fw-bold">💰 Salary</h4>
+            <p>
+                <strong>Salary:</strong>
+                ₹15,000–30,000/month (starting) →
+                ₹8–25+ LPA (experienced, government & professional roles)
+            </p>
+
+            <div class="alert alert-warning mt-3 reality-check">
+                <strong>Reality Check:</strong><br>
+                Arts is not an easy stream.
+                Success depends on deep understanding, reading habits,
+                writing skills, and consistency.
+            </div>
+        </div>
+
+    </section>
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- Diploma Section -->
+    <section id="diploma-section">
+
+        <!-- Diploma Header -->
+        <div class="container px-4 mb-5">
+            <div class="stream-header-card text-white" style="background: linear-gradient(135deg, #198754, #0f5132);">
+                <button class="btn btn-favorite n" onclick="addToFavourite('diploma-section','Diploma')"><i
+                        class="bi bi-star" data-name="Diploma"></i></button>
+                <h1 class="fw-bold mb-2">Diploma Courses</h1>
+                <p class="fs-5 mb-3">
+                    A complete guide for students choosing <strong>Diploma after 10th</strong>
+                </p>
+
+                <p class="mb-0">
+                    Diploma courses focus on
+                    <strong>practical skills, technical knowledge, and job-oriented education</strong>.
+                    They are ideal for students who want
+                    <strong>early employment or lateral entry into engineering degree</strong>.
+                </p>
+            </div>
+        </div>
+
+        <!-- What is Diploma -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">📘 What is a Diploma?</h4>
+            <p>
+                A Diploma is a <strong>3-year technical course</strong> that can be done after 10th.
+                It emphasizes <strong>hands-on training, lab work, workshops, and industry exposure</strong>.
+                Diploma students learn how things work practically, not just theoretically.
+            </p>
+        </div>
+
+        <!-- Popular Diploma Courses -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">📚 Popular Diploma Courses</h4>
+
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="info-card">Diploma in Mechanical Engineering</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Diploma in Civil Engineering</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Diploma in Electrical Engineering</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Diploma in Computer Engineering</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Diploma in Electronics & Communication</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Diploma in Automobile Engineering</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Diploma in IT</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Diploma in Architecture Assistantship</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Board Importance -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🏫 Board Exam Importance</h4>
+            <ul class="custom-list">
+                <li>
+                    <strong>After 10th:</strong>
+                    Board marks are used for admission into Diploma / Polytechnic colleges.
+                </li>
+                <li>
+                    Mathematics and Science marks are <strong>especially important</strong>.
+                </li>
+                <li>
+                    Some states conduct <strong>Diploma entrance exams</strong>.
+                </li>
+            </ul>
+        </div>
+
+        <!-- Why Choose Diploma -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🎯 Why should you choose Diploma?</h4>
+            <ul class="custom-list">
+                <li>You prefer practical learning over theory</li>
+                <li>You want job-oriented education</li>
+                <li>You want to start earning early</li>
+                <li>You want lateral entry into engineering degree</li>
+                <li>You want lower fees compared to degree</li>
+            </ul>
+        </div>
+
+        <!-- Where Diploma is Used -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🏭 Job Opportunities</h4>
+
+            <div class="d-flex flex-wrap gap-3">
+                <span class="badge bg-secondary p-2">Manufacturing Industries</span>
+                <span class="badge bg-secondary p-2">Construction Companies</span>
+                <span class="badge bg-secondary p-2">IT & Software Firms</span>
+                <span class="badge bg-secondary p-2">Automobile Sector</span>
+                <span class="badge bg-secondary p-2">Government Jobs</span>
+                <span class="badge bg-secondary p-2">Private Technical Jobs</span>
+            </div>
+        </div>
+
+        <!-- Career Options -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">📝 Career Options After Diploma</h4>
+
+            <p><strong>Junior Engineer:</strong> Government & private sector</p>
+            <p><strong>Technician / Supervisor:</strong> Factories & plants</p>
+            <p><strong>Site Supervisor:</strong> Construction projects</p>
+            <p><strong>Machine Operator:</strong> Manufacturing industries</p>
+            <p><strong>IT Support / Technician:</strong> Computer & networking roles</p>
+        </div>
+
+        <!-- Higher Studies -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🎓 Higher Studies After Diploma</h4>
+            <ul class="custom-list">
+                <li>
+                    <strong>Lateral Entry Engineering:</strong>
+                    Direct admission into <strong>2nd year of B.E / B.Tech</strong>
+                </li>
+                <li>
+                    Advanced diploma or certification courses
+                </li>
+                <li>
+                    Government technical examinations
+                </li>
+            </ul>
+        </div>
+
+        <!-- Duration & Salary -->
+        <div class="container px-4 mb-5">
+            <h4 class="fw-bold">⏱ Duration </h4>
+
+            <p>
+                <strong>Duration:</strong>
+                Diploma after 10th → <strong>3 years</strong>
+            </p>
+            <h4 class="fw-bold">💰 Salary</h4>
+            <p>
+                <strong>Salary:</strong>
+                ₹12,000–25,000/month (starting) →
+                ₹5–10+ LPA (with experience / degree)
+            </p>
+
+            <div class="alert alert-warning mt-3 reality-check">
+                <strong>Reality Check:</strong><br>
+                Diploma gives early entry into jobs,
+                but growth becomes faster if you upgrade skills
+                or complete an engineering degree later.
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ------------------------------------------------------------------------------------------------------------------------------- -->
+
+    <section id="iti-section">
+        <div class="container px-4 mb-5">
+
+            <!-- Header Banner -->
+            <div class="stream-header-card text-white" style="background: linear-gradient(135deg, #d63384, #fd7e14);">
+                <button class="btn btn-favorite n" onclick="addToFavourite('iti-section','ITI')"><i class="bi bi-star"
+                        data-name="ITI"></i></button>
+                <h1 class="fw-bold mb-2">ITI Stream</h1>
+
+                <p class="fs-5 mb-3">
+                    Not everyone needs a degree to succeed.
+                </p>
+
+                <p class="mb-0">
+                    <strong>Strong skills, real practice, and experience create real careers.</strong>
+                </p>
+
+            </div>
+        </div>
+
+        <!-- What is ITI -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">📘 What is ITI?</h4>
+            <p>
+                <strong>ITI (Industrial Training Institute)</strong> is a skill-based vocational education
+                program focused on <strong>practical training</strong> rather than heavy theory.
+                It prepares students for jobs in technical and non-technical fields
+                and helps them start earning early.
+            </p>
+        </div>
+
+        <!-- Who Should Choose ITI -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🎯 Who Should Choose ITI?</h4>
+            <ul class="custom-list">
+                <li>Students who want a job at an early age</li>
+                <li>Students who like practical work more than theory</li>
+                <li>Students who want financial independence quickly</li>
+                <li>Students not interested in long academic courses</li>
+            </ul>
+        </div>
+
+        <!-- Eligibility -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">✅ Eligibility Criteria</h4>
+            <ul class="custom-list">
+                <li>Passed <strong>10th</strong> (some trades allow 8th pass)</li>
+                <li>Maths and Science required for some technical trades</li>
+                <li>Minimum age: <strong>14 years</strong></li>
+                <li>Mostly <strong>no entrance exam</strong> (merit-based in some states)</li>
+            </ul>
+        </div>
+
+        <!-- Duration -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">⏱ Duration</h4>
+            <div class="d-flex gap-3">
+                <span class="badge bg-secondary fs-6">6 Months</span>
+                <span class="badge bg-secondary fs-6">1 Year</span>
+                <span class="badge bg-secondary fs-6">2 Years</span>
+            </div>
+        </div>
+
+        <!-- Trades -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🛠️ Types of ITI Trades</h4>
+
+            <p class="fw-bold mt-3 text-danger">Engineering Trades (Technical)</p>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="info-card">Electrician</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Fitter</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Welder</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Mechanic Diesel</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Turner</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Machinist</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">COPA</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Electronics Mechanic</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Refrigeration & AC</div>
+                </div>
+            </div>
+
+            <p class="fw-bold mt-4 text-success">Non-Engineering Trades (Non-Technical)</p>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="info-card">Stenographer</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Draughtsman</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Fashion Design</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Hair & Skin Care</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Housekeeper</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Plumber</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Surveyor</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">📚 What You Learn</h4>
+            <ul class="custom-list">
+                <li>Real machine and tool handling</li>
+                <li>Industry-based training</li>
+                <li>Safety rules and discipline</li>
+                <li>Only job-required theory</li>
+            </ul>
+            <p class="mt-2"><strong>Training Pattern:</strong> 70% Practical + 30% Theory</p>
+        </div>
+
+        <!-- Certification -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">📜 Certification</h4>
+            <p>
+                After completing ITI, students receive
+                <strong>NCVT / SCVT certificate</strong>,
+                which is recognized all over India for
+                government and private sector jobs.
+            </p>
+        </div>
+
+        <!-- Jobs -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">💼 Job Opportunities</h4>
+            <div class="d-flex flex-wrap gap-3">
+                <span class="badge bg-primary p-2">Technician</span>
+                <span class="badge bg-primary p-2">Electrician</span>
+                <span class="badge bg-primary p-2">Fitter</span>
+                <span class="badge bg-primary p-2">Mechanic</span>
+                <span class="badge bg-primary p-2">Machine Operator</span>
+                <span class="badge bg-primary p-2">Supervisor</span>
+            </div>
+        </div>
+
+        <!-- Salary -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">💰 Salary</h4>
+            <ul class="custom-list">
+                <li>Fresher: ₹8,000 – ₹12,000 per month</li>
+                <li>2–3 Years Experience: ₹15,000 – ₹25,000</li>
+                <li>Highly Skilled / Abroad Jobs: ₹30,000+</li>
+            </ul>
+        </div>
+
+        <!-- Apprenticeship -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🏗️ Apprenticeship (Very Important)</h4>
+            <p>
+                After ITI, students can join
+                <strong>Apprenticeship Training</strong> in industries.
+                It provides real work experience, stipend,
+                and increases permanent job chances.
+            </p>
+        </div>
+
+        <!-- Higher Study -->
+        <div class="container px-4 mb-5">
+            <h4 class="fw-bold">🎓 Higher Study Options</h4>
+            <ul class="custom-list">
+                <li>Apprenticeship Training</li>
+                <li>CTI (Craft Instructor Training)</li>
+                <li>Diploma (Lateral Entry – in some states)</li>
+                <li>Advanced skill courses</li>
+                <li>Self-employment / Own business</li>
+            </ul>
+
+            <div class="alert alert-success mt-4 shadow-sm reality-check">
+                <strong>Reality Check:</strong>
+                ITI is not a low option. It is a
+                <strong>skill-power career path</strong>
+                for students who want early jobs,
+                real experience, and financial freedom.
+            </div>
+        </div>
+    </section>
+    <!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <section id="vocational-section">
+        <div class="container px-4 mb-5">
+
+            <!-- Header Banner -->
+            <div class="stream-header-card text-white" style="background: linear-gradient(135deg, #0dcaf0, #20c997);">
+                <button class="btn btn-favorite n" onclick="addToFavourite('vocational-section','Vocational')"><i
+                        class="bi bi-star" data-name="Vocational"></i></button>
+                <h1 class="fw-bold mb-2">Vocational Courses</h1>
+
+                <p class="fs-5 mb-3">
+                    Success is not decided by degrees alone.
+                </p>
+
+                <p class="mb-0">
+                    <strong>Practical skills and training can also build a strong future.</strong>
+                </p>
+
+            </div>
+        </div>
+
+        <!-- What are Vocational Courses -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">📘 What are Vocational Courses?</h4>
+            <p>
+                <strong>Vocational courses</strong> are job-oriented training programs that focus on
+                <strong>specific practical skills</strong> required for particular jobs or industries.
+                These courses aim to make students <strong>work-ready in a short time</strong>.
+            </p>
+        </div>
+
+        <!-- Who Should Choose -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🎯 Who Should Choose?</h4>
+            <ul class="custom-list">
+                <li>Students who want a job quickly</li>
+                <li>Students who prefer practical learning over theory</li>
+                <li>Students who do not want long academic courses</li>
+                <li>Students looking for low-cost education options</li>
+            </ul>
+        </div>
+
+        <!-- Eligibility -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">✅ Eligibility Criteria</h4>
+            <ul class="custom-list">
+                <li>8th or 10th pass (depends on course)</li>
+                <li>No entrance exam required</li>
+                <li>Marks are not important</li>
+                <li>Minimum age usually 14 years</li>
+            </ul>
+        </div>
+
+        <!-- Duration -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">⏱ Duration</h4>
+            <div class="d-flex gap-3">
+                <span class="badge bg-secondary fs-6">3 Months</span>
+                <span class="badge bg-secondary fs-6">6 Months</span>
+                <span class="badge bg-secondary fs-6">1 Year</span>
+                <span class="badge bg-secondary fs-6">Up to 2 Years</span>
+            </div>
+        </div>
+
+        <!-- Types -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🛠️ Types of Vocational Courses</h4>
+
+            <p class="fw-bold mt-3 text-primary">Technical & Industrial Skills</p>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="info-card">Electrician / Wireman</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Plumber</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Welder</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">AC & Refrigerator Tech</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Automobile Service</div>
+                </div>
+            </div>
+
+            <p class="fw-bold mt-4 text-success">Computer & Office Skills</p>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="info-card">Computer Operator</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Data Entry Operator</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Computer Hardware</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Office Assistant</div>
+                </div>
+            </div>
+
+            <p class="fw-bold mt-4 text-danger">Creative & Service Skills</p>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="info-card">Fashion Designing</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Tailoring</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Beauty & Wellness</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Makeup Artist</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Photography</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- What You Learn -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">📚 What You Learn</h4>
+            <ul class="custom-list">
+                <li>Hands-on practical skills</li>
+                <li>Tool and equipment handling</li>
+                <li>Workplace discipline and safety</li>
+                <li>Only job-related basic theory</li>
+            </ul>
+        </div>
+
+        <!-- Who Offers -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🏫 Who Offers These Courses?</h4>
+            <ul class="custom-list">
+                <li>Government Skill Development Centers</li>
+                <li>NSDC (Skill India) approved institutes</li>
+                <li>Private training institutes</li>
+                <li>NGOs and vocational training centers</li>
+                <li>Industry-based training organizations</li>
+            </ul>
+        </div>
+
+        <!-- Certification -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">📜 Certification</h4>
+            <p>
+                After completion, students receive a <strong>Vocational Certificate</strong>,
+                often aligned with <strong>NSQF (National Skills Qualification Framework)</strong>.
+                Certificate recognition depends on the training provider.
+            </p>
+        </div>
+
+        <!-- Job Opportunities -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">💼 Job Opportunities</h4>
+            <div class="d-flex flex-wrap gap-3">
+                <span class="badge bg-primary p-2">Technician</span>
+                <span class="badge bg-primary p-2">Assistant / Operator</span>
+                <span class="badge bg-primary p-2">Service Staff</span>
+                <span class="badge bg-primary p-2">Workshop Employee</span>
+            </div>
+        </div>
+
+        <!-- Salary -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">💰 Salary</h4>
+            <ul class="custom-list">
+                <li>Fresher: ₹6,000 – ₹10,000 per month</li>
+                <li>With Experience: ₹12,000 – ₹20,000</li>
+                <li>Skilled / Self-Employed: ₹25,000+</li>
+            </ul>
+        </div>
+
+        <!-- Difference Table -->
+        <div class="container px-4 mb-5">
+            <h4 class="fw-bold">⚖️ Vocational vs ITI</h4>
+
+            <div class="table-responsive mt-3">
+                <table class="table table-bordered table-hover vocational-table shadow-sm rounded-4 overflow-hidden">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Point</th>
+                            <th>Vocational Courses</th>
+                            <th>ITI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Type</td>
+                            <td>Broad skill-based training</td>
+                            <td>Formal technical institute</td>
+                        </tr>
+                        <tr>
+                            <td>Duration</td>
+                            <td>3 months – 2 years</td>
+                            <td>1 – 2 years</td>
+                        </tr>
+                        <tr>
+                            <td>Certificate</td>
+                            <td>NSQF / Institute Certificate</td>
+                            <td>NCVT / SCVT Certificate</td>
+                        </tr>
+                        <tr>
+                            <td>Flexibility</td>
+                            <td>High</td>
+                            <td>Structured</td>
+                        </tr>
+                        <tr>
+                            <td>Government Job Link</td>
+                            <td>Limited</td>
+                            <td>Strong</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Final Note -->
+            <div class="alert alert-success mt-4 shadow-sm reality-check">
+                <strong>Reality Check:</strong>
+                Vocational courses are ideal for students who want
+                <strong>quick employment through practical skills</strong>
+                without spending many years in formal education.
+            </div>
+        </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+
+    <section id="apprenticeship-section">
+        <div class="container px-4 mb-5">
+
+            <!-- Header Banner -->
+            <div class="stream-header-card text-white" style="background: linear-gradient(135deg, #6610f2, #0d6efd);">
+                <button class="btn btn-favorite n"
+                    onclick="addToFavourite('apprenticeship-section','Apprenticeship')"><i class="bi bi-star"
+                        data-name="Apprenticeship"></i></button>
+                <h1 class="fw-bold mb-2">Apprenticeship</h1>
+
+                <p class="fs-5 mb-3">
+                    Learning by doing is the most powerful education.
+                </p>
+
+                <p class="mb-0">
+                    <strong>Apprenticeship lets you earn, learn, and grow at the same time.</strong>
+                </p>
+
+            </div>
+        </div>
+
+        <!-- What is Apprenticeship -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">📘 What is Apprenticeship?</h4>
+            <p>
+                <strong>Apprenticeship</strong> is a training program where students learn a skill
+                by working in a <strong>real company or industry</strong> under experienced professionals.
+                It is completely based on <strong>on-the-job training</strong>.
+            </p>
+        </div>
+
+        <!-- Who Should Choose -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🎯 Who Should Choose?</h4>
+            <ul class="custom-list">
+                <li>Students who want real industry experience</li>
+                <li>Students who prefer practical work over theory</li>
+                <li>Students who want to earn while learning</li>
+                <li>Students who want strong job opportunities</li>
+            </ul>
+        </div>
+
+        <!-- Eligibility -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">✅ Eligibility Criteria</h4>
+            <ul class="custom-list">
+                <li>Mostly <strong>10th pass</strong> students</li>
+                <li>Some trades allow <strong>8th pass</strong></li>
+                <li>Minimum age usually <strong>14 years</strong></li>
+                <li>No entrance exam (selection depends on trade/company)</li>
+            </ul>
+        </div>
+
+        <!-- Duration -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">⏱ Duration</h4>
+            <div class="d-flex gap-3">
+                <span class="badge bg-secondary fs-6">6 Months</span>
+                <span class="badge bg-secondary fs-6">1 Year</span>
+                <span class="badge bg-secondary fs-6">Up to 2 Years</span>
+            </div>
+        </div>
+
+        <!-- Learning -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">📚 What You Learn</h4>
+            <ul class="custom-list">
+                <li>Real job and work experience</li>
+                <li>Machine and tool handling</li>
+                <li>Industry discipline and safety rules</li>
+                <li>Professional work culture</li>
+            </ul>
+            <p class="mt-2"><strong>Learning Pattern:</strong> 100% Practical</p>
+        </div>
+
+        <!-- Stipend -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">💵 Stipend (Payment)</h4>
+            <p>
+                During apprenticeship, students receive a <strong>monthly stipend</strong>.
+                The amount depends on the trade, duration, and company.
+            </p>
+        </div>
+
+        <!-- Trades -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🛠️ Types of Apprenticeship Trades</h4>
+
+            <p class="fw-bold mt-3 text-primary">Technical Trades</p>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="info-card">Electrician</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Fitter</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Welder</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Mechanic</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Turner</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Electronics Tech</div>
+                </div>
+            </div>
+
+            <p class="fw-bold mt-4 text-success">Service & Other Trades</p>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <div class="info-card">Computer Operator</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Office Assistant</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Retail Assistant</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="info-card">Data Entry Operator</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Who Offers -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">🏫 Who Offers Apprenticeship?</h4>
+            <ul class="custom-list">
+                <li>Government departments</li>
+                <li>Public Sector Units (PSUs)</li>
+                <li>Private companies</li>
+                <li>Factories and industries</li>
+            </ul>
+        </div>
+
+        <!-- Job Opportunities -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">💼 Job Opportunities</h4>
+            <div class="d-flex flex-wrap gap-3">
+                <span class="badge bg-primary p-2">Permanent Job</span>
+                <span class="badge bg-primary p-2">Skilled Technician</span>
+                <span class="badge bg-primary p-2">Industry Preference</span>
+                <span class="badge bg-primary p-2">Higher Salary</span>
+            </div>
+        </div>
+
+        <!-- Salary -->
+        <div class="container px-4 mb-4">
+            <h4 class="fw-bold">💰 Salary</h4>
+            <ul class="custom-list">
+                <li>During training: Monthly stipend</li>
+                <li>Fresher job: ₹10,000 – ₹15,000 per month</li>
+                <li>With experience: ₹18,000 – ₹30,000+</li>
+            </ul>
+        </div>
+
+        <!-- Comparison -->
+        <div class="container px-4 mb-5">
+            <h4 class="fw-bold">⚖️ Apprenticeship vs ITI</h4>
+
+            <div class="table-responsive mt-3">
+                <table class="table table-bordered table-hover shadow-sm rounded-4 overflow-hidden">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Point</th>
+                            <th>Apprenticeship</th>
+                            <th>ITI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Learning Style</td>
+                            <td>On-the-job training</td>
+                            <td>Classroom + workshop</td>
+                        </tr>
+                        <tr>
+                            <td>Payment</td>
+                            <td>Stipend provided</td>
+                            <td>No payment</td>
+                        </tr>
+                        <tr>
+                            <td>Focus</td>
+                            <td>Real work experience</td>
+                            <td>Skill training</td>
+                        </tr>
+                        <tr>
+                            <td>Duration</td>
+                            <td>6 months – 2 years</td>
+                            <td>1 – 2 years</td>
+                        </tr>
+                        <tr>
+                            <td>Job Chance</td>
+                            <td>Very High</td>
+                            <td>High</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Final Note -->
+            <div class="alert alert-success mt-4 shadow-sm reality-check">
+                <strong>Reality Check:</strong>
+                Apprenticeship is the best choice for students who want
+                <strong>real experience, early earning, and strong job security</strong>
+                after 10th.
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center">
+        <p class="mb-1">© 2026 CareerGuide | All Rights Reserved</p>
+        <small>
+            Helping students choose the right career after 10th, 12th & Graduation
+        </small>
+    </footer>
+
+    <!-- Search Overlay -->
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <button class="btn-close-search" id="close-search-btn"><i class="bi bi-x-lg"></i></button>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search courses, degrees, careers..." autocomplete="off" />
+            <ul id="suggestionBox" class="dropdown-menu w-100" style="position: absolute; top: 100%; left: 0;"></ul>
+        </div>
+    </div>
+
+
+
+    <!-- Back to Top Button -->
+    <button type="button" class="btn btn-primary btn-lg" id="btn-back-to-top"
+        style="position: fixed; bottom: 20px; right: 20px; display: none; border-radius: 50%; width: 50px; height: 50px; z-index: 1000;">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script>
+        // Back to top button logic
+        let mybutton = document.getElementById("btn-back-to-top");
+        window.onscroll = function () {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        };
+        mybutton.addEventListener("click", function () {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        });
+
+        // Navbar Scroll Animation Logic
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                document.body.classList.add('scrolled');
+            } else {
+                document.body.classList.remove('scrolled');
+            }
+        });
+
+        // Favorite button toggle
+        document.querySelectorAll('.btn-favorite').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.stopPropagation();
+                // this.classList.toggle('active'); // Removed to wait for modal confirmation
+            });
+        });
+
+        // Auto-open modal if hash is present
+        window.addEventListener('load', function () {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement && targetElement.classList.contains('modal')) {
+                    const modal = new bootstrap.Modal(targetElement);
+                    modal.show();
+                }
+            }
+        });
+
+        // Search Overlay Logic
+        const searchIconBtn = document.getElementById('search-icon-btn');
+        const searchOverlay = document.getElementById('search-overlay');
+        const closeSearchBtn = document.getElementById('close-search-btn');
+        const searchInput = document.getElementById('searchInput');
+        const suggestionBox = document.getElementById('suggestionBox');
+
+        searchIconBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            searchOverlay.classList.add('active');
+            searchInput.focus();
+        });
+
+        closeSearchBtn.addEventListener('click', function () {
+            searchOverlay.classList.remove('active');
+        });
+
+        // Handle "Enter" key
+        searchInput.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                // MODIFIED: Always redirect to AI search, ignoring DB suggestions
+                if (searchInput.value.trim()) {
+                    window.location.href = `/search-redirect?q=${encodeURIComponent(searchInput.value.trim())}`;
+                }
+            }
+        });
+
+        // Fetch suggestions
+        searchInput.addEventListener("keyup", function () {
+            let value = searchInput.value;
+
+            if (value.length === 0) {
+                suggestionBox.innerHTML = "";
+                suggestionBox.style.display = "none";
+                return;
+            }
+
+            fetch(`/search-suggest?q=${encodeURIComponent(value)}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (searchInput.value !== value) return;
+                    suggestionBox.innerHTML = "";
+                    if (data.length === 0) {
+                        suggestionBox.style.display = "none";
+                        return;
+                    }
+                    suggestionBox.style.display = "block";
+
+                    data.forEach(item => {
+                        let li = document.createElement("li");
+                        let page = item.page_name.replace(".html", "").toLowerCase();
+                        li.innerHTML = `<a class="dropdown-item" href="/${page}?target=${item.div_id}&type=${item.target_type}"><b>${item.keyword}</b> <small>(${item.source})</small></a>`;
+                        suggestionBox.appendChild(li);
+                    });
+                });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const p = new URLSearchParams(window.location.search);
+            const target = p.get("target");
+            const type = p.get("type");
+
+            if (!target || !type) return;
+
+            const el = document.getElementById(target);
+            if (!el) return;
+
+            if (type === "modal" || type === "modal-box") {
+                new bootstrap.Modal(el).show();
+            } else {
+                el.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+        // Fetch favorites and update UI on load
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/get_favourites")
+                .then(res => res.json())
+                .then(data => {
+                    data.forEach(item => {
+                        try {
+                            const fav = JSON.parse(item.favourite_career);
+                            const icon = document.querySelector(`i[data-name="${fav.career}"]`);
+                            if (icon) {
+                                const btn = icon.closest('.btn-favorite');
+                                if (btn) btn.classList.add('active');
+                            }
+                        } catch (e) { }
+                    });
+                });
+        });
+
+        function addToFavourite(targetId, careerName) {
+            // Define Comparison Data (Matches Backend Source of Truth)
+            const CAREER_COMPARISON_DATA = {
+                // Streams
+                "PCM": { "Eligibility": "10th Pass (Science & Maths)", "Duration": "2 Years", "Job Opportunities": "Very High", "Starting Salary": "₹25,000–50,000", "Growth Potential": "High", "Job Stability": "High" },
+                "PCB": { "Eligibility": "10th Pass (Science)", "Duration": "2 Years", "Job Opportunities": "Very High", "Starting Salary": "₹30,000–60,000", "Growth Potential": "High", "Job Stability": "Very High" },
+                "PCMB": { "Eligibility": "10th Pass (Science & Maths)", "Duration": "2 Years", "Job Opportunities": "Very High", "Starting Salary": "₹25,000–60,000", "Growth Potential": "Very High", "Job Stability": "High" },
+                "Commerce": { "Eligibility": "10th Pass", "Duration": "2 Years", "Job Opportunities": "High", "Starting Salary": "₹20,000–40,000", "Growth Potential": "High", "Job Stability": "High" },
+                "Arts": { "Eligibility": "10th Pass", "Duration": "2 Years", "Job Opportunities": "High", "Starting Salary": "₹15,000–30,000", "Growth Potential": "Medium", "Job Stability": "Medium" },
+
+                // Tech/Vocational
+                "Diploma": { "Eligibility": "10th Pass", "Duration": "3 Years", "Job Opportunities": "High", "Starting Salary": "₹12,000–25,000", "Growth Potential": "High", "Job Stability": "High" },
+                "ITI": { "Eligibility": "8th/10th Pass", "Duration": "1 – 2 Years", "Job Opportunities": "High", "Starting Salary": "₹10,000–20,000", "Growth Potential": "Medium", "Job Stability": "Medium" },
+                "Vocational": { "Eligibility": "8th/10th Pass", "Duration": "6 Months – 2 Years", "Job Opportunities": "High", "Starting Salary": "₹10,000–25,000", "Growth Potential": "Medium", "Job Stability": "Medium" },
+                "Apprenticeship": { "Eligibility": "10th Pass / ITI", "Duration": "6 Months – 2 Years", "Job Opportunities": "Very High", "Starting Salary": "₹10,000–20,000", "Growth Potential": "High", "Job Stability": "High" }
+            };
+
+            const icon = document.querySelector(`i[data-name="${careerName}"]`);
+            const btn = icon.closest('.btn-favorite');
+
+            if (btn.classList.contains('active')) {
+                // Remove logic
+                showConfirmModal(
+                    "Remove from Favourites",
+                    "Are you sure you want to remove '" + careerName + "' from your favourites?",
+                    function () {
+                        fetch("/remove_favourite", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ career: careerName })
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                btn.classList.remove('active');
+                            });
+                    },
+                    "Confirm", "Cancel"
+                );
+            } else {
+                // Add logic
+                showConfirmModal(
+                    "Add to Favourites",
+                    "Are you sure you want to add '" + careerName + "' to your favourites?",
+                    function () {
+                        const element = document.getElementById(targetId);
+                        let favouriteData = {};
+
+                        // Determine Icon Class based on targetId
+                        let iconClass = "bi-journal-bookmark"; // Default
+                        const tId = targetId.toLowerCase();
+                        if (tId.includes('pcm')) iconClass = "bi-calculator";
+                        else if (tId.includes('pcb')) iconClass = "bi-heart-pulse";
+                        else if (tId.includes('commerce')) iconClass = "bi-graph-up-arrow";
+                        else if (tId.includes('arts')) iconClass = "bi-palette";
+                        else if (tId.includes('diploma')) iconClass = "bi-tools";
+                        else if (tId.includes('iti')) iconClass = "bi-wrench";
+                        else if (tId.includes('vocational')) iconClass = "bi-briefcase";
+                        else if (tId.includes('apprenticeship')) iconClass = "bi-person-workspace";
+
+                        if (element.classList.contains('modal')) {
+                            favouriteData = {
+                                career: careerName,
+                                title: element.querySelector('.modal-title').innerText,
+                                description: element.querySelector('.modal-body').innerHTML,
+                                header_class: element.querySelector('.modal-header').className,
+                                source_page: "10th.html",
+                                icon_class: iconClass
+                            };
+                        } else {
+                            // Section logic
+                            let content = element.cloneNode(true);
+                            let btnInContent = content.querySelector('.btn-favorite');
+                            if (btnInContent) btnInContent.remove();
+
+                            let headerClass = "modal-header bg-primary text-white";
+                            if (targetId.includes('commerce')) headerClass = "modal-header bg-primary text-white";
+                            else if (targetId.includes('arts')) headerClass = "modal-header bg-secondary text-white";
+                            else if (targetId.includes('diploma')) headerClass = "modal-header bg-success text-white";
+                            else if (targetId.includes('iti')) headerClass = "modal-header bg-danger text-white";
+                            else if (targetId.includes('vocational')) headerClass = "modal-header bg-info text-dark";
+                            else if (targetId.includes('apprenticeship')) headerClass = "modal-header bg-primary text-white";
+
+                            favouriteData = {
+                                career: careerName,
+                                title: element.querySelector('h1').innerText,
+                                description: content.innerHTML,
+                                header_class: headerClass,
+                                source_page: "10th.html",
+                                icon_class: iconClass
+                            };
+                        }
+
+                        // Merge Comparison Data
+                        const comparisonInfo = CAREER_COMPARISON_DATA[careerName];
+                        if (comparisonInfo) {
+                            favouriteData = { ...favouriteData, ...comparisonInfo };
+                        }
+
+                        fetch("/add_favourite", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(favouriteData)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.status === 'added') {
+                                    btn.classList.add('active');
+                                } else {
+                                    showAlertModal("Notice", data.message);
+                                }
+                            });
+                    },
+                    "Yes", "No"
+                );
+            }
+        }
+
+        // Custom Modal Helpers
+        let confirmCallbackFn = null;
+
+        function showConfirmModal(title, message, callback, confirmText = "Confirm", cancelText = "Cancel") {
+            document.getElementById('permModalTitle').innerText = title;
+            document.getElementById('permModalBody').innerText = message;
+            document.getElementById('permModalCancel').style.display = 'inline-block';
+            document.getElementById('permModalConfirm').innerText = confirmText;
+            document.getElementById('permModalCancel').innerText = cancelText;
+            confirmCallbackFn = callback;
+            new bootstrap.Modal(document.getElementById('permissionModal')).show();
+        }
+
+        function showAlertModal(title, message) {
+            document.getElementById('permModalTitle').innerText = title;
+            document.getElementById('permModalBody').innerText = message;
+            document.getElementById('permModalCancel').style.display = 'none';
+            document.getElementById('permModalConfirm').innerText = 'OK';
+            confirmCallbackFn = null;
+            new bootstrap.Modal(document.getElementById('permissionModal')).show();
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('permModalConfirm').addEventListener('click', function () {
+                if (confirmCallbackFn) {
+                    confirmCallbackFn();
+                }
+                const modalEl = document.getElementById('permissionModal');
+                const modalInstance = bootstrap.Modal.getInstance(modalEl);
+                if (modalInstance) {
+                    modalInstance.hide();
+                }
+            });
+        });
+    </script>
+
+    <!-- Permission/Feedback Modal -->
+    <div class="modal fade modal-premium" id="permissionModal" tabindex="-1" aria-labelledby="permModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0">
+                <div class="modal-header border-0 justify-content-center pb-0 position-relative"
+                    style="background: transparent;">
+                    <!-- Decorative Icon Layout -->
+                    <div class="icon-pulse-wrapper bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center"
+                        style="width: 90px; height: 90px; margin-top: 30px;">
+                        <i class="bi bi-question-lg text-primary" style="font-size: 3rem;"></i>
+                    </div>
+                </div>
+                <div class="modal-body text-center pt-4 pb-4 px-4 bg-transparent">
+                    <h3 class="fw-bold text-dark mb-2" id="permModalTitle" style="font-family: 'Outfit', sans-serif;">
+                        Permission</h3>
+                    <p id="permModalBody" class="text-muted fs-5 mb-0"
+                        style="font-family: 'DM Sans', sans-serif; line-height: 1.6;">Message goes here...</p>
+                </div>
+                <div class="modal-footer border-0 justify-content-center bg-transparent pb-5 pt-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4 py-2 me-3 fw-bold tracking-wide"
+                        data-bs-dismiss="modal" id="permModalCancel"
+                        style="min-width: 140px; background-color: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; transition: all 0.3s;">Cancel</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-4 py-2 fw-bold tracking-wide shadow-lg"
+                        id="permModalConfirm"
+                        style="min-width: 140px; background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); border: none; transition: transform 0.2s;">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

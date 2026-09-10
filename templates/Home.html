@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #e0e7ff;
+            --secondary-color: #64748b;
+            --accent-color: #818cf8;
+            --success-color: #10b981;
+            --bg-body: #f1f5f9;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --backdrop-blur: blur(20px);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --gradient-hero: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+
+        /* This targets all <section> tags */
+        section {
+            padding-top: 10px;
+            /* Space above the content */
+            padding-bottom: 20px;
+            /* Space below the content */
+        }
+
+        /* OPTIONAL: If you use divs instead of section tags, use a class like this */
+        .section-padding {
+            padding-top: 30px;
+            padding-bottom: 20px;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding-top: 140px;
+            background: radial-gradient(circle at top left, rgba(99, 102, 241, 0.05), transparent 40%),
+                radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.05), transparent 40%);
+            background-attachment: fixed;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .navbar-brand {
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.01em;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        /* Navbar */
+        .navbar.fixed-top {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: var(--backdrop-blur);
+            -webkit-backdrop-filter: var(--backdrop-blur);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            padding: 1.2rem 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.scrolled .navbar.fixed-top {
+            padding: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img,
+        .navbar-brand span {
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.scrolled .navbar-brand img {
+            width: 55px;
+            height: 55px;
+        }
+
+        body.scrolled .navbar-brand span {
+            font-size: 1.5rem !important;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--text-muted) !important;
+            padding: 0.7rem 1rem !important;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            margin-left: 25px;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color) !important;
+            background: transparent;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        .navbar .btn-primary {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.8rem 2.4rem;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .navbar .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .profile-icon {
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .profile-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .feature-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: start;
+            color: var(--text-muted);
+        }
+
+        .feature-list i {
+            color: var(--success-color);
+            margin-right: 12px;
+            font-size: 1.2rem;
+            margin-top: -2px;
+        }
+
+        .icon-wrapper {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .field-card:hover .icon-wrapper {
+            transform: scale(1.1);
+        }
+
+        /* Cards */
+        .career-card,
+        .field-card,
+        .content-card {
+            background: #ffffff;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+        }
+
+        .career-card:hover,
+        .field-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow) !important;
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .content-card {
+            padding: 3rem;
+        }
+
+        p {
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 50px 0 20px;
+            margin-top: 80px;
+            width: 100%;
+        }
+
+        footer h5 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        /* Search container */
+        .search-container {
+            position: relative;
+            width: 350px;
+            margin: 40px auto;
+        }
+
+        /* Input box */
+        #searchInput {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        /* Focus effect */
+        #searchInput:focus {
+            border-color: #ff9900;
+            /* Amazon-like orange */
+        }
+
+        /* Suggestion box */
+
+
+        /* Search Overlay */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .search-box {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .search-box #searchInput {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: #f1f5f9;
+            box-shadow: none;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .search-box #searchInput:focus {
+            background: white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+
+        .search-overlay .btn-close-search {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+
+        .search-overlay .btn-close-search:hover {
+            opacity: 1;
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        /* Source text */
+        #suggestionBox small {
+            color: #777;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991px) {
+            body {
+                padding-top: 100px;
+            }
+
+            .navbar-brand span {
+                font-size: 1.4rem !important;
+            }
+
+            .navbar-brand img {
+                width: 45px;
+                height: 45px;
+            }
+
+            .nav-link {
+                margin-left: 0;
+                padding: 10px 0 !important;
+            }
+
+            .navbar-collapse {
+                background: rgba(255, 255, 255, 0.98);
+                padding: 20px;
+                border-radius: 20px;
+                margin-top: 15px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1.display-4 {
+                font-size: 2.5rem;
+                /* Smaller hero text */
+            }
+
+            .lead {
+                font-size: 1rem;
+            }
+
+            .section-padding {
+                padding-top: 50px;
+                padding-bottom: 30px;
+            }
+
+            .career-card,
+            .field-card,
+            .content-card {
+                margin-bottom: 20px;
+            }
+
+            .career-card {
+                padding: 2rem !important;
+                /* Reduce padding */
+            }
+
+            .icon-wrapper {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            /* Search Overlay Mobile */
+            .search-box {
+                width: 95%;
+            }
+
+            .search-box #searchInput {
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+
+            .search-overlay .btn-close-search {
+                right: 20px;
+                font-size: 1.2rem;
+            }
+
+            footer {
+                text-align: center;
+            }
+        }
+
+    /* --------------------------
+    SIMPLE SEARCH OVERLAY (Restored)
+    -------------------------- */
+    .search-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    padding: 20px 0;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition: all 0.3s ease;
+    }
+
+    .search-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    }
+
+    .search-box {
+    position: relative;
+    width: 90%;
+    max-width: 700px;
+    }
+
+    .search-box input,
+    .search-box #searchInput {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    background: #f1f5f9;
+    box-shadow: none;
+    outline: none;
+    font-family: 'Outfit', sans-serif;
+    text-align: left;
+    text-shadow: none;
+    color: var(--text-main);
+    }
+
+    .search-box input:focus,
+    .search-box #searchInput:focus {
+    background: white;
+    box-shadow: 0 0 0 2px var(--primary-color);
+    border-bottom-color: transparent;
+    }
+
+    .search-box input::placeholder {
+    color: #aaa;
+    font-weight: 400;
+    }
+
+    .search-overlay .btn-close-search {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    opacity: 0.5;
+    transition: all 0.3s;
+    width: auto;
+    height: auto;
+    box-shadow: none;
+    backdrop-filter: none;
+    }
+
+    .search-overlay .btn-close-search:hover {
+    opacity: 1;
+    transform: translateY(-50%) rotate(90deg);
+    background: transparent;
+    color: var(--text-main);
+    box-shadow: none;
+    }
+
+    #suggestionBox {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 220px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    #suggestionBox li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #212529;
+    transition: background 0.2s;
+    }
+
+    #suggestionBox li a:hover {
+    background-color: #f3f3f3;
+    }
+
+    /* Remove animations */
+    .search-icon-anim {
+    display: none;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid px-4">
+            <!-- Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="/home">
+                <img src="../static/Logo.png" alt="Logo" width="80" height="80" class="me-2">
+                <span class="fw-bold fs-2">CareerGuidance</span>
+            </a>
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item"><a class="nav-link active" href="/home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/comparison">Comparison</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/path">Path</a></li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="#" id="search-icon-btn"><i class="bi bi-search"></i></a>
+                    </li>
+                </ul>
+                <a href="/profile" class="me-3 profile-icon" id="profile-icon-btn"><i
+                        class="bi bi-person-circle"></i></a>
+                <!-- Login Button -->
+                {% if session.get('is_logged_in') == 1 %}
+                <a href="/logout" class="btn btn-danger">Logout</a>
+                {% else %}
+                <a href="/login" class="btn btn-primary">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="container px-4">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold">“Choose the right career, <br><span
+                    style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Not
+                    by chance — but by clarity.”</span></h1>
+        </div>
+        <div class="row g-4">
+            <!-- After 10th -->
+            <div class="col-md-6">
+                <div class="h-100 career-card text-center p-5">
+                    <div class="card-body">
+                        <h2 class="card-title fw-bold text-primary mb-3">After 10th</h2>
+                        <p class="card-text fs-5 mb-4">Explore diploma courses and stream selection.</p>
+                        <a href="/10th" class="btn btn-outline-primary rounded-pill btn-lg px-4">Explore</a>
+                    </div>
+                </div>
+            </div>
+            <!-- After 12th -->
+            <div class="col-md-6">
+                <div class="h-100 career-card text-center p-5">
+                    <div class="card-body">
+                        <h2 class="card-title fw-bold text-primary mb-3">After 12th</h2>
+                        <p class="card-text fs-5 mb-4">Discover undergraduate degrees and entrance exams.</p>
+                        <a href="/12th" class="btn btn-outline-primary rounded-pill btn-lg px-4">Explore</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Graduation -->
+            <div class="col-md-6">
+                <div class="h-100 career-card text-center p-5">
+                    <div class="card-body">
+                        <h2 class="card-title fw-bold text-primary mb-3">Graduation</h2>
+                        <p class="card-text fs-5 mb-4">Plan for masters, jobs, and higher studies.</p>
+                        <a href="/graduation" class="btn btn-outline-primary rounded-pill btn-lg px-4">Explore</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Unique Career -->
+            <div class="col-md-6">
+                <div class="h-100 career-card text-center p-5">
+                    <div class="card-body">
+                        <h2 class="card-title fw-bold text-primary mb-3">Unique Career</h2>
+                        <p class="card-text fs-5 mb-4">Explore unique and emerging career paths.</p>
+                        <a href="/unique_career" class="btn btn-outline-primary rounded-pill btn-lg px-4">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Career Guidance Section -->
+    <section class="container px-4">
+        <div class="content-card p-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="text-center mb-4">
+                        <h2 class="fw-bold display-6 mb-3">Why <span class="text-primary">Career Guidance</span> Matters
+                        </h2>
+                        <p class="lead text-muted">Choosing the right career is one of the most important and
+                            life-changing decisions for a student.</p>
+                    </div>
+                    <p class="mb-4 text-center">Without proper guidance, students often feel confused, stressed, or
+                        unsure about their future path. Career guidance helps students understand their interests,
+                        strengths, and abilities, and connects them with suitable career options. It provides clarity,
+                        direction, and confidence to make informed decisions at the right time.</p>
+                    <div class="p-4 rounded-4 mb-4" style="background: var(--primary-light);">
+                        <h5 class="fw-bold mb-3 text-dark">Key Benefits:</h5>
+                        <ul class="list-unstyled feature-list mb-0">
+                            <li><i class="bi bi-check-circle-fill"></i>Reduces confusion while choosing a career</li>
+                            <li><i class="bi bi-check-circle-fill"></i>Helps students set clear goals for the future
+                            </li>
+                            <li><i class="bi bi-check-circle-fill"></i>Saves time, effort, and financial resources</li>
+                            <li><i class="bi bi-check-circle-fill"></i>Builds confidence and self-awareness</li>
+                            <li><i class="bi bi-check-circle-fill"></i>Encourages better academic and career planning
+                            </li>
+                        </ul>
+                    </div>
+                    <p class="text-center mb-0 fw-medium">With the right guidance, students can choose a career that
+                        matches their <span class="text-primary">passion</span> and <span
+                            class="text-primary">potential</span>, leading to long-term success and satisfaction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Career Fields Section -->
+    <section class="container px-4">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold display-6">Popular <span class="text-primary">Career Fields</span></h2>
+            <p class="lead">Explore diverse opportunities across various streams</p>
+        </div>
+        <div class="row g-4">
+            <!-- Engineering -->
+            <div class="col-md-6 col-lg-3">
+                <div class="field-card h-100 text-center p-4">
+                    <div class="card-body">
+                        <div class="icon-wrapper bg-primary bg-opacity-10 text-primary"><i class="bi bi-gear-fill"></i>
+                        </div>
+                        <h5 class="fw-bold">Engineering</h5>
+                        <p class="text-muted small mb-0">Computer, Civil, Mechanical, Electrical, etc.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Medical -->
+            <div class="col-md-6 col-lg-3">
+                <div class="field-card h-100 text-center p-4">
+                    <div class="card-body">
+                        <div class="icon-wrapper bg-danger bg-opacity-10 text-danger"><i
+                                class="bi bi-heart-pulse-fill"></i></div>
+                        <h5 class="fw-bold">Medical</h5>
+                        <p class="text-muted small mb-0">MBBS, Nursing, Pharmacy, Physiotherapy, etc.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Commerce -->
+            <div class="col-md-6 col-lg-3">
+                <div class="field-card h-100 text-center p-4">
+                    <div class="card-body">
+                        <div class="icon-wrapper bg-success bg-opacity-10 text-success"><i
+                                class="bi bi-graph-up-arrow"></i></div>
+                        <h5 class="fw-bold">Commerce</h5>
+                        <p class="text-muted small mb-0">CA, CS, B.Com, MBA, BBA, CFA, ACCA, etc.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Arts -->
+            <div class="col-md-6 col-lg-3">
+                <div class="field-card h-100 text-center p-4">
+                    <div class="card-body">
+                        <div class="icon-wrapper bg-warning bg-opacity-10 text-warning"><i
+                                class="bi bi-palette-fill"></i></div>
+                        <h5 class="fw-bold">Arts</h5>
+                        <p class="text-muted small mb-0">Design, Law, Journalism, Psychology, etc.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unique Career Fields Section -->
+    <section class="container px-4">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold display-6">Careers <span class="text-primary">Beyond Degrees</span></h2>
+            <p class="lead text-muted mx-auto" style="max-width: 700px;">Not every successful career begins with a
+                degree. In today’s digital era, turn your passion into a profession through skills, creativity, and
+                consistency.</p>
+        </div>
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-4 mb-4 mb-lg-0">
+                <div class="pe-lg-4">
+                    <h4 class="fw-bold mb-3">Why choose an unconventional path?</h4>
+                    <p class="text-muted mb-4">Fields like <strong>vlogging, gaming, sports, and content
+                            creation</strong> allow individuals to build global careers without traditional education
+                        paths.</p>
+                    <ul class="list-unstyled feature-list">
+                        <li><i class="bi bi-check-circle-fill"></i>No formal degree required</li>
+                        <li><i class="bi bi-check-circle-fill"></i>Skill, passion, and creativity driven</li>
+                        <li><i class="bi bi-check-circle-fill"></i>Income through digital platforms</li>
+                        <li><i class="bi bi-check-circle-fill"></i>Global career opportunities</li>
+                        <li><i class="bi bi-check-circle-fill"></i>Self-learning and practical growth</li>
+                    </ul>
+                    <div class="p-2 rounded-3 mt-4 border border-primary border-opacity-25 bg-primary bg-opacity-10">
+                        <p class="fw-bold text-primary mb-0 text-center">"Your talent can
+                            be your qualification."</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Cards Section -->
+            <div class="col-lg-8">
+                <div class="row g-4">
+                    <!-- Vlogging -->
+                    <div class="col-md-6">
+                        <div class="h-100 career-card text-center p-3">
+                            <div class="card-body">
+                                <div class="icon-wrapper bg-danger bg-opacity-10 text-danger mb-3"><i
+                                        class="bi bi-camera-reels-fill"></i></div>
+                                <h5 class="fw-bold">Vlogging</h5>
+                                <p class="small text-muted mb-3">Create video content on platforms like YouTube and
+                                    Instagram and earn through ads and sponsorships.</p>
+                                <span
+                                    class="badge rounded-pill bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-3 py-2">No
+                                    Degree Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Gaming -->
+                    <div class="col-md-6">
+                        <div class="h-100 career-card text-center p-3">
+                            <div class="card-body">
+                                <div class="icon-wrapper bg-primary bg-opacity-10 text-primary mb-3"><i
+                                        class="bi bi-controller"></i></div>
+                                <h5 class="fw-bold">Gaming</h5>
+                                <p class="small text-muted mb-3">Professional gaming, streaming, and e-sports
+                                    competitions as a full-time career.</p>
+                                <span
+                                    class="badge rounded-pill bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 px-3 py-2">Skill
+                                    Based</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sports -->
+                    <div class="col-md-6">
+                        <div class="h-100 career-card text-center p-3">
+                            <div class="card-body">
+                                <div class="icon-wrapper bg-warning bg-opacity-10 text-warning mb-3"><i
+                                        class="bi bi-trophy-fill"></i></div>
+                                <h5 class="fw-bold">Sports</h5>
+                                <p class="small text-muted mb-3">Build a career as an athlete, coach, or fitness
+                                    professional through talent and discipline.</p>
+                                <span
+                                    class="badge rounded-pill bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 px-3 py-2">Talent
+                                    Driven</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Content Creation -->
+                    <div class="col-md-6">
+                        <div class="h-100 career-card text-center p-3">
+                            <div class="card-body">
+                                <div class="icon-wrapper bg-info bg-opacity-10 text-info mb-3"><i
+                                        class="bi bi-palette-fill"></i></div>
+                                <h5 class="fw-bold">Content Creation</h5>
+                                <p class="small text-muted mb-3">Design, edit, write, or create digital content for
+                                    brands and social media platforms.</p>
+                                <span
+                                    class="badge rounded-pill bg-info bg-opacity-10 text-info border border-info border-opacity-25 px-3 py-2">Creative
+                                    Career</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center">
+        <p class="mb-1">© 2026 CareerGuide | All Rights Reserved</p>
+        <small>Helping students choose the right career after 10th, 12th & Graduation</small>
+    </footer>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <button class="btn-close-search" id="close-search-btn"><i class="bi bi-x-lg"></i></button>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search courses, degrees, careers..." autocomplete="off" />
+            <ul id="suggestionBox" class="dropdown-menu w-100" style="position: absolute; top: 100%; left: 0;"></ul>
+        </div>
+    </div>
+
+    <script>
+        // Navbar Scroll Animation Logic
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                document.body.classList.add('scrolled');
+            } else {
+                document.body.classList.remove('scrolled');
+            }
+        });
+
+        // Search Overlay Logic
+        const searchIconBtn = document.getElementById('search-icon-btn');
+        const searchOverlay = document.getElementById('search-overlay');
+        const closeSearchBtn = document.getElementById('close-search-btn');
+        const searchInput = document.getElementById('searchInput');
+        const suggestionBox = document.getElementById('suggestionBox');
+
+        if (searchIconBtn) {
+            searchIconBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                searchOverlay.classList.add('active');
+                searchInput.focus();
+            });
+        }
+
+        if (closeSearchBtn) {
+            closeSearchBtn.addEventListener('click', function () {
+                searchOverlay.classList.remove('active');
+            });
+        }
+
+        // Handle "Enter" key
+        if (searchInput) {
+            searchInput.addEventListener("keydown", function (e) {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    let firstItem = suggestionBox.querySelector("li a");
+                    if (firstItem) {
+                        firstItem.click();
+                    } else if (searchInput.value.trim()) {
+                        window.location.href = `/search-redirect?q=${encodeURIComponent(searchInput.value.trim())}`;
+                    }
+                }
+            });
+
+            // Fetch suggestions
+            searchInput.addEventListener("keyup", function () {
+                let value = searchInput.value;
+                if (value.length === 0) {
+                    suggestionBox.innerHTML = "";
+                    suggestionBox.style.display = "none";
+                    return;
+                }
+                fetch(`/search-suggest?q=${encodeURIComponent(value)}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (searchInput.value !== value) return;
+                        suggestionBox.innerHTML = "";
+                        if (data.length === 0) {
+                            suggestionBox.style.display = "none";
+                            return;
+                        }
+                        suggestionBox.style.display = "block";
+                        data.forEach(item => {
+                            let li = document.createElement("li");
+                            let page = item.page_name.replace(".html", "").toLowerCase();
+                            li.innerHTML = `<a class="dropdown-item" href="/${page}?target=${item.div_id}&type=${item.target_type}"><b>${item.keyword}</b> <small>(${item.source})</small></a>`;
+                            suggestionBox.appendChild(li);
+                        });
+                    });
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const p = new URLSearchParams(window.location.search);
+            const target = p.get("target");
+            const type = p.get("type");
+
+            if (!target || !type) return;
+
+            const el = document.getElementById(target);
+            if (!el) return;
+
+            if (type === "modal" || type === "modal-box") {
+                new bootstrap.Modal(el).show();
+            } else {
+                el.scrollIntoView({ behavior: "smooth" });
+            }
+        });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

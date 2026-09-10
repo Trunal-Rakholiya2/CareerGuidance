@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Comparison</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #e0e7ff;
+            --secondary-color: #64748b;
+            --accent-color: #818cf8;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --bg-body: #f8fafc;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --backdrop-blur: blur(20px);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            --hover-shadow: 0 25px 50px rgba(99, 102, 241, 0.2);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            padding-top: 140px;
+            font-size: 1.1rem;
+            background:
+                radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 25%);
+            background-color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        /* Navbar */
+        /* Navbar */
+        .navbar.fixed-top {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: var(--backdrop-blur);
+            -webkit-backdrop-filter: var(--backdrop-blur);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            padding: 1.2rem 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.scrolled .navbar.fixed-top {
+            padding: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img,
+        .navbar-brand span {
+            transition: all 0.3s ease-in-out;
+        }
+
+        body.scrolled .navbar-brand img {
+            width: 55px;
+            height: 55px;
+        }
+
+        body.scrolled .navbar-brand span {
+            font-size: 1.5rem !important;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--text-muted) !important;
+            padding: 0.7rem 1rem !important;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            margin-left: 25px;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color) !important;
+            background: transparent;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        .profile-icon {
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .profile-icon:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* Main Container */
+        .comparison-hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Selection Card */
+        .selection-wrapper {
+            background: #fff;
+            border-radius: 32px;
+            box-shadow: var(--card-shadow);
+            padding: 3rem;
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            margin-bottom: 4rem;
+        }
+
+        /* TABS */
+        .nav-pills {
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .nav-pills .nav-link {
+            border-radius: 50px;
+            padding: 10px 24px;
+            background: #f1f5f9;
+            color: var(--text-muted);
+            border: 1px solid transparent;
+            margin: 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-pills .nav-link:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+        }
+
+        .nav-pills .nav-link.active {
+            background: var(--primary-color);
+            color: white !important;
+            box-shadow: 0 8px 20px -5px rgba(99, 102, 241, 0.5);
+        }
+
+        /* Career Checkbox Cards */
+        .career-card-label {
+            display: flex;
+            align-items: center;
+            padding: 1.25rem;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .career-card-label:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .career-card-label.selected {
+            border-color: var(--primary-color);
+            background: linear-gradient(145deg, #fff, #f5f3ff);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        .career-card-label .check-circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #cbd5e1;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .career-card-label.selected .check-circle {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
+        }
+
+        .career-card-label .check-circle::after {
+            content: "\F26E";
+            /* Bootstrap Check Icon */
+            font-family: "bootstrap-icons";
+            font-size: 14px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .career-card-label.selected .check-circle::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .career-icon-box {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #eef2ff 100%);
+            color: var(--primary-color);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .career-title {
+            font-weight: 700;
+            color: var(--text-main);
+            font-size: 1.05rem;
+            line-height: 1.3;
+        }
+
+        .career-checkbox {
+            display: none;
+        }
+
+        /* Compare Button Area */
+        .action-area {
+            margin-top: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .btn-compare {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 16px 48px;
+            border-radius: 50px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 15px 35px rgba(79, 70, 229, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            letter-spacing: 0.5px;
+        }
+
+        .btn-compare:hover:not(:disabled) {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 25px 45px rgba(79, 70, 229, 0.4);
+        }
+
+        .btn-compare:disabled {
+            background: #cbd5e1;
+            box-shadow: none;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .selection-count {
+            display: inline-block;
+            background: var(--text-main);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* RESULT TABLE */
+        .comparison-result {
+            background: white;
+            border-radius: 32px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 4rem;
+            display: none;
+            /* hidden initially */
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .table-responsive {
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .table-modern {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            min-width: 800px;
+        }
+
+        .table-modern th,
+        .table-modern td {
+            padding: 1.5rem;
+            vertical-align: middle;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        /* Sticky First Column */
+        .table-modern td:first-child,
+        .table-modern th:first-child {
+            position: sticky;
+            left: 0;
+            background: #fff;
+            /* fallback */
+            z-index: 10;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            width: 200px;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.02);
+            border-right: 1px solid #f1f5f9;
+        }
+
+        .table-modern thead th {
+            background: #f8fafc;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            text-align: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .table-modern tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .table-modern tbody tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        .metric-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .metric-icon {
+            width: 32px;
+            height: 32px;
+            background: #f1f5f9;
+            color: var(--primary-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .val-high {
+            color: var(--success-color);
+            font-weight: 700;
+            background: rgba(16, 185, 129, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .val-very-high {
+            color: #059669;
+            font-weight: 800;
+            background: rgba(5, 150, 105, 0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .val-med {
+            color: var(--warning-color);
+            font-weight: 600;
+            background: rgba(245, 158, 11, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .val-low {
+            color: var(--danger-color);
+            font-weight: 600;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* Search container */
+        .search-container {
+            position: relative;
+            width: 350px;
+            margin: 40px auto;
+        }
+
+        /* Input box */
+        #searchInput {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        /* Focus effect */
+        #searchInput:focus {
+            border-color: #ff9900;
+            /* Amazon-like orange */
+        }
+
+        /* Search Overlay */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-100%);
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .search-box {
+            position: relative;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .search-box input,
+        .search-box #searchInput {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: #f1f5f9;
+            box-shadow: none;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+            text-align: left;
+            text-shadow: none;
+            color: var(--text-main);
+        }
+
+        .search-box input:focus,
+        .search-box #searchInput:focus {
+            background: white;
+            box-shadow: 0 0 0 2px var(--primary-color);
+            border-bottom-color: transparent;
+        }
+
+        .search-box input::placeholder {
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        .search-overlay .btn-close-search {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            opacity: 0.5;
+            transition: all 0.3s;
+            width: auto;
+            height: auto;
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        .search-overlay .btn-close-search:hover {
+            opacity: 1;
+            transform: translateY(-50%) rotate(90deg);
+            background: transparent;
+            color: var(--text-main);
+            box-shadow: none;
+        }
+
+        #suggestionBox {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-top: none;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 220px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        #suggestionBox li a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #212529;
+            transition: background 0.2s;
+        }
+
+        #suggestionBox li a:hover {
+            background-color: #f3f3f3;
+        }
+
+        /* Remove animations */
+        .search-icon-anim {
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 50px 0 20px;
+            margin-top: 80px;
+            width: 100%;
+        }
+
+        footer h5 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid px-4">
+            <!-- Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="/home">
+                <img src="../static/Logo.png" alt="Logo" width="80" height="80" class="me-2">
+                <span class="fw-bold fs-2">CareerGuidance</span>
+            </a>
+            <!-- Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/comparison">Comparison</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/path">Path</a></li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="#" id="search-icon-btn"><i class="bi bi-search"></i></a>
+                    </li>
+                </ul>
+                <a href="/profile" class="me-3 profile-icon" id="profile-icon-btn"><i
+                        class="bi bi-person-circle"></i></a>
+                <!-- Login Button -->
+                {% if session.get('is_logged_in') == 1 %}
+                <a href="/logout" class="btn btn-danger">Logout</a>
+                {% else %}
+                <a href="/login" class="btn btn-primary">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container pb-5">
+
+        <div class="comparison-hero">
+            <h1 class="hero-title">Compare & Decide</h1>
+            <p class="text-muted fs-5" style="max-width: 600px; margin: 0 auto;">
+                Select your favorite careers to see a side-by-side comparison of salary, growth, and opportunities.
+            </p>
+        </div>
+
+        <!-- Selection Area -->
+        <div class="selection-wrapper">
+
+            <!-- Category Tabs -->
+            <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
+                <!-- Javascript will populate this -->
+            </ul>
+
+            <div id="loadingFavorites" class="text-center py-5">
+                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status"></div>
+                <p class="text-muted mt-3 fw-medium">Loading your favorites...</p>
+            </div>
+
+            <div id="noFavorites" class="text-center py-5" style="display: none;">
+                <div class="mb-3 text-muted opacity-50"><i class="bi bi-bookmark-star" style="font-size: 4rem;"></i>
+                </div>
+                <h4 class="fw-bold">No Favorites Yet</h4>
+                <p class="text-muted">Star some careers from the explore pages to compare them here.</p>
+                <a href="/home" class="btn btn-primary rounded-pill px-4 mt-2">Explore Careers</a>
+            </div>
+
+            <div class="tab-content" id="pills-tabContent">
+                <!-- Tab Panes Javascript -->
+            </div>
+
+            <!-- Action Area -->
+            <div class="action-area">
+                <div class="selection-count" id="selectionCount">Selected: 0/5</div>
+                <br>
+                <button id="startCompareBtn" class="btn-compare" disabled>
+                    Compare Selection <i class="bi bi-arrow-right-short ms-1"
+                        style="font-size: 1.4rem; vertical-align: middle;"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Result Section -->
+        <div id="comparisonResult" class="comparison-result">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h3 class="fw-bold mb-1">Comparison Analysis</h3>
+                    <p class="text-muted mb-0">Detailed breakdown of your selected choices</p>
+                </div>
+                <button class="btn btn-outline-dark rounded-pill"
+                    onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <i class="bi bi-pencil me-2"></i> Modify Selection
+                </button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table-modern">
+
+                    <tbody id="tableBody">
+                        <!-- Rows JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-4 p-4 bg-light rounded-4 border border-dashed">
+                <div class="d-flex gap-3 align-items-start">
+                    <i class="bi bi-lightbulb text-warning fs-3"></i>
+                    <div>
+                        <h6 class="fw-bold mb-1">Smart Tip</h6>
+                        <p class="text-muted mb-0 small">"Job Opportunities" and "Growth Potential" are key long-term
+                            indicators. Don't just look at starting salary!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Alert Modal -->
+    <div class="modal fade" id="alertModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 p-4 text-center">
+                <div class="mb-3 text-warning"><i class="bi bi-exclamation-triangle-fill" style="font-size: 3rem;"></i>
+                </div>
+                <h4 class="fw-bold" id="alertTitle">Limit Reached</h4>
+                <p class="text-muted" id="alertBody">You can compare a maximum of 5 careers at a time.</p>
+                <button class="btn btn-dark rounded-pill w-100" data-bs-dismiss="modal">Got it</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <p class="mb-1">© 2026 CareerGuide | All Rights Reserved</p>
+        <small>Helping students choose the right career after 10th, 12th & Graduation</small>
+    </footer>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <button class="btn-close-search" id="close-search-btn"><i class="bi bi-x-lg"></i></button>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search courses, degrees, careers..." autocomplete="off" />
+            <ul id="suggestionBox" class="dropdown-menu w-100" style="position: absolute; top: 100%; left: 0;"></ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // --- Navbar Scroll ---
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) document.body.classList.add('scrolled');
+            else document.body.classList.remove('scrolled');
+        });
+
+        // --- Search Overlay Logic ---
+        const searchIconBtn = document.getElementById('search-icon-btn');
+        const searchOverlay = document.getElementById('search-overlay');
+        const closeSearchBtn = document.getElementById('close-search-btn');
+        const searchInput = document.getElementById('searchInput');
+        const suggestionBox = document.getElementById('suggestionBox');
+
+        if (searchIconBtn) {
+            searchIconBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                searchOverlay.classList.add('active');
+                searchInput.focus();
+            });
+        }
+
+        if (closeSearchBtn) {
+            closeSearchBtn.addEventListener('click', function () {
+                searchOverlay.classList.remove('active');
+            });
+        }
+
+        // Handle "Enter" key
+        if (searchInput) {
+            searchInput.addEventListener("keydown", function (e) {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    let firstItem = suggestionBox.querySelector("li a");
+                    if (firstItem) {
+                        firstItem.click();
+                    } else if (searchInput.value.trim()) {
+                        window.location.href = `/search-redirect?q=${encodeURIComponent(searchInput.value.trim())}`;
+                    }
+                }
+            });
+
+            // Fetch suggestions
+            searchInput.addEventListener("keyup", function () {
+                let value = searchInput.value;
+                if (value.length === 0) {
+                    suggestionBox.innerHTML = "";
+                    suggestionBox.style.display = "none";
+                    return;
+                }
+                fetch(`/search-suggest?q=${encodeURIComponent(value)}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (searchInput.value !== value) return;
+                        suggestionBox.innerHTML = "";
+                        if (data.length === 0) {
+                            suggestionBox.style.display = "none";
+                            return;
+                        }
+                        suggestionBox.style.display = "block";
+                        data.forEach(item => {
+                            let li = document.createElement("li");
+                            let page = item.page_name.replace(".html", "").toLowerCase();
+                            li.innerHTML = `<a class="dropdown-item" href="/${page}?target=${item.div_id}&type=${item.target_type}"><b>${item.keyword}</b> <small>(${item.source})</small></a>`;
+                            suggestionBox.appendChild(li);
+                        });
+                    });
+            });
+        }
+
+        // --- Comparison Logic ---
+        let selectedCareers = [];
+        const MAX_SELECTION = 5;
+        let activeCategory = null;
+
+        fetch("/get_favourites")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('loadingFavorites').style.display = 'none';
+                if (!data || data.length === 0) {
+                    document.getElementById('noFavorites').style.display = 'block';
+                    return;
+                }
+                const categories = {};
+                data.forEach(item => {
+                    let fav;
+                    try { fav = (typeof item.favourite_career === 'string') ? JSON.parse(item.favourite_career) : item.favourite_career; } catch (e) { return; }
+                    let source = fav.source_page ? fav.source_page.replace('.html', '') : 'Other';
+                    if (!categories[source]) categories[source] = [];
+                    categories[source].push(fav);
+                });
+                renderTabs(categories);
+            })
+            .catch(console.error);
+
+        function renderTabs(categories) {
+            const tabList = document.getElementById('pills-tab');
+            const tabContent = document.getElementById('pills-tabContent');
+            let isFirst = true;
+
+            for (const [catName, items] of Object.entries(categories)) {
+                const safeName = catName.replace(/[^a-zA-Z0-9]/g, '_');
+
+                // Tab
+                const li = document.createElement('li');
+                li.className = 'nav-item';
+                li.innerHTML = `<button class="nav-link ${isFirst ? 'active' : ''}" data-bs-toggle="pill" data-bs-target="#pills-${safeName}">${catName} <span class="badge bg-white text-dark ms-1 rounded-pill small">${items.length}</span></button>`;
+                tabList.appendChild(li);
+
+                // Pane
+                const pane = document.createElement('div');
+                pane.className = `tab-pane fade ${isFirst ? 'show active' : ''}`;
+                pane.id = `pills-${safeName}`;
+
+                const row = document.createElement('div');
+                row.className = 'row g-3';
+
+                items.forEach(fav => {
+                    const col = document.createElement('div');
+                    col.className = 'col-md-6 col-lg-4';
+                    const careerName = fav.career || fav.title;
+                    const iconClass = fav.icon_class || 'bi bi-star-fill';
+
+                    col.innerHTML = `
+                        <div class="career-card-label" onclick="toggleSelection(this, '${careerName.replace(/'/g, "\\'")}', '${catName}')">
+                            <div class="check-circle"></div>
+                            <div class="career-icon-box">
+                                <i class="${iconClass}"></i>
+                            </div>
+                            <div class="career-title">${careerName}</div>
+                        </div>
+                    `;
+                    row.appendChild(col);
+                });
+                pane.appendChild(row);
+                tabContent.appendChild(pane);
+                isFirst = false;
+            }
+        }
+
+        function toggleSelection(el, careerName, category) {
+            const isSelected = el.classList.contains('selected');
+
+            // Auto-Reset on Category Mismatch
+            if (!isSelected && selectedCareers.length > 0) {
+                if (activeCategory && category !== activeCategory) {
+                    // Reset Selection
+                    selectedCareers = [];
+                    document.querySelectorAll('.career-card-label.selected').forEach(card => card.classList.remove('selected'));
+                    document.getElementById('comparisonResult').style.display = 'none';
+                    // Continue to select current item as first of new category
+                }
+            }
+
+            if (!isSelected) {
+                if (selectedCareers.length >= MAX_SELECTION) {
+                    document.getElementById('alertTitle').innerText = "Limit Reached";
+                    document.getElementById('alertBody').innerText = "You can compare a maximum of 5 careers at a time.";
+                    new bootstrap.Modal(document.getElementById('alertModal')).show();
+                    return;
+                }
+                el.classList.add('selected');
+                selectedCareers.push(careerName);
+                if (selectedCareers.length === 1) activeCategory = category;
+            } else {
+                el.classList.remove('selected');
+                selectedCareers = selectedCareers.filter(c => c !== careerName);
+                if (selectedCareers.length === 0) activeCategory = null;
+            }
+
+            updateUI();
+        }
+
+        function updateUI() {
+            document.getElementById('selectionCount').innerText = `Selected: ${selectedCareers.length}/${MAX_SELECTION}`;
+            const btn = document.getElementById('startCompareBtn');
+            btn.disabled = selectedCareers.length < 2;
+        }
+
+        document.getElementById('startCompareBtn').addEventListener('click', () => {
+            const btn = document.getElementById('startCompareBtn');
+            const originalHtml = btn.innerHTML;
+            btn.innerHTML = '<div class="spinner-border spinner-border-sm me-2"></div> Comparing...';
+            btn.disabled = true;
+
+            fetch("/api/compare", {
+                method: "POST", headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ careers: selectedCareers })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) alert(data.message);
+                    else {
+                        renderResultTable(data);
+                        const el = document.getElementById('comparisonResult');
+                        el.style.display = 'block';
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                    btn.innerHTML = originalHtml;
+                    btn.disabled = false;
+                })
+                .catch(e => {
+                    console.error(e);
+                    btn.innerHTML = originalHtml;
+                    btn.disabled = false;
+                });
+        });
+
+        function renderResultTable(payload) {
+            const tbody = document.getElementById('tableBody');
+            const data = payload.data;
+
+            // Build Rows
+            // We assume consistent keys from backend, grab keys from first item
+            const firstCareer = Object.values(data)[0];
+            const metrics = Object.keys(firstCareer).filter(k => k !== 'Eligibility');
+            // Add Eligibility manually at top or let loop handle it? Let's prioritise certain keys.
+
+            const orderedMetrics = ["Course Name", "Eligibility", "Duration", "Starting Salary", "Job Opportunities", "Growth Potential", "Job Stability"];
+            let rowsHtml = '';
+
+            orderedMetrics.forEach(metric => {
+                let row = `<tr><td>
+                    <div class="metric-cell">
+                        <div class="metric-icon"><i class="${getMetricIcon(metric)}"></i></div>
+                        <span>${metric}</span>
+                    </div>
+                </td>`;
+
+                for (const [key, details] of Object.entries(data)) {
+                    let val = (metric === "Course Name") ? (details["Course Name"] || details.name) : (details[metric] || "N/A");
+                    let classVal = '';
+
+                    if (metric !== "Course Name") { // Only colorize non-title rows
+                        if (val.includes('Very High') || val.includes('High')) classVal = val.includes('Very') ? 'val-very-high' : 'val-high';
+                        else if (val.includes('Medium')) classVal = 'val-med';
+                        else if (val.includes('Low')) classVal = 'val-low';
+                    } else {
+                        classVal = 'fw-bold text-primary'; // Style for Course Name
+                    }
+
+                    row += `<td class="text-center"><span class="${classVal}">${val}</span></td>`;
+                }
+                row += '</tr>';
+                rowsHtml += row;
+            });
+            tbody.innerHTML = rowsHtml;
+        }
+
+        function getMetricIcon(m) {
+            if (m === 'Course Name') return 'bi bi-journal-bookmark-fill';
+            if (m.includes('Salary')) return 'bi bi-cash-stack';
+            if (m.includes('Duration')) return 'bi bi-clock-history';
+            if (m.includes('Job')) return 'bi bi-briefcase';
+            if (m.includes('Growth')) return 'bi bi-graph-up-arrow';
+            if (m.includes('Eligibility')) return 'bi bi-mortarboard';
+            return 'bi bi-star';
+        }
+
+    </script>
+</body>
+
+</html>
